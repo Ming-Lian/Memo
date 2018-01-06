@@ -39,6 +39,7 @@ BWT算法有三个应用：
 
 
 参考资料：
+
 (1)[自己动手写bowtie第一讲](http://www.bio-info-trainee.com/409.html)
 
 (2)[BWT (Burrows–Wheeler_transform)数据转换算法](http://www.cnblogs.com/xudong-bupt/p/3763814.html)
