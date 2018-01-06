@@ -68,6 +68,9 @@ doctoc file1.md [file2.md ... ]
 这样就可以就可以用`name`参数的值"title"来作为internal navigation来进行目录跳转了
 
 参考资料：
+
 (1) [Install 1: How to Install npm & Manage npm Versions](https://docs.npmjs.com/getting-started/installing-node)
+
 (2) [Install 2:Node Version Manager](https://github.com/creationix/nvm/blob/master/README.md#installation)
+
 (2) [Markdown Questions](http://markdownpad.com/faq.html#markdown-namedanchors)
