@@ -1,4 +1,4 @@
-<a name=“content"><h3>目录</h3></a>
+<a name="content"><h3>目录</h3></a>
                  
 - [Markdown笔记](#title)
   - [1. 标题](#head)
@@ -9,10 +9,10 @@
   - [6. 表格](#table)
   - [7. 代码框](#code)
   
-<a name=“title"><h1>Markdown 笔记</h1></a>
+<a name="title"><h1>Markdown 笔记</h1></a>
 ---
                
-<a name=“head"><h3>1. 标题</h3></a>
+<a name="head"><h3>1. 标题</h3></a>
 ```
 # H1
 ## H2
@@ -30,16 +30,16 @@
 ### H1
 ---
 
-<a name=“emphasize"><h3>2. 强调</h3></a>
+<a name="emphasize"><h3>2. 强调</h3></a>
 > - **倾斜** `*text*`或`_text_`
 > - **加粗** `**text**`或`__text__`
 > - **删除线** `~~Scratch this~~`，该用法在不同的Markdown编辑器中会有差别
 
-<a name=“list"><h3>3. 列表</h3></a>
+<a name="list"><h3>3. 列表</h3></a>
 > - **有序列表** `1. text`，即序号+点+空格+文本，其中序号不需要准确填写，只需要保证该位置输入的为数字就行，Markdown会自动编号
 > - **无需列表** 在文本前加上`*`、`-`或`+`，当然还有加空格
 
-<a name=“block-quote"><h3>4. 区块引用</h3></a>
+<a name="block-quote"><h3>4. 区块引用</h3></a>
 在每句话前加一个`>`
 ```
 > This is a blockquote with two paragraphs. Lorem ipsum dolor sit amet,
@@ -53,7 +53,7 @@
 > - 区块引用可以嵌套，只要根据层次加上不同数量的`>`
 > - 引用的区块内也可以使用其他的 Markdown 语法，包括标题、列表、代码区块等
 
-<a name=“link-image"><h3>5. 链接与图片</h3></a>
+<a name="link-image"><h3>5. 链接与图片</h3></a>
 Markdown 支持两种形式的链接语法： **行内式**和**参考式**两种形式。
 > - **行内式** 只要在方块括号后面紧接着圆括号并插入网址链接即可，只要在网址后面，用双引号把 title 文字包起来即可，例如：
 `This is [an example](http://example.com/ "Title") inline link.`
@@ -75,7 +75,7 @@ Markdown 支持两种形式的链接语法： **行内式**和**参考式**两�
 > - 链接 `[]()`
 > - 图片 `![]()`
 
-<a name=“table"><h3>6. 表格</h3></a>
+<a name="table"><h3>6. 表格</h3></a>
 例子如下：
 ```
 | Tables        | Are           | Cool  |
@@ -97,11 +97,11 @@ Markdown 支持两种形式的链接语法： **行内式**和**参考式**两�
 > - `|:----- |` 左对齐
 > - `| -----:|` 右对齐
 
-<a name=“code"><h3>7. 代码框</h3></a>
+<a name="code"><h3>7. 代码框</h3></a>
 > - 在首行与末行加上``(```)``
 > - 用`tab`键缩进
 
-<a name=“head"><h3>分割线</h3></a>
+<a name="head"><h3>分割线</h3></a>
 下面每种写法都可以建立分隔线：
 ```
 * * *
