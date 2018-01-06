@@ -67,7 +67,7 @@ done
 ```
 <a name="format-trans"></a>
 ##### 格式转换
-SRA格式有6~9倍的压缩了，比zip格式压缩的2~3倍高多了。将SRA格式转换为fastq格式，这里需要用到NCBI开发的**sratoolkit**中的**fastq-dump**命令
+SRA格式有6\~9倍的压缩了，比zip格式压缩的2\~3倍高多了。将SRA格式转换为fastq格式，这里需要用到NCBI开发的**sratoolkit**中的**fastq-dump**命令
 ```
 fastq-dump --split-3 -O ChIP_seq/ SRR***.sra 
 ```
@@ -197,9 +197,13 @@ done &
 具体**peak calling原理**可以看这篇文章：https://www.plob.org/article/3760.html
 
 以下两张图很好的描述了peaks calling的过程：
+
 (1) **Building a signal profile**
+
 ![](https://upload.plob.ybzhao.com/wp-content/uploads/2012/09/5573BC7503EC32571E73BCE99799CCF60A6F3905049E_410_646.png "Building a signal profile")
+
 (2) **Peak calling**
+
 ![](https://upload.plob.ybzhao.com/wp-content/uploads/2012/09/C59D9143E91CA6ED15485810F18A63E69198D68D7D8E_500_649.jpg "Peak calling")
 
 也许看看在peaks calling分析早期，别人是怎么做的，对它的原理的理解会有启发：[八年前的ChIP-seq怎么找peak](https://mp.weixin.qq.com/s/8IkYvALnMiqLRBmtKeehjw)
