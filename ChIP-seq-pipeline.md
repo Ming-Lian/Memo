@@ -56,7 +56,7 @@ bowtie2-build ~/Ref/mm10/mm10.fa ~/Ref/mm10/mm10 1>Ref/mm10/mm10.bwt_index.log 2
 ##### 数据下载
 下载数据先要根据数据的`GEO id`到NCBI上获取该数据所对应的`SRP id`(sra project id)，然后根据`SRP id`到FTP上下载，例如如果已知数据的`GEO id`为<font color="red">GSE42466</font>,从NCBI的GEO数据库上找到它的`SRP id`为<font color="red">SRP017311</font>，则FTP地址为
 
-ftp://ftp-trace.ncbi.nlm.nih.gov/sra/sra-instant/reads/ByStudy/sra/SRP/**SRP017**/**SRP017311**/**SRR620$i**/**SRR620\$i.sra**
+ftp://ftp-trace.ncbi.nlm.nih.gov/sra/sra-instant/reads/ByStudy/sra/SRP/**SRP017**/**SRP017311**/**SRR620$i**/**SRR620$i.sra**
 
 可以写一个循环来下载该数据集：
 ```
@@ -135,6 +135,7 @@ samtools 参数
 <a name="peak-calling"></a>
 ### 6. Peak calling
 目前可用的peak calling工具很多，详见：http://wodaklab.org/nextgen/data/peakfinders.html
+
 这一步我们使用`MACS2`，这是一个用python2.7写的工具，安装方法为：
 > 下载安装anaconda2
 
@@ -192,7 +193,9 @@ done &
 <a name="peak-principle"><h4>Peak Calling 原理探究</h4></a>
 
 具体**统计学原理**可以看这篇博客文章：https://www.plob.org/article/7227.html
+
 具体**peak calling原理**可以看这篇文章：https://www.plob.org/article/3760.html
+
 以下两张图很好的描述了peaks calling的过程：
 (1) **Building a signal profile**
 ![](https://upload.plob.ybzhao.com/wp-content/uploads/2012/09/5573BC7503EC32571E73BCE99799CCF60A6F3905049E_410_646.png "Building a signal profile")
