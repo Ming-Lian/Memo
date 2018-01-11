@@ -280,7 +280,7 @@ plotProfile 参数
 
 经过前面的ChIP-seq测序数据处理的常规分析，我们已经成功的把测序仪下机数据变成了BED格式的peaks记录文件。所谓的peaks注释，就是想看看该peaks在基因组的哪一个区段，看看它们在各种基因组区域(基因上下游，5',3'端UTR，启动子，内含子，外显子，基因间区域，microRNA区域)分布情况，但是一般的peaks都有近万个，所以需要批量注释，如果脚本学的好，自己下载参考基因组的GFF注释文件，完全可以自己写一个。
 
-- <a name="gff"><h4>用基因组注释文件GFF/GTF注释peaks</h4></a>
+<a name="gff"><h4>用基因组注释文件GFF/GTF注释peaks</h4></a>
 
 下载参考基因组的GFF注释文件，下载地址：ftp://ftp.ensembl.org/pub/release-91/gff3/mus_musculus/Mus_musculus.GRCm38.91.gff3.gz
 
@@ -331,7 +331,7 @@ cut -f8 peaks.anno.bed | sort | uniq -c
 #     6 V_gene_segment
 ```
 
-- <a name="r-peaks"><h4>用R包ChIPpeakAnno注释peaks</h4></a>
+<a name="r-peaks"><h4>用R包ChIPpeakAnno注释peaks</h4></a>
 
 这里我们使用一个bioconductor包**ChIPpeakAnno**来做CHIP-seq的peaks注释，下面的包自带的示例：
 
