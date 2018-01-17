@@ -13,10 +13,10 @@
 
 
 <a name="title"><h1>Analysis pipeline for MeRIP-seq</h1></a>
----
+
 ![](/m6A_seq.jpg "MeRIP-seq")
 
-<p align="center"><h3>Schematic diagram of the MeRIP-seq protocol</h3></p>
+<p align="center">Schematic diagram of the MeRIP-seq protocol</p>
 
 由于MeRIP-seq数据分析的原理与过程和ChIP-seq十分相似，所以这里略过前面的质控，简单说明比对和peak calling步骤，具体内容可以参考[**ChIP-seq分析流程**](https://github.com/Ming-Lian/Memo/blob/master/ChIP-seq-pipeline.md)
 
@@ -62,6 +62,8 @@ $ hisat2 -p 10 --dta -x chrX_tran -1 reads1_1.fastq -2 reads1_2.fastq | samtools
 > - -1 The 1st input fastq file of paired-end reads
 > - -2 The 2nd input fastq file of paired-end reads
 > - -S File for SAM output (default: stdout)
+
+[返回目录](#content)
 
 <a name="peak"><h3>Peak calling</h3></a>
 
