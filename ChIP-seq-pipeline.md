@@ -29,7 +29,7 @@ Author：连明
 12/24/2017 4:43 :25 PM 
 
 ![ChIP](https://assets.illumina.com/content/dam/illumina-marketing/images/techniques/web-graphic-enriched-dna-binding-sites-insets.jpg  "ChIP-seq")
-<a name="prepare-ref"><h3>1. 参考基因组的准备</h3></a>
+<a name="prepare-ref"><h3>1. 参考基因组的准备 [<sup>目录</sup>](#content)</h3></a>
 
 参考基因组可以从以下两个途径获取：
 
@@ -41,17 +41,13 @@ tar zxvf chromFa.tar.gz && cat *.fa >mm10.fa
 ```
 2. [**ENSEMBL**](http://www.ensembl.org/index.html):`Download` -> `Download data via FTP` -> `FTP site` -> `../Homo_sapiens.GRCh38.dna.primary_assembly.fa.gz`
 
-[返回目录](#content)
-
-<a name="build-index"><h3>2. 建立参考基因组索引</h3></a>
+<a name="build-index"><h3>2. 建立参考基因组索引 [<sup>目录</sup>](#content)</h3></a>
 
 ```
 bowtie2-build ~/Ref/mm10/mm10.fa ~/Ref/mm10/mm10 1>Ref/mm10/mm10.bwt_index.log 2>&1
 ```
 
-[返回目录](#content)
-
-<a name="get-data"><h3>3. ChIP-seq数据获取</h3></a>
+<a name="get-data"><h3>3. ChIP-seq数据获取 [<sup>目录</sup>](#content)</h3></a>
 
 可以从**SRA**上下载，也可以从**ENA**上下载。
 
@@ -81,9 +77,8 @@ fastq-dump --split-3 -O ChIP_seq/ SRR***.sra
 #### ENA
 从GEO数据可搜索中获得其所对应的SRA id，在EBI中直接搜索该id，然后就可以直接下载fastq文件了
 
-[返回目录](#content)
 
-<a name="QC"><h3>4. 质控</h3></a>
+<a name="QC"><h3>4. 质控 [<sup>目录</sup>](#content)</h3></a>
 
 用`fastqc`查看质量
 ```
@@ -112,9 +107,8 @@ i=`basename $i .fastq`;
 cutadapt -q 20,20 -m 20 -o ChIP_seq/${i}_QC.fastq ChIP_seq/${i}.fastq;
 done
 ```
-[返回目录](#content)
 
-<a name="map"><h3>5. 比对参考基因组</h3></a>
+<a name="map"><h3>5. 比对参考基因组 [<sup>目录</sup>](#content)</h3></a>
 
 ```
 ls ChIP_seq/Rawdata/*QC.fastq | while read i;
@@ -138,9 +132,8 @@ samtools 参数
 > - -O Specify output format (SAM, BAM, CRAM)
 > - -o Write final output to FILE rather than standard output
 
-[返回目录](#content)
 
-<a name="peak-calling"><h3>6. Peak calling</h3></a>
+<a name="peak-calling"><h3>6. Peak calling [<sup>目录</sup>](#content)</h3></a>
 
 目前可用的peak calling工具很多，详见：http://wodaklab.org/nextgen/data/peakfinders.html
 这一步我们使用`MACS2`，这是一个用python2.7写的工具，安装方法为：
@@ -209,9 +202,8 @@ done &
 
 也许看看在peaks calling分析早期，别人是怎么做的，对它的原理的理解会有启发：[八年前的ChIP-seq怎么找peak](https://mp.weixin.qq.com/s/8IkYvALnMiqLRBmtKeehjw)
 
-[返回目录](#content)
 
-<a name="view"><h3>7. 可视化</h3></a>
+<a name="view"><h3>7. 可视化 [<sup>目录</sup>](#content)</h3></a>
 
 <a name="igv"><h3>Viewing the peaks in IGV</h3></a>
 
@@ -230,13 +222,14 @@ do
 sample=`basename $i .bam`;
 samtools rmdup -s ChIP_seq/Map/${sample}.bam ChIP_seq/Map/${sample}.nodup.bam; # Remove the duplicated reads
 samtools index -@ 10 ChIP_seq/Map/${sample}.nodup.bam ChIP_seq/Map/${sample}.nodup.bai; # Index the BAM file
-bamCoverage -b ChIP_seq/Map/${sample}.nodup.bam -o ChIP_seq/Map/${sample}.bw;
+bamCoverage -b ChIP_seq/Map/${sample}.nodup.bam -binSize 10 -o ChIP_seq/Map/${sample}.bw;
 done
 ```
 
 bamCoverage 参数
 > - -b BAM file
 > -  --outFileFormat Output file type. Either "bigwig" or "bedgraph" (default: bigwig)
+> - -binSize Bin size
 > - -o Output file name
 
 得到的bw文件可用用IGV进行可视化
@@ -274,9 +267,8 @@ plotProfile 参数
 
 ![](http://mmbiz.qpic.cn/mmbiz_jpg/cZNhZQ6j4ww4xlWzDIUrCmKLrfHQI9r00NyScMMuD7NpOKulFtfWNfZTSXF0ibjaMCPSmqf5aHPbBwxQVdMQSFg/640?wx_fmt=jpeg&wxfrom=5&wx_lazy=1 "peaks heatmap")
 
-[返回目录](#content)
 
-<a name="peak-anno"><h3>8.Peaks注释</h3></a>
+<a name="peak-anno"><h3>8.Peaks注释 [<sup>目录</sup>](#content)</h3></a>
 
 经过前面的ChIP-seq测序数据处理的常规分析，我们已经成功的把测序仪下机数据变成了BED格式的peaks记录文件。所谓的peaks注释，就是想看看该peaks在基因组的哪一个区段，看看它们在各种基因组区域(基因上下游，5',3'端UTR，启动子，内含子，外显子，基因间区域，microRNA区域)分布情况，但是一般的peaks都有近万个，所以需要批量注释，如果脚本学的好，自己下载参考基因组的GFF注释文件，完全可以自己写一个。
 
@@ -381,9 +373,8 @@ peaks注释也可以选择网页版工具：
 > - [ChIPseek](http://chipseek.cgu.edu.tw/)
 > - [GREAT](http://bejerano.stanford.edu/great/public/html/)
 
-[返回目录](#content)
 
-<a name="motif"><h3>9. Motif 分析</h3></a>
+<a name="motif"><h3>9. Motif 分析 [<sup>目录</sup>](#content)</h3></a>
 
 目前知名的motif搜寻工具可以参阅文献：https://biologydirect.biomedcentral.com/articles/10.1186/1745-6150-9-4
 
@@ -395,7 +386,6 @@ bedtools getfasta -fi input.fasta -bed input.bed -fo output.fasta
 
 然后可以用[**RSAT**](http://www.rsat.eu/)（Regulatory Sequence Analysis Tools）来搜索motif: `NGS ChIP-seq` -> `peak-motifs`，设置合适的参数，然后在线运行
 
-[返回目录](#content)
 
 
 
