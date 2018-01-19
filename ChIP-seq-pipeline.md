@@ -172,6 +172,8 @@ macs2 callpeak -c controlFile.bam -t treatmentFile.bam -m 10 30 -p pvalue -f BAM
 > - -f File format
 > - -B Output a file in BEDGRAPH format to visualize the peak profiles in a genome browser. There will be one file for the treatment, and one for the control.
 
+MACS2 参数的探究可以参考： https://github.com/crazyhottommy/ChIP-seq-analysis/blob/master/part1_peak_calling.md
+
 如果要进行循环处理，可以先准备一个如下格式的文本文件：
 
 |Treatment SRA id | Treatment SRA name | Control SRA id | Control SRA name |
