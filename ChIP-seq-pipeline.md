@@ -73,7 +73,7 @@ done
 ```
 <a name="format-trans"><h4>格式转换</h4></a>
 
-SRA格式有6~9倍的压缩了，比zip格式压缩的2~3倍高多了。将SRA格式转换为fastq格式，这里需要用到NCBI开发的**sratoolkit**中的**fastq-dump**命令
+SRA格式有6\~9倍的压缩了，比zip格式压缩的2~3倍高多了。将SRA格式转换为fastq格式，这里需要用到NCBI开发的**sratoolkit**中的**fastq-dump**命令
 ```
 fastq-dump --split-3 -O ChIP_seq/ SRR***.sra 
 ```
