@@ -75,7 +75,11 @@ fastq-dump --split-3 -O ChIP_seq/ SRR***.sra
 ```
 `--split-3`参数可以将PE的sra文件解压后的fastq文件拆分成\*_1.fastq和*_2.fastq，由于本示例数据集是SE测序，不会进行拆分
 #### ENA
-从GEO数据可搜索中获得其所对应的SRA id，在EBI中直接搜索该id，然后就可以直接下载fastq文件了
+从GEO数据可搜索中获得其所对应的SRP id，在EBI中直接搜索该id，下载样本信息的文本文件，然后根据该文件进行批量下载
+
+```
+tail -n +2 PRJNA182214.txt| cut -f16 | xargs wget -c -P Rawdata 
+```
 
 
 <a name="QC"><h3>4. 质控 [<sup>目录</sup>](#content)</h3></a>
