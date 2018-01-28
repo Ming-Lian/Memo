@@ -240,6 +240,8 @@ bamCoverage 参数
 
 得到的bw文件可用用IGV进行可视化
 
+因为peaks在基因组的分布是有规律的，如果是集中在TSS附近，就可以画TSS附近的信号强度图，一些人为处理可以改变peaks的分布，同理信号强度也会改变，这个是大家的注意分析结果以及生物学一样。
+
 可以对每个sample分别画基因的TSS附近的profile和heatmap图，也可以整合所有的chipseq的bam文件，画基因的TSS附近的profile和heatmap图。首先要下载mm10基因组refseq注释数据，可以从ucsc的`table browser`上下载
 
 ```
