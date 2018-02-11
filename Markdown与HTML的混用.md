@@ -13,7 +13,7 @@
   
 <a name="title"><h1>Markdown与HTML的混用技巧</h1></a>
 
-Markdown本质上就是简化版的HTML，它与HTML相比优点在于，它比HTML更轻量，书写更简洁。但是同时这也是它的缺点，毕竟Markdown是阉割过的HTML，对于一些标签可以设置的属性受到了限制，举个例子，对于一段文本，Markdown只能左对齐，如果想要居中或右对齐，抱歉，臣妾做不到(~_~)，而用HTML加一个align属性就解决了，所以左手Markdown，右手HTML，写笔记无敌了！！！
+Markdown本质上就是简化版的HTML，它与HTML相比优点在于，它比HTML更轻量，书写更简洁。但是同时这也是它的缺点，毕竟Markdown是阉割过的HTML，对于一些标签可以设置的属性受到了限制，举个例子，对于一段文本，Markdown只能左对齐，如果想要居中或右对齐，抱歉，臣妾做不到(\~_\~)，而用HTML加一个align属性就解决了，所以左手Markdown，右手HTML，写笔记无敌了！！！
 
 <table>
 <tr>
