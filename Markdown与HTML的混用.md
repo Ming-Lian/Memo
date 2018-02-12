@@ -93,7 +93,7 @@ Markdown 支持两种形式的链接语法： **行内式**和**参考式**两�
 `This is [an example][id] reference-style link.`
 接着，在文件的任意处，你可以把这个标记的链接内容定义出来：
 `[id]: http://example.com/  "Optional Title Here"`
-链接内容定义的形式为：
+> 链接内容定义的形式为：
 >> - 方括号（前面可以选择性地加上至多三个空格来缩进），里面输入链接文字
 >> - 接着一个冒号
 >> - 接着一个以上的空格或制表符
@@ -166,7 +166,7 @@ Markdown中的图片插入方法无法设置图片大小与对齐方式，用 ht
 	<td><p>text3</p></td>
 	<td><p>text4</p></td>
 </tr>
-<table>
+</table>
 ```
 
 效果：
@@ -180,7 +180,7 @@ Markdown中的图片插入方法无法设置图片大小与对齐方式，用 ht
 	<td><p>text3</p></td>
 	<td><p>text4</p></td>
 </tr>
-<table>
+</table>
 
 如果想要实现多个图片并列摆放，可以通过将图片放入表格的单元格实现，效果：
 
