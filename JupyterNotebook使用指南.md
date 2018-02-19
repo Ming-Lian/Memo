@@ -25,7 +25,7 @@
 
 在代码框内可以输入相应代码，按**"SHIFT+ENTER"**执行代码框内的代码
 
-<a name="install"><h3>安装 Jupyter Notebook [<sup>目录</sup>](#content)</h3></a>
+<a name="install-jupyter"><h3>安装 Jupyter Notebook [<sup>目录</sup>](#content)</h3></a>
 
 jupter可以运行多种语言，即在代码框中可以输入多种编程语言，包括Python和R。在安装jupyter之前需要提取安装好Python，因为jupyter是建立在Python语言之上的。
 
