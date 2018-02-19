@@ -43,7 +43,7 @@ jupter可以运行多种语言，即在代码框中可以输入多种编程语�
 
 用Python编写程序需要使用Python的IDE，一般安装好Anaconda后同时安装好**Spyder IDE**，如果没有安装好，在面板的右侧找到Spyder应用，点击下方的**Install**。安装好之后点击下方的**Launch**。安装好之后点击下方的**Launch**，运行Spyder IDE：
 
-<img src=/picture/Jupyter-note-install-Spyder.png width="800" />
+<img src=/picture/Jupyter-note-Spyder.png width="800" />
 
 <a name="run-notebook"><h4>运行Notebook Server [<sup>目录</sup>](#content)</h4></a>
 
