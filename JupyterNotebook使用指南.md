@@ -6,6 +6,7 @@
 - [安装 Jupyter Notebook](#install-jupyter)
 	- [安装 Anaconda](#install-anaconda)
 		- [Anaconda使用入门(Windows)](#get-started-with-anaconda)
+- [运行Notebook Server](#run-notebook)
 
 
 
@@ -40,4 +41,27 @@ jupter可以运行多种语言，即在代码框中可以输入多种编程语�
 
 在Navigation的Home面板，展示出了多个可供使用的相关应用。
 
-用Python编写程序需要使用Python的IDE，一般安装好Anaconda后同时安装好**Spyder IDE**，如果没有安装好，在面板的右侧找到Spyder应用，点击下方的**Install**。安装好之后点击下方的**Launch**
+用Python编写程序需要使用Python的IDE，一般安装好Anaconda后同时安装好**Spyder IDE**，如果没有安装好，在面板的右侧找到Spyder应用，点击下方的**Install**。安装好之后点击下方的**Launch**。安装好之后点击下方的**Launch**，运行Spyder IDE：
+
+<img src=/picture/Jupyter-note-install-Spyder.png width="800" />
+
+<a name="run-notebook"><h4>运行Notebook Server</h4></a>
+
+打开Notebook：`开始菜单` -> `所有程序` -> `Anaconda3(64bit)` -> `Jupyter Notebook`
+
+也可以在命令行中打开：
+
+```
+jupyter notebook
+```
+
+随后 Jupyter Notebook Server 会在浏览器中打开
+
+<img src=/picture/Jupyter-note-run-jupyter.png width="800" />
+
+
+参考资料：
+
+(1) Tutorail: Anaconda
+
+(2) Tutorial: Jupyter Notebook
