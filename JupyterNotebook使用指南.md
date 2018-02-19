@@ -3,7 +3,7 @@
 [Jupyter Notebook 使用指南](#title)
 - [试用 Jupyter Notebook](#try-jupyter)
 	- [浏览器中打开（无需安装）](#try-in-browser)
-- [安装 Jupyter Notebook](#intall-jupyter)
+- [安装 Jupyter Notebook](#install-jupyter)
 	- [安装 Anaconda](#install-anaconda)
 		- [Anaconda使用入门(Windows)](#get-started-with-anaconda)
 
