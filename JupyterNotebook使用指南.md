@@ -62,6 +62,6 @@ jupyter notebook
 
 参考资料：
 
-(1) Tutorail: Anaconda
+(1) [Anaconda Documentation](https://docs.anaconda.com/anaconda/)
 
-(2) Tutorial: Jupyter Notebook
+(2) [Jupyter Document](https://jupyter.readthedocs.io/en/latest/index.html)
