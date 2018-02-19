@@ -45,7 +45,7 @@ jupter可以运行多种语言，即在代码框中可以输入多种编程语�
 
 <img src=/picture/Jupyter-note-Spyder.png width="800" />
 
-<a name="run-notebook"><h4>运行Notebook Server [<sup>目录</sup>](#content)</h4></a>
+<a name="run-notebook"><h3>运行Notebook Server [<sup>目录</sup>](#content)</h3></a>
 
 打开Notebook：`开始菜单` -> `所有程序` -> `Anaconda3(64bit)` -> `Jupyter Notebook`
 
