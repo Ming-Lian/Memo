@@ -1,6 +1,6 @@
 <a name="content">目录</a>
 
-[Jupyter Notebook](#title)
+[Jupyter Notebook 使用指南](#title)
 - [试用 Jupyter Notebook](#try-jupyter)
 	- [浏览器中打开（无需安装）](#try-in-browser)
 - [安装 Jupyter Notebook](#intall-jupyter)
@@ -9,7 +9,7 @@
 
 
 
-<h1 name="title">Jupyter Notebook</h1>
+<h1 name="title">Jupyter Notebook 使用指南</h1>
 
 <a name="try-jupyter"><h3>试用 Jupyter Notebook [<sup>目录</sup>](#content)</h3></a>
 
