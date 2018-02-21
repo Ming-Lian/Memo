@@ -12,7 +12,7 @@
 
 <h1 name="title">Jupyter Notebook 使用指南</h1>
 
-简单来说，Jupyter Notebook就是在Markdown中嵌入可运行的代码区块(Python)，类似于HTML+Javascript，静态内容与动态内容的结合，其实它就是Rmarkdown的Python版本
+简单来说，Jupyter Notebook就是在Markdown中嵌入可运行的代码区块(支持多种编程语言，包括Python，R等)，类似于HTML+Javascript，静态内容与动态内容的结合
 
 <img src=/picture/Jupyter-note-summary-example.png width="800" />
 
@@ -20,15 +20,20 @@
 
 <h4 name="try-in-browser">浏览器中打开（无需安装）</h4>
 
-点击 https://try.jupyter.org 在浏览器中打开 jupyter
+点击 https://try.jupyter.org 在浏览器中打开 jupyter,点击右侧的"New"，在弹出菜单中选择Python3或R
 
-<img src=/picture/Jupyter-note-try-in-browser-1.png width="800" />
+<img src=/picture/Jupyter-note-run-jupyter.png width="800" />
 
-点击**"Welcome to Python.ipynb"**
+这样就打开了Notebook的编辑界面，在菜单栏选择"Insert"来在当前Cell之前或之后添加新的Cell
 
-<img src=/picture/Jupyter-note-try-in-browser-2.png width="800" />
+<img src=/picture/Jupyter-note-run-jupyter-insertCell.png width="800" />
 
-在代码框内可以输入相应代码，按**"SHIFT+ENTER"**执行代码框内的代码
+设置当前选定的Cell的类型：
+
+<img src=/picture/Jupyter-note-run-jupyter-cellType.png width="800" />
+
+一般静态文本区块选择Markdown，代码区块选择Code，在区块内编辑完后，键盘输入SHIFT+ENTER，执行区块内内容，如果是静态文本区块则转换为相应的文本形式，如果为代码区块则执行代码区块的代码并在紧接着该区块的下方输出执行结果
+
 
 <a name="install-jupyter"><h3>安装 Jupyter Notebook [<sup>目录</sup>](#content)</h3></a>
 
@@ -59,19 +64,10 @@ jupter可以运行多种语言，即在代码框中可以输入多种编程语�
 jupyter notebook
 ```
 
-随后 Jupyter Notebook Server 会在浏览器中打开，点击右侧的"New"，在弹出菜单中选择Python3
+随后 Jupyter Notebook Server 会在浏览器中打开
 
 <img src=/picture/Jupyter-note-run-jupyter.png width="800" />
 
-这样就打开了Notebook的编辑界面，在菜单栏选择"Insert"来在当前Cell之前或之后添加新的Cell
-
-<img src=/picture/Jupyter-note-run-jupyter-insertCell.png width="800" />
-
-设置当前选定的Cell的类型：
-
-<img src=/picture/Jupyter-note-run-jupyter-cellType.png width="800" />
-
-一般静态文本区块选择Markdown，代码区块选择Code，在区块内编辑完后，键盘输入SHIFT+ENTER，执行区块内内容，如果是静态文本区块则转换为相应的文本形式，如果为代码区块则执行代码区块的代码并在紧接着该区块的下方输出执行结果
 
 
 
