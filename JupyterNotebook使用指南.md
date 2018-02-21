@@ -5,7 +5,7 @@
 	- [浏览器中打开（无需安装）](#try-in-browser)
 - [安装 Jupyter Notebook](#install-jupyter)
 	- [安装 Anaconda](#install-anaconda)
-		- [Anaconda使用入门(Windows)](#get-started-with-anaconda)
+	- [Anaconda使用入门(Windows)](#get-started-with-anaconda)
 - [运行Notebook Server](#run-notebook)
 
 
@@ -42,7 +42,7 @@ jupter可以运行多种语言，即在代码框中可以输入多种编程语�
 <h4 name="install-anaconda">安装Anaconda</h4>
 安装Python推荐用Anaconda或Conda：https://www.anaconda.com/download/ ，安装方法见官方手册。最简单的方法就是点击Anaconda安装包，选好安装路径然后一路狂点Yes。
 
-<a name="get-started-with-anaconda">Anaconda使用入门(Windows)</a>
+<h4 name="get-started-with-anaconda">Anaconda使用入门(Windows)</h4>
 
 点击开始菜单，选择所有程序，然后选择Anaconda Navigation:
 
