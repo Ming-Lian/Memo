@@ -12,6 +12,8 @@
 
 <h1 name="title">Jupyter Notebook 使用指南</h1>
 
+<p align="center"><img src="http://jupyter.org/assets/main-logo.svg" width="500" /></p>
+
 简单来说，Jupyter Notebook就是在Markdown中嵌入可运行的代码区块(支持多种编程语言，包括Python，R等)，类似于HTML+Javascript，静态内容与动态内容的结合
 
 <img src=/picture/Jupyter-note-summary-example.png width="800" />
