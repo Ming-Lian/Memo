@@ -94,10 +94,11 @@ conda install -c bioconda cutadapt
 ```
 ```
 1. Single end
-cutadapt  -a ADAPTER -q 20,20 -m 20 -o outfile_QC.fastq infile.fastq
+cutadapt -a ADAPTER -q 20,20 -m 20 -o outfile_QC.fastq infile.fastq
 2. Paired end
-cutadapt  -a ADAPTER -A ADAPTER -q 20,20 -m 20 -o outfile_QC_1.fastq -p outfile_QC_2.fastq infile_1.fastq infile_2.fastq
+cutadapt -j 8 -a ADAPTER -A ADAPTER -q 20,20 -m 20 -o outfile_QC_1.fastq -p outfile_QC_2.fastq infile_1.fastq infile_2.fastq
 ```
+> - -j CORES Number of CPU cores to use. Default: 1
 > - -a ADAPTER          3' adapter to be removed
 > - -A ADAPTER          3' adapter to be removed from second read in a pair.
 > - -q [5'CUTOFF,]3'CUTOFF 
