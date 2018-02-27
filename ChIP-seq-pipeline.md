@@ -37,14 +37,14 @@ Author：连明
 
 得到的是一个由多个染色体fasta文件组成的压缩文件，解压后需要合并成一个fasta文件，命令：
 ```
-tar zxvf chromFa.tar.gz && cat *.fa >mm10.fa
+$ tar zxvf chromFa.tar.gz && cat *.fa >mm10.fa
 ```
 2. [**ENSEMBL**](http://www.ensembl.org/index.html):`Download` -> `Download data via FTP` -> `FTP site` -> `../Homo_sapiens.GRCh38.dna.primary_assembly.fa.gz`
 
 <a name="build-index"><h3>2. 建立参考基因组索引 [<sup>目录</sup>](#content)</h3></a>
 
 ```
-bowtie2-build ~/Ref/mm10/mm10.fa ~/Ref/mm10/mm10 1>Ref/mm10/mm10.bwt_index.log 2>&1
+$ bowtie2-build ~/Ref/mm10/mm10.fa ~/Ref/mm10/mm10 1>Ref/mm10/mm10.bwt_index.log 2>&1
 ```
 
 <a name="get-data"><h3>3. ChIP-seq数据获取 [<sup>目录</sup>](#content)</h3></a>
@@ -71,33 +71,38 @@ done
 
 SRA格式有6\~9倍的压缩了，比zip格式压缩的2~3倍高多了。将SRA格式转换为fastq格式，这里需要用到NCBI开发的**sratoolkit**中的**fastq-dump**命令
 ```
-fastq-dump --split-3 -O ChIP_seq/ SRR***.sra 
+$ fastq-dump --split-3 -O ChIP_seq/ SRR***.sra 
 ```
 `--split-3`参数可以将PE的sra文件解压后的fastq文件拆分成\*_1.fastq和*_2.fastq，由于本示例数据集是SE测序，不会进行拆分
 #### ENA
 从GEO数据可搜索中获得其所对应的SRP id，在EBI中直接搜索该id，下载样本信息的文本文件，然后根据该文件进行批量下载
 
 ```
-tail -n +2 PRJNA182214.txt| cut -f16 | xargs wget -c -P Rawdata 
+$ tail -n +2 PRJNA182214.txt| cut -f16 | xargs wget -c -P Rawdata 
 ```
 
 
 <a name="QC"><h3>4. 质控 [<sup>目录</sup>](#content)</h3></a>
 
 用`fastqc`查看质量
+
 ```
-ls *.fastq | xargs fastqc -t 10 -o ChIP_seq/ 
+$ ls *.fastq | xargs fastqc -t 10 -o ChIP_seq/ 
 ```
+
 用`cutadapt`进行QC，如果还没有安装cutadapt，可以通过以下方式安装：
+
 ```
-conda install -c bioconda cutadapt
+$ conda install -c bioconda cutadapt
 ```
+
 ```
-1. Single end
-cutadapt -a ADAPTER -q 20,20 -m 20 -o outfile_QC.fastq infile.fastq
-2. Paired end
-cutadapt -j 8 -a ADAPTER -A ADAPTER -q 20,20 -m 20 -o outfile_QC_1.fastq -p outfile_QC_2.fastq infile_1.fastq infile_2.fastq
+# 1. Single end
+$ cutadapt -a ADAPTER -q 20,20 -m 20 -o outfile_QC.fastq infile.fastq
+# 2. Paired end
+$ cutadapt -j 8 -a ADAPTER -A ADAPTER -q 20,20 -m 20 -o outfile_QC_1.fastq -p outfile_QC_2.fastq infile_1.fastq infile_2.fastq
 ```
+
 > - -j CORES Number of CPU cores to use. Default: 1
 > - -a ADAPTER          3' adapter to be removed
 > - -A ADAPTER          3' adapter to be removed from second read in a pair.
@@ -105,6 +110,7 @@ cutadapt -j 8 -a ADAPTER -A ADAPTER -q 20,20 -m 20 -o outfile_QC_1.fastq -p outf
 > - -m LENGTH           Discard reads shorter than LENGTH. Default: 0
 
 可以写一个循环来处理：
+
 ```
 ls *.fastq | while read i;
 do 
@@ -141,32 +147,35 @@ samtools 参数
 <a name="peak-calling"><h3>6. Peak calling [<sup>目录</sup>](#content)</h3></a>
 
 目前可用的peak calling工具很多，详见：http://wodaklab.org/nextgen/data/peakfinders.html
+
 这一步我们使用`MACS2`，这是一个用python2.7写的工具，安装方法为：
+
 > 下载安装anaconda2
 
 ```
-wget -c -P basic_tool/ https://repo.continuum.io/archive/Anaconda2-5.0.1-Linux-x86_64.sh
-sh Anaconda2-5.0.1-Linux-x86_64.sh
-echo 'export PATH=../anaconda2/bin:$PATH' >>~/.bashrc
+$ wget -c -P basic_tool/ https://repo.continuum.io/archive/Anaconda2-5.0.1-Linux-x86_64.sh
+$ sh Anaconda2-5.0.1-Linux-x86_64.sh
+$ echo 'export PATH=../anaconda2/bin:$PATH' >>~/.bashrc
 ```
 
 > 下载安装MACS2
 
 ```
-1. 用源码安装
-wget -c -P biosoft/ https://pypi.python.org/packages/9f/99/a8ac96b357f6b0a6f559fe0f5a81bcae12b98579551620ce07c5183aee2c/MACS2-2.1.1.20160309.tar.gz
-cd biosoft  && tar zxvf MACS2-2.1.1.20160309.tar.gz
-cd MACS2-2.1.1.20160309 && python setup.py install
-echo 'export PATH=../MACS2-2.1.1.20160309/bin:$PATH' >>~/.bashrc
-2. 用bioconda安装
-conda install -c bioconda macs2
+# 1. 用源码安装
+$ wget -c -P biosoft/ https://pypi.python.org/packages/9f/99/a8ac96b357f6b0a6f559fe0f5a81bcae12b98579551620ce07c5183aee2c/MACS2-2.1.1.20160309.tar.gz
+$ cd biosoft  && tar zxvf MACS2-2.1.1.20160309.tar.gz
+$ cd MACS2-2.1.1.20160309 && python setup.py install
+$ echo 'export PATH=../MACS2-2.1.1.20160309/bin:$PATH' >>~/.bashrc
+
+# 2. 用bioconda安装
+$ conda install -c bioconda macs2
 ```
 
 安装成功后就可以直接使用MACS2进行peak calling了，命令：
 
 ```
-#  MACS首先的工作是要确定一个模型，这个模型最关键的参数就是峰宽d，这个d就是bw(band width)，而它的一半就是shiftsize，具体可以参阅后文提到的原理部分
-macs2 callpeak -c controlFile.bam -t treatmentFile.bam -m 10 30 -p pvalue -f BAM -g gsize -B -n filename.preffix --outdir ChIP_seq/CallPeak 2>ChIP_seq/CallPeak/filename.macs2.log
+# MACS首先的工作是要确定一个模型，这个模型最关键的参数就是峰宽d，这个d就是bw(band width)，而它的一半就是shiftsize，具体可以参阅后文提到的原理部分
+$ macs2 callpeak -c controlFile.bam -t treatmentFile.bam -m 10 30 -p pvalue -f BAM -g gsize -B -n filename.preffix --outdir ChIP_seq/CallPeak 2>ChIP_seq/CallPeak/filename.macs2.log
 ```
 
 > - -c Control file
@@ -202,9 +211,13 @@ done &
 具体**统计学原理**可以看这篇博客文章：https://www.plob.org/article/7227.html
 具体**peak calling原理**可以看这篇文章：https://www.plob.org/article/3760.html
 以下两张图很好的描述了peaks calling的过程：
+
 (1) **Building a signal profile**
+
 ![](https://upload.plob.ybzhao.com/wp-content/uploads/2012/09/5573BC7503EC32571E73BCE99799CCF60A6F3905049E_410_646.png "Building a signal profile")
+
 (2) **Peak calling**
+
 ![](https://upload.plob.ybzhao.com/wp-content/uploads/2012/09/C59D9143E91CA6ED15485810F18A63E69198D68D7D8E_500_649.jpg "Peak calling")
 
 也许看看在peaks calling分析早期，别人是怎么做的，对它的原理的理解会有启发：[八年前的ChIP-seq怎么找peak](https://mp.weixin.qq.com/s/8IkYvALnMiqLRBmtKeehjw)
@@ -215,6 +228,7 @@ done &
 <a name="igv"><h3>Viewing the peaks in IGV</h3></a>
 
 在peak call步骤中，当给`macs2 callpeak`添加参数`-B`时会输出两个个**bedgraph**文件，其中保存着peak profile,分别为control和treat的peak profile，可以在genome browser上可视化peaks，可选择的genome browser：
+
 > - **Interactive Genome Viewer ([IGV](http://software.broadinstitute.org/software/igv/))** 本地安装运行，避免了数据传输
 > - **UCSC genome browser** 在线工具，必须有可用的参考基因组
 
@@ -234,6 +248,7 @@ done
 ```
 
 bamCoverage 参数
+
 > - -b BAM file
 > -  --outFileFormat Output file type. Either "bigwig" or "bedgraph" (default: bigwig)
 > - -binSize Bin size
@@ -246,13 +261,14 @@ bamCoverage 参数
 可以对每个sample分别画基因的TSS附近的profile和heatmap图，也可以整合所有的chipseq的bam文件，画基因的TSS附近的profile和heatmap图。首先要下载mm10基因组refseq注释数据，可以从ucsc的`table browser`上下载
 
 ```
-computeMatrix reference-point -p 10 --referencePoint TSS -b 2000 -a 2000 -S ../*bw -R ~/annotation/CHIPseq/mm10/ucsc.refseq.bed --skipZeros -o tmp4.mat.gz
-plotHeatmap -m tmp4.mat.gz -out tmp4.merge.png
-plotProfile --dpi 720 -m tmp4.mat.gz -out tmp4.profile.pdf --plotFileFormat pdf --perGroup
-plotHeatmap --dpi 720 -m tmp4.mat.gz -out tmp4.merge.pdf --plotFileFormat pdf
+$ computeMatrix reference-point -p 10 --referencePoint TSS -b 2000 -a 2000 -S ../*bw -R ~/annotation/CHIPseq/mm10/ucsc.refseq.bed --skipZeros -o tmp4.mat.gz
+$ plotHeatmap -m tmp4.mat.gz -out tmp4.merge.png
+$ plotProfile --dpi 720 -m tmp4.mat.gz -out tmp4.profile.pdf --plotFileFormat pdf --perGroup
+$ plotHeatmap --dpi 720 -m tmp4.mat.gz -out tmp4.merge.pdf --plotFileFormat pdf
 ```
 
 computeMatrix reference-point 参数
+
 > - --referencePoint {TSS,TES,center}
 > - -b Distance upstream of the reference-point selected
 > - -a Distance downstream of the reference-point selected
@@ -263,10 +279,12 @@ computeMatrix reference-point 参数
 > - --outFileSortedRegions BED file File name in which the regions are saved after skiping zeros or min/max threshold values
 
 plotHeatmap 参数
+
 > - -m Matrix file from the computeMatrix tool
 > - -out File name to save the image to
 
 plotProfile 参数
+
 > - --dpi Set the DPI to save the figure. (default: 200)
 > - -m  Matrix file from the computeMatrix tool
 > - -out File name to save the image to.The file ending will be used to determine the image format. The available options are: "png", "eps", "pdf" and "svg", e.g., MyHeatmap.png.
@@ -288,8 +306,9 @@ plotProfile 参数
 使用BEDTools’ intersectBed注释peaks
 
 ```
-bedtools intersect -wa -wb -a peaks.bed -b mm10.gff3 >ChIP_seq/CallPeak/peaks.anno.bed
+$ bedtools intersect -wa -wb -a peaks.bed -b mm10.gff3 >ChIP_seq/CallPeak/peaks.anno.bed
 ```
+
 > - -wa Write the original entry in A for each overlap
 > - -wb Write the original entry in B for each overlap. Useful for knowing what A overlaps
 > - -a BAM/BED/GFF/VCF file “A”
@@ -299,13 +318,13 @@ bedtools intersect -wa -wb -a peaks.bed -b mm10.gff3 >ChIP_seq/CallPeak/peaks.an
 
 ```
 # 将 chr[1-22]|[XY] 改成 [1-22]|[XY]
-perl -ane 'chomp;$chr=substr($F[0],3,2);print "$F[0]\t$F[1]\t$F[2]\t$F[3]\t$F[4]\n" peaks.bed >peaks.convert.bed
+$ perl -ane 'chomp;$chr=substr($F[0],3,2);print "$F[0]\t$F[1]\t$F[2]\t$F[3]\t$F[4]\n" peaks.bed >peaks.convert.bed
 ```
 
 查看peaks注释结果
 
 ```
-cut -f8 peaks.anno.bed | sort | uniq -c
+$ cut -f8 peaks.anno.bed | sort | uniq -c
 
 # 统计结果如下
 
@@ -376,9 +395,11 @@ barplot(aCR$percentage)
 ```
 
 得到的结果类似下图
+
 ![](http://mmbiz.qpic.cn/mmbiz_png/cZNhZQ6j4wyIzYfgNaW0scLL1RqniaTLyWtjk1CLsaGfwgpnd3ch50AqKkdVPufK1Pic47EfyFDyv0coeWia5qjQg/640?wx_fmt=png&wxfrom=5&wx_lazy=1)
 
 peaks注释也可以选择网页版工具：
+
 > - [ChIPseek](http://chipseek.cgu.edu.tw/)
 > - [GREAT](http://bejerano.stanford.edu/great/public/html/)
 
@@ -390,7 +411,7 @@ peaks注释也可以选择网页版工具：
 进行Motif分析，首先需要获取peaks区域所对应的序列，可以用`bedtools`进行序列提取
 
 ```
-bedtools getfasta -fi input.fasta -bed input.bed -fo output.fasta
+$ bedtools getfasta -fi input.fasta -bed input.bed -fo output.fasta
 ```
 
 然后可以用[**RSAT**](http://www.rsat.eu/)（Regulatory Sequence Analysis Tools）来搜索motif: `NGS ChIP-seq` -> `peak-motifs`，设置合适的参数，然后在线运行
