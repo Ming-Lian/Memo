@@ -148,7 +148,7 @@ samtools 参数
 
 目前可用的peak calling工具很多，详见：http://wodaklab.org/nextgen/data/peakfinders.html
 
-这一步我们使用`MACS2`，这是一个用python2.7写的工具，安装方法为：
+这一步我们使用`MACS2`，这是一个用**python2.7**写的工具，所以当你同时在使用python3.6和python2.7时，使用前请务必激活python2.7（将 python2.7/anaconda2 的安装目录添加到环境变量中），安装方法为：
 
 > 下载安装anaconda2
 
