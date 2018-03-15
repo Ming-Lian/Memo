@@ -1,6 +1,6 @@
 <a name="content">目录</a>
 
-[python入门笔记]("title")
+[python入门笔记](#"title")
 - [python基础语法](#basic-grammer)
 	- [python保留字](#reserved-word)
 	- [注释](#annotation)
