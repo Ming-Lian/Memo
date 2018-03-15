@@ -1,19 +1,19 @@
 <a name="content">目录</a>
 
-[python入门笔记](#title)
+[python入门笔记]("title")
 - [python基础语法](#basic-grammer)
-	- [python保留字](#reserved-word)
-	- [注释](#annotation)
-	- [行与缩进](#indentation)
-	- [字符串(String)](#string)
-	- [等待用户输入](#get-input)
-	- [多个语句构成代码组](#code-group)
-	- [Print 输出](#print)
-	- [import 与 from...import](#import)
+	- [python保留字](#basic-reserved-word)
+	- [注释](#basic-annotation)
+	- [行与缩进](#basic-indentation)
+	- [字符串(String)](#basic-string)
+	- [等待用户输入](#basic-get-input)
+	- [多个语句构成代码组](#basic-code-group)
+	- [Print 输出](#basic-print)
+	- [import 与 from...import](#basic-import)
 - [Python3 基本数据类型](#type-of-data)
 	- [多个变量赋值](#assignment-for-multivariable)
 	- [Number（数字）](#number)
-	- [String（字符串）](#string-detail)
+	- [String（字符串）](#string)
 	- [List（列表）](#list)
 	- [Tuple（元组）](#tuple)
 	- [Set（集合）](#set)
@@ -35,7 +35,7 @@
 
 <a name="basic-grammer"><h3>python基础语法 [<sup>目录</sup>](#content)</h3></a>
 
-<a name="reserved-word"><h4>python保留字 [<sup>目录</sup>](#content)</h4></a>
+<a name="basic-reserved-word"><h4>python保留字 [<sup>目录</sup>](#content)</h4></a>
 
 保留字即关键字，我们不能把它们用作任何标识符名称。Python 的标准库提供了一个 keyword 模块，可以输出当前版本的所有关键字： 
 
@@ -46,7 +46,7 @@
 'from', 'global', 'if', 'import', 'in', 'is', 'lambda', 'nonlocal', 'not', 'or', 'pass', 'raise', 'return', 'try', 'while', 'with', 'yield']
 ```
 
-<a name="annotation"><h4>注释 [<sup>目录</sup>](#content)</h4></a>
+<a name="basic-annotation"><h4>注释 [<sup>目录</sup>](#content)</h4></a>
 
 多行注释可以用多个 # 号，还有 ''' 和 """：
 
@@ -65,7 +65,7 @@
 print ("Hello, Python!") 
 ```
 
-<a name="indentation"><h4>行与缩进 [<sup>目录</sup>](#content)</h4></a>
+<a name="basic-indentation"><h4>行与缩进 [<sup>目录</sup>](#content)</h4></a>
 
 
 python最具特色的就是使用缩进来表示代码块，不需要使用大括号 {} 。
@@ -79,7 +79,7 @@ else:
     print ("False")
 ```
 
-<a name="string"><h4>字符串(String) [<sup>目录</sup>](#content)</h4></a>
+<a name="basic-string"><h4>字符串(String) [<sup>目录</sup>](#content)</h4></a>
 
 - 反斜杠可以用来转义，使用r可以让反斜杠不发生转义。。 如 r"this is a line with \n" 则\n会显示，并不是换行。
 - 字符串可以用 + 运算符连接在一起，用 * 运算符重复。
@@ -99,7 +99,7 @@ print(str * 2)             # 输出字符串两次
 print(str + '你好')        # 连接字符串
 ```
 
-<a name="get-input"><h4>等待用户输入 [<sup>目录</sup>](#content)</h4></a>
+<a name="basic-get-input"><h4>等待用户输入 [<sup>目录</sup>](#content)</h4></a>
 
 ```
 input("\n\n按下 enter 键后退出。")
@@ -124,7 +124,7 @@ else :
    suite
 ```
 
-<a name="print"><h4>Print 输出 [<sup>目录</sup>](#content)</h4></a>
+<a name="basic-print"><h4>Print 输出 [<sup>目录</sup>](#content)</h4></a>
 
 print 默认输出是换行的，如果要实现不换行需要在变量末尾加上 end=""：
 
@@ -132,7 +132,7 @@ print 默认输出是换行的，如果要实现不换行需要在变量末尾�
 print( x, end=" " )
 ```
 
-<a name="import"><h4>import 与 from...import [<sup>目录</sup>](#content)</h4></a>
+<a name="basic-import"><h4>import 与 from...import [<sup>目录</sup>](#content)</h4></a>
 
 在 python 用 import 或者 from...import 来导入相应的模块。
 > 将整个模块(somemodule)导入，格式为： `import somemodule`
@@ -177,7 +177,7 @@ isinstance 和 type 的区别在于：
 
 - isinstance()会认为子类是一种父类类型。
 
-<a name="string-detail"><h4>String（字符串） [<sup>目录</sup>](#content)</h4></a>
+<a name="string"><h4>String（字符串） [<sup>目录</sup>](#content)</h4></a>
 
 字符串的截取的语法格式如下：
 
@@ -493,3 +493,4 @@ TAB (    )。
 |	` `	|	返回长度为 width 的字符串，原字符串右对齐，前面填充0	|
 |	40	|	isdecimal()	|
 |	` `	|	检查字符串是否只包含十进制字符，如果是返回 true，否则返回 false。	|
+
