@@ -29,7 +29,8 @@
 	- [字符串格式化](#str-format)
 	- [三引号](#triple-quotes)
 	- [字符串内建函数](#str-function-inbuild)
-
+- [Python3 列表](#list-detail)
+	- [Python列表函数&方法](#list-function)
 
 <h1 name="title">python入门笔记</h1>
 
@@ -494,3 +495,66 @@ TAB (    )。
 |	40	|	isdecimal()	|
 |	` `	|	检查字符串是否只包含十进制字符，如果是返回 true，否则返回 false。	|
 
+<a name="list-detail"><h3>Python3 列表 [<sup>目录</sup>](#content)</h3></a>
+
+<a name="list-function"><h4>Python列表函数&方法 [<sup>目录</sup>](#content)</h4></a>
+
+函数
+
+|	序号	|	函数	|
+|:---|:---|
+|	1	|	len(list)	|
+|	` `	|	列表元素个数	|
+|	2	|	max(list)	|
+|	` `	|	返回列表元素最大值	|
+|	3	|	min(list)	|
+|	` `	|	返回列表元素最小值	|
+|	4	|	list(seq)	|
+|	` `	|	将元组转换为列表	|
+
+方法:
+
+|	序号	|	方法	|
+|:---|:---|
+|	1	|	list.append(obj)	|
+|	` `	|	在列表末尾添加新的对象	|
+|	2	|	list.count(obj)	|
+|	` `	|	统计某个元素在列表中出现的次数	|
+|	3	|	list.extend(seq)	|
+|	` `	|	在列表末尾一次性追加另一个序列中的多个值（用新列表扩展原来的列表）	|
+|	4	|	list.index(obj)	|
+|	` `	|	从列表中找出某个值第一个匹配项的索引位置	|
+|	5	|	list.insert(index, obj)	|
+|	` `	|	将对象插入列表	|
+|	6	|	list.pop(obj=list[-1])	|
+|	` `	|	移除列表中的一个元素（默认最后一个元素），并且返回该元素的值	|
+|	7	|	list.remove(obj)	|
+|	` `	|	移除列表中某个值的第一个匹配项	|
+|	8	|	list.reverse()	|
+|	` `	|	反向列表中元素	|
+|	9	|	list.sort([func])	|
+|	` `	|	对原列表进行排序	|
+|	10	|	list.clear()	|
+|	` `	|	清空列表	|
+|	11	|	list.copy()	|
+|	` `	|	复制列表	|
+
+copy()和直接=赋值的区别：
+
+```
+a=[0,1,2,3,4,5]
+b=a
+c=a.copy()
+
+del a[1]  
+'''
+   各变量值为：
+   a=[0, 2, 3, 4, 5]
+   b=[0, 2, 3, 4, 5]
+   c=[0, 1, 2, 3, 4, 5]
+'''
+```
+
+可以看出，使用=直接赋值，是引用赋值，更改一个，另一个同样会变, 例子中的a,b改变两次都影响到了对方
+
+copy() 则顾名思义，复制一个副本，原值和新复制的变量互不影响
