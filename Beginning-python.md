@@ -611,7 +611,7 @@ del dict         # 删除字典
 内置方法：
 
 |序号|函数|描述|
-|:---|:---|
+|:---|:---|:---|
 |1|radiansdict.clear()|删除字典内所有元素	|
 |2|radiansdict.copy()|返回一个字典的浅复制	|
 |3|radiansdict.fromkeys()|创建一个新字典，以序列seq中元素做字典的键，val为字典所有键对应的初始值|
