@@ -31,6 +31,13 @@
 	- [字符串内建函数](#str-function-inbuild)
 - [Python3 列表](#list-detail)
 	- [Python列表函数&方法](#list-function)
+- [Python3 元组](#tuple-detail)
+- [Python3 字典](#dictionary-detail)
+	- [删除字典元素](#dictionary-delect-element)
+	- [字典键的特性](#dictionary-character)
+	- [内置函数与方法](#dictionary-function-inbuild)
+
+
 
 <h1 name="title">python入门笔记</h1>
 
@@ -558,3 +565,62 @@ del a[1]
 可以看出，使用=直接赋值，是引用赋值，更改一个，另一个同样会变, 例子中的a,b改变两次都影响到了对方
 
 copy() 则顾名思义，复制一个副本，原值和新复制的变量互不影响
+
+<a name="tuple-detail"><h3>Python3 元组 [<sup>目录</sup>](#content)</h3></a>
+
+元组创建很简单，只需要在括号中添加元素，并使用逗号隔开即可。
+
+元组中只包含一个元素时，需要在元素后面添加逗号，否则括号会被当作运算符使用。
+
+元组中的元素值是不允许修改的，但我们可以对元组进行连接组合。
+
+元组中的元素值是不允许删除的，但我们可以使用del语句来删除整个元组。
+
+<a name="dictionary-detail"><h3>Python3 字典 [<sup>目录</sup>](#content)</h3></a>
+
+```
+d = {key1 : value1, key2 : value2 }
+```
+
+字典的每个键值(key=>value)对用冒号(:)分割，每个对之间用逗号(,)分割，整个字典包括在花括号({})中
+
+<a name="dictionary-delect-element"><h4>删除字典元素 [<sup>目录</sup>](#content)</h4></a>
+
+```
+del dict['Name'] # 删除键 'Name'
+dict.clear()     # 清空字典
+del dict         # 删除字典
+```
+
+<a name="dictionary-character"><h4>字典键的特性 [<sup>目录</sup>](#content)</h4></a>
+
+1）不允许同一个键出现两次。创建时如果同一个键被赋值两次，后一个值会被记住
+
+2）键必须不可变，所以可以用数字，字符串或元组充当，而用列表就不行
+
+<a name="dictionary-function-inbuild"><h4>内置函数与方法 [<sup>目录</sup>](#content)</h4></a>
+
+内置函数
+
+|序号	|函数|描述|
+|:---|:---|:---|
+|1|	len(dict)|计算字典元素个数，即键的总数。|
+|2|str(dict)|输出字典，以可打印的字符串表示。|
+|3|type(variable)|返回输入的变量类型，如果变量是字典就返回字典类型。|
+
+内置方法：
+
+|序号|函数|描述|
+|:---|:---|
+|1|radiansdict.clear()|删除字典内所有元素	|
+|2|radiansdict.copy()|返回一个字典的浅复制	|
+|3|radiansdict.fromkeys()|创建一个新字典，以序列seq中元素做字典的键，val为字典所有键对应的初始值|
+|4|radiansdict.get(key, default=None)|返回指定键的值，如果值不在字典中返回default值|
+|5|key in dict|如果键在字典dict里返回true，否则返回false|
+|6|radiansdict.items()|以列表返回可遍历的(键, 值) 元组数组|
+|7|radiansdict.keys()|以列表返回一个字典所有的键|
+|8|radiansdict.setdefault(key, default=None)|和get()类似, 但如果键不存在于字典中，将会添加键并将值设为default|
+|9|radiansdict.update(dict2)|把字典dict2的键/值对更新到dict里|
+|10|radiansdict.values()|以列表返回字典中的所有值	|
+|11|pop(key[,default])|删除字典给定键 key 所对应的值，返回值为被删除的值。key值必须给出。 否则，返回default值。|
+|12|popitem()|随机返回并删除字典中的一对键和值(一般删除末尾对)。|
