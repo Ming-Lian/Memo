@@ -36,7 +36,11 @@
 	- [删除字典元素](#dictionary-delect-element)
 	- [字典键的特性](#dictionary-character)
 	- [内置函数与方法](#dictionary-function-inbuild)
-
+- [Python3 条件控制](#conditional-control)
+- [Python3 循环语句](#loop)
+	- [while循环](#while)
+	- [for循环](#for)
+	- [循环通用部分](#loop-general)
 
 
 <h1 name="title">python入门笔记</h1>
@@ -624,3 +628,86 @@ del dict         # 删除字典
 |10|radiansdict.values()|以列表返回字典中的所有值	|
 |11|pop(key[,default])|删除字典给定键 key 所对应的值，返回值为被删除的值。key值必须给出。 否则，返回default值。|
 |12|popitem()|随机返回并删除字典中的一对键和值(一般删除末尾对)。|
+
+<a name="conditional-control"><h3>Python3 条件控制 [<sup>目录</sup>](#content)</h3></a>
+
+if语句的一般形式
+
+```
+
+if condition_1:
+    statement_block_1
+elif condition_2:
+    statement_block_2
+else:
+    statement_block_3
+```
+
+<a name="loop"><h3>Python3 循环语句 [<sup>目录</sup>](#content)</h3></a>
+
+<a name="while"><h4>while循环 [<sup>目录</sup>](#content)</h4></a>
+
+while语句的一般形式：
+
+```
+while 判断条件：
+	语句
+```
+
+在Python中没有do .. while循环。
+
+你可以使用 CTRL+C 来退出当前的无限循环。
+
+while 循环使用 else 语句：在 while … else 在条件语句为 false 时执行 else 的语句块
+
+如果你的while循环体中只有一条语句，你可以将该语句与while写在同一行中， 如下所示：
+
+```
+while (flag): print ('欢迎访问菜鸟教程!')
+```
+
+<a name="for"><h4>for循环 [<sup>目录</sup>](#content)</h4></a>
+
+for循环可以遍历任何序列的项目，如一个列表或者一个字符串。
+
+for循环的一般格式如下：
+
+```
+for <variable> in <sequence>:
+	<statements>
+else:
+	<statements>
+```
+
+在for循环体中使用 break 语句，可以跳出当前循环体：
+
+```
+sites = ["Baidu", "Google","Runoob","Taobao"]
+for site in sites:
+	if site == "Runoob":
+		print("菜鸟教程!")
+		break
+	print("循环数据 " + site)
+else:
+	print("没有循环数据!")
+```
+
+如果你需要遍历数字序列，可以使用内置range()函数。它会生成数列。可以使range以指定数字开始并指定不同的增量(甚至可以是负数，有时这也叫做'步长')
+
+可以结合range()和len()函数以遍历一个序列的索引
+
+```
+>>> a = ['Google', 'Baidu', 'Runoob', 'Taobao', 'QQ']
+>>> for i in range(len(a)):
+		print(i, a[i])
+```
+
+<a name="loop-general"><h4>循环通用部分 [<sup>目录</sup>](#content)</h4></a>
+
+> break 语句可以跳出 for 和 while 的循环体
+>
+> continue语句被用来告诉Python跳过当前循环块中的剩余语句，然后继续进行下一轮循环。
+
+循环语句可以有 else 子句，它在穷尽列表(以for循环)或条件变为 false (以while循环)导致循环终止时被执行,但循环被break终止时不执行。
+
+pass是空语句，是为了保持程序结构的完整性。pass 不做任何事情，一般用做占位语句。
