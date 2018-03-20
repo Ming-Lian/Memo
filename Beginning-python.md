@@ -41,6 +41,15 @@
 	- [while循环](#while)
 	- [for循环](#for)
 	- [循环通用部分](#loop-general)
+- [迭代器与生成器](#iteration-generator)
+- [函数](#function)
+	- [参数传递](#parameter-transmission)
+	- [参数](#parameter)
+	- [匿名函数](#lambda)
+	- [变量作用域](#variable-scope)
+	- [用global 和 nonlocal改变变量作用域](#change-variable-scope)
+
+
 
 
 <h1 name="title">python入门笔记</h1>
@@ -711,3 +720,216 @@ else:
 循环语句可以有 else 子句，它在穷尽列表(以for循环)或条件变为 false (以while循环)导致循环终止时被执行,但循环被break终止时不执行。
 
 pass是空语句，是为了保持程序结构的完整性。pass 不做任何事情，一般用做占位语句。
+
+<a name="iteration-generator"><h3>迭代器与生成器 [<sup>目录</sup>](#content)</h3></a>
+
+- 迭代器
+
+迭代器是一个可以记住遍历的位置的对象。
+
+迭代器有两个基本的方法：iter() 和 next()。
+
+- 生成器
+
+在 Python 中，使用了 yield 的函数被称为生成器（generator）。
+
+跟普通函数不同的是，生成器是一个返回迭代器的函数，只能用于迭代操作，更简单点理解生成器就是一个迭代器。
+
+在调用生成器运行的过程中，每次遇到 yield 时函数会暂停并保存当前所有的运行信息，返回 yield 的值, 并在下一次执行 next() 方法时从当前位置继续运行。
+
+调用一个生成器函数，返回的是一个迭代器对象。
+
+```
+import sys
+ 
+def fibonacci(n): # 生成器函数 - 斐波那契
+	a, b, counter = 0, 1, 0
+	while True:
+		if (counter > n): 
+			return
+		yield a
+		a, b = b, a + b
+		counter += 1
+f = fibonacci(10) # f 是一个迭代器，由生成器返回生成
+ 
+while True:
+	try:
+		print (next(f), end=" ")
+	except StopIteration:
+		sys.exit()
+```
+
+<a name="function"><h3>函数 [<sup>目录</sup>](#content)</h3></a>
+
+Python 定义函数使用 def 关键字，一般格式如下：
+
+```
+def 函数名（参数列表）:
+	函数体
+```
+
+默认情况下，参数值和参数名称是按函数声明中定义的的顺序匹配起来的。
+
+<a name="parameter-transmission"><h4>参数传递 [<sup>目录</sup>](#content)</h4></a>
+
+**可更改(mutable)与不可更改(immutable)对象**
+
+在 python 中，strings, tuples, 和 numbers 是不可更改的对象，而 list,dict 等则是可以修改的对象。
+
+> - 不可变类型：变量赋值 a=5 后再赋值 a=10，这里实际是新生成一个 int 值对象 10，再让 a 指向它，而 5 被丢弃，不是改变a的值，相当于新生成了a。
+> 
+> - 可变类型：变量赋值 la=[1,2,3,4] 后再赋值 la[2]=5 则是将 list la 的第三个元素值更改，本身la没有动，只是其内部的一部分值被修改了。
+
+**python 函数的参数传递：**
+
+> - 不可变类型：类似 c++ 的值传递，如 整数、字符串、元组。如fun（a），传递的只是a的值，没有影响a对象本身。比如在 fun（a）内部修改 a 的值，只是修改另一个复制的对象，不会影响 a 本身。
+
+> - 可变类型：类似 c++ 的引用传递，如 列表，字典。如 fun（la），则是将 la 真正的传过去，修改后fun外部的la也会受影响
+    
+python 中一切都是对象，严格意义我们不能说值传递还是引用传递，我们应该说传不可变对象和传可变对象。
+
+- 传不可变对象实例
+
+```
+def ChangeInt( a ):
+	a = 10
+
+b = 2
+ChangeInt(b)
+print( b ) # 结果是 2
+```
+
+- 传可变对象实例
+
+```
+def changeme( mylist ):
+	"修改传入的列表"
+	mylist.append([1,2,3,4]);
+	print ("函数内取值: ", mylist)
+	return
+ 
+# 调用changeme函数
+mylist = [10,20,30];
+changeme( mylist );
+print ("函数外取值: ", mylist)
+
+# 输出结果：
+## 函数内取值:  [10, 20, 30, [1, 2, 3, 4]]
+## 函数外取值:  [10, 20, 30, [1, 2, 3, 4]]
+```
+
+<a name="parameter"><h4>参数 [<sup>目录</sup>](#content)</h4></a>
+
+- **必需参数**
+
+必需参数须以正确的顺序传入函数。调用时的数量必须和声明时的一样。
+
+- **关键字参数**
+
+使用关键字参数允许函数调用时参数的顺序与声明时不一致，因为 Python 解释器能够用参数名匹配参数值。
+
+```
+printme( str = "菜鸟教程");
+```
+
+- **默认参数**
+
+调用函数时，如果没有传递参数，则会使用默认参数。
+
+- **不定长参数**
+
+你可能需要一个函数能处理比当初声明时更多的参数。这些参数叫做不定长参数，和上述2种参数不同，声明时不会命名。
+
+基本语法如下：
+
+```
+def functionname([formal_args,] *var_args_tuple ):
+	"函数_文档字符串"
+	function_suite
+	return [expression]
+```
+
+加了星号（*）的变量名会存放所有未命名的变量参数。如果在函数调用时没有指定参数，它就是一个空元组。
+
+```
+def printinfo( arg1, *vartuple ):
+	"打印任何传入的参数"
+	print ("输出: ")
+	print (arg1)
+	for var in vartuple:
+		print (var)
+	return;
+ 
+# 调用printinfo 函数
+printinfo( 10 );
+printinfo( 70, 60, 50 );
+
+# 输出结果
+## 输出:
+## 10
+## 输出:
+## 70
+## 60
+## 50
+```
+
+<a name="lambda"><h4>匿名函数 [<sup>目录</sup>](#content)</h4></a>
+
+python 使用 lambda 来创建匿名函数。
+
+lambda 函数的语法只包含一个语句，如下：
+
+```
+# func 为之后调用该函数时的函数名
+func = lambda [arg1 [,arg2,.....argn]]:expression
+```
+
+所谓匿名，意即不再使用 def 语句这样标准的形式定义一个函数。
+
+> - lambda 只是一个表达式，函数体比 def 简单很多。
+> - lambda的主体是一个表达式，而不是一个代码块。仅仅能在lambda表达式中封装有限的逻辑进去。
+> - lambda 函数拥有自己的命名空间，且不能访问自己参数列表之外或全局命名空间里的参数。
+> - 虽然lambda函数看起来只能写一行，却不等同于C或C++的内联函数，后者的目的是调用小函数时不占用栈内存从而增加运行效率。
+
+<a name="variable-scope"><h4>变量作用域 [<sup>目录</sup>](#content)</h4></a>
+
+Python的作用域一共有4种，分别是：
+
+> - L （Local） 局部作用域
+> - E （Enclosing） 闭包函数外的函数中
+> - G （Global） 全局作用域
+> - B （Built-in） 内建作用域
+
+```
+x = int(2.9)  # 内建作用域
+ 
+g_count = 0  # 全局作用域
+
+def outer():
+	o_count = 1  # 闭包函数外的函数中
+	def inner():
+		i_count = 2  # 局部作用域
+```
+
+以 L –> E –> G –>B 的规则查找，即：在局部找不到，便会去局部外的局部找（例如闭包），再找不到就会去全局找，再者去内建中找。
+
+Python 中只有模块（module），类（class）以及函数（def、lambda）才会引入新的作用域，其它的代码块（如 if/elif/else/、try/except、for/while等）是不会引入新的作用域的，也就是说这些语句内定义的变量，外部也可以访问，如下代码：
+
+```
+# 实例中 msg 变量定义在 if 语句块中，但外部还是可以访问的
+
+>>> if True:
+...  msg = 'I am from Runoob'
+... 
+>>> msg
+'I am from Runoob'
+>>> 
+```
+
+<a name="change-variable-scope"><h4>用 global 和 nonlocal 改变变量作用域 [<sup>目录</sup>](#content)</h4></a>
+
+当内部作用域想修改外部作用域的变量时，就要用到global和nonlocal关键字了。
+
+- global：内部作用域想修改全局变量时使用
+
+- nonlocal：内部作用域想修改嵌套作用域（enclosing 作用域，外层非全局作用域）中的变量则需要 nonlocal 关键字
