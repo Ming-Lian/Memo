@@ -937,7 +937,7 @@ Python 中只有模块（module），类（class）以及函数（def、lambda�
 
 - nonlocal：内部作用域想修改嵌套作用域（enclosing 作用域，外层非全局作用域）中的变量则需要 nonlocal 关键字
 
-<a name="model"><h3>模块 [<sup>目录</sup>](#content)</h3></a>
+<a name="module"><h3>模块 [<sup>目录</sup>](#content)</h3></a>
 
 
 模块是一个包含所有你定义的函数和变量的文件，其后缀名是.py。模块可以被别的程序引入，以使用该模块中的函数等功能。
