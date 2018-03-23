@@ -48,7 +48,10 @@
 	- [匿名函数](#lambda)
 	- [变量作用域](#variable-scope)
 	- [用global 和 nonlocal改变变量作用域](#change-variable-scope)
-
+- [模块](#module)
+	- [导入模块](#import-module)
+	- [深入模块](#understand-module)
+	- [包](#package)
 
 
 
@@ -933,3 +936,131 @@ Python 中只有模块（module），类（class）以及函数（def、lambda�
 - global：内部作用域想修改全局变量时使用
 
 - nonlocal：内部作用域想修改嵌套作用域（enclosing 作用域，外层非全局作用域）中的变量则需要 nonlocal 关键字
+
+<a name="model"><h3>模块 [<sup>目录</sup>](#content)</h3></a>
+
+
+模块是一个包含所有你定义的函数和变量的文件，其后缀名是.py。模块可以被别的程序引入，以使用该模块中的函数等功能。
+
+<a name="import-module"><h4>导入模块 [<sup>目录</sup>](#content)</h4></a>
+
+想使用 Python 源文件，只需在另一个源文件里执行 import 语句，语法如下：
+
+```
+import module1[, module2[,... moduleN]
+```
+或
+```
+# 模块内（函数，变量的）名称导入到当前操作模块
+from modname import func1,func2
+```
+
+Python的模块搜索路径，被存储在sys模块中的path变量，搜索路径是由一系列目录名组成的，Python解释器会依次从这些目录中去寻找所引入的模块。 
+
+```
+>>> import sys
+>>> sys.path
+['', '/usr/lib/python3.4', '/usr/lib/python3.4/plat-x86_64-linux-gnu', '/usr/lib/python3.4/lib-dynload', '/usr/local/lib/python3.4/dist-packages', '/usr/lib/python3/dist-packages']
+>>> 
+```
+
+sys.path 输出是一个列表，其中第一项是空串''，代表当前目录，也是搜索的第一个目录。所以**在当前目录下存在与要引入模块同名的文件，就会把要引入的模块屏蔽掉**。 
+
+我们可以在脚本中修改sys.path来引入一些不在搜索路径中的模块。
+
+import一个模块后使用模块中的函数的方法为：`模块名.函数名()`（modname.itemname）
+
+
+每个模块有各自独立的符号表，在模块内部为所有的函数当作全局符号表来使用
+
+<a name="understand-module"><h4>深入模块 [<sup>目录</sup>](#content)</h4></a>
+
+- **模块之间变量的相互独立性**：每个模块有各自独立的符号表，在模块内部为所有的函数当作全局符号表来使用
+
+- **模块是可以导入其他模块的**
+
+- **\_\_name\_\_属性**
+
+一个模块被另一个程序第一次引入时，其主程序将运行。如果我们想在模块被引入时，模块中的某一程序块不执行，我们可以用\_\_name\_\_属性来使该程序块仅在该模块自身运行时执行。
+
+```
+#!/usr/bin/python3
+# Filename: using_name.py
+
+if __name__ == '__main__':
+   print('程序自身在运行')
+else:
+   print('我来自另一模块')
+```
+运行结果：
+```
+$ python using_name.py
+程序自身在运行
+
+$ python
+>>> import using_name
+我来自另一模块
+>>>
+```
+
+每个模块都有一个\_\_name\_\_属性，当其值是 '\_\_main\_\_' 时，表明该模块自身在运行，否则是被引入。
+
+- **内置的函数 dir() 可以找到模块内定义的所有名称**，以一个字符串列表的形式返回
+
+```
+>>> import fibo
+>>> dir(fibo)
+['__name__', 'fib', 'fib2']
+```
+
+如果没有给定参数，那么 dir() 函数会罗列出当前定义的所有名称
+
+- **标准模块**
+
+Python 本身带着一些标准的模块库。有些模块直接被构建在解析器里，这些虽然不是一些语言内置的功能，但是他却能很高效的使用，甚至是系统级调用也没问题。
+
+有一个特别的模块 sys ，它内置在每一个 Python 解析器中。变量 sys.ps1 和 sys.ps2 定义了主提示符和副提示符所对应的字符串: 
+
+```
+>>> import sys
+>>> sys.ps1
+'>>> '
+>>> sys.ps2
+'... '
+>>> sys.ps1 = 'C> '
+C> print('Yuck!')
+Yuck!
+C>
+```
+
+<a name="package"><h4>包 [<sup>目录</sup>](#content)</h4></a>
+
+简单来说，包就是多个实现相关功能的模块的组合。
+
+一种可能的包结构（在分层的文件系统中）: 
+
+```
+sound/                          顶层包
+      __init__.py               初始化 sound 包
+      formats/                  文件格式转换子包
+              __init__.py
+              wavread.py
+              wavwrite.py
+              aiffread.py
+              aiffwrite.py
+              auread.py
+              auwrite.py
+              ...
+      effects/                  声音效果子包
+              __init__.py
+              echo.py
+              surround.py
+              reverse.py
+              ...
+      filters/                  filters 子包
+              __init__.py
+              equalizer.py
+              vocoder.py
+              karaoke.py
+              ...
+```
