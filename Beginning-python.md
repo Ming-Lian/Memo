@@ -58,7 +58,7 @@
 	- [导入模块](#import-module)
 	- [深入模块](#understand-module)
 	- [包](#package)
-
+- [输入和输出](#input-output)
 
 
 <h1 name="title">python入门笔记</h1>
@@ -1156,3 +1156,41 @@ sound/                          顶层包
               karaoke.py
               ...
 ```
+
+目录只有包含一个叫做 \_\_init\_\_.py 的文件才会被认作是一个包，主要是为了避免一些滥俗的名字（比如叫做 string）不小心的影响搜索路径中的有效模块。即 \_\_init\_\_.py 文件是必须的。
+
+<a name="input-output"><h4>输入和输出 [<sup>目录</sup>](#content)</h4></a>
+
+- str()： 函数返回一个用户易读的表达形式。 
+- repr()： 产生一个解释器易读的表达形式。
+
+repr() 函数可以转义字符串中的特殊字符
+
+```
+... hello = 'hello, runoob\n'
+>>> hellos = repr(hello)
+>>> print(hellos)
+'hello, runoob\n'
+```
+
+repr() 的参数可以是 Python 的任何对象
+
+```
+>>> repr((x, y, ('Google', 'Runoob')))
+"(32.5, 40000, ('Google', 'Runoob'))"
+```
+
+- rjust()：字符串对象的 rjust() 方法, 它可以将字符串靠右, 并在左边填充空格。
+
+还有类似的方法, 如 ljust() 和 center()。
+
+另一个方法 zfill(), 它会在数字的左边填充 0
+
+- str.format() 
+
+```
+>>> print('{}网址： "{}!"'.format('菜鸟教程', 'www.runoob.com'))
+菜鸟教程网址： "www.runoob.com!"
+```
+
+括号及其里面的字符 (称作格式化字段) 将会被 format() 中的参数替换。
