@@ -49,6 +49,11 @@
 	- [匿名函数](#lambda)
 	- [变量作用域](#variable-scope)
 	- [用global 和 nonlocal改变变量作用域](#change-variable-scope)
+- [数据结构](#data-structure)
+	- [将列表当做堆栈使用](#list-stack)
+	- [将列表当作队列使用](#list-queue)
+	- [列表推导式](#list-formula)
+	- [遍历技巧](#traverse-skill)
 - [模块](#module)
 	- [导入模块](#import-module)
 	- [深入模块](#understand-module)
@@ -953,6 +958,76 @@ Python 中只有模块（module），类（class）以及函数（def、lambda�
 - global：内部作用域想修改全局变量时使用
 
 - nonlocal：内部作用域想修改嵌套作用域（enclosing 作用域，外层非全局作用域）中的变量则需要 nonlocal 关键字
+
+<a name="data-structure"><h3>数据结构 [<sup>目录</sup>](#content)</h3></a>
+
+<a name="list-stack"><h4>将列表当做堆栈使用 [<sup>目录</sup>](#content)</h4></a>
+
+堆栈的特点：**后进先出**
+
+- append() 方法可以把一个元素添加到堆栈顶
+- pop() 方法可以把一个元素从堆栈顶释放出来
+
+<a name="list-queue"><h4>将列表当做队列使用 [<sup>目录</sup>](#content)</h4></a>
+
+队列的特点：**先进先出**
+
+也可以把列表当做队列用，只是在队列里第一加入的元素，第一个取出来；但是拿列表用作这样的目的效率不高。在列表的最后添加或者弹出元素速度快，然而在列表里插入或者从头部弹出速度却不快（因为所有其他的元素都得一个一个地移动）。 
+
+<a name="list-formula"><h4>列表推导式 [<sup>目录</sup>](#content)</h4></a>
+
+列表推导式提供了从序列创建列表的简单途径。
+
+```
+>>> vec = [2, 4, 6]
+>>> [3*x for x in vec]
+[6, 12, 18]
+```
+
+通常应用程序将一些操作应用于某个序列的每个元素，用其获得的结果作为生成新列表的元素，或者根据确定的判定条件创建子序列。
+
+用 if 子句作为过滤器：
+
+```
+>>> vec = [2, 4, 6]
+>>> [3*x for x in vec if x > 3]
+[12, 18]
+>>> [3*x for x in vec if x < 2]
+[]
+```
+
+<a name="traverse-skill"><h4>遍历技巧 [<sup>目录</sup>](#content)</h4></a>
+
+- 字典遍历
+
+在字典中遍历时，关键字和对应的值可以使用 items() 方法同时解读出来
+
+- 列表遍历
+
+在列表中遍历时，索引位置和对应值可以使用 enumerate() 函数同时得到：
+
+```
+>>> for i, v in enumerate(['tic', 'tac', 'toe']):
+...     print(i, v)
+...
+0 tic
+1 tac
+2 toe
+```
+
+同时遍历两个或更多的序列，可以使用 zip() 组合： 
+
+```
+>>> questions = ['name', 'quest', 'favorite color']
+>>> answers = ['lancelot', 'the holy grail', 'blue']
+>>> for q, a in zip(questions, answers):
+...     print('What is your {0}?  It is {1}.'.format(q, a))
+...
+What is your name?  It is lancelot.
+What is your quest?  It is the holy grail.
+What is your favorite color?  It is blue.
+```
+
 
 <a name="module"><h3>模块 [<sup>目录</sup>](#content)</h3></a>
 
