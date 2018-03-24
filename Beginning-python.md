@@ -10,7 +10,7 @@
 	- [多个语句构成代码组](#basic-code-group)
 	- [Print 输出](#basic-print)
 	- [import 与 from...import](#basic-import)
-- [Python3 基本数据类型](#type-of-data)
+- [基本数据类型](#type-of-data)
 	- [多个变量赋值](#assignment-for-multivariable)
 	- [Number（数字）](#number)
 	- [String（字符串）](#string)
@@ -18,26 +18,27 @@
 	- [Tuple（元组）](#tuple)
 	- [Set（集合）](#set)
 	- [Dictionary（字典）](#dictionary)
-- [Python3 运算符](#operator)
+- [运算符](#operator)
 	- [算术运算符](#arithmetic-operators)
 	- [位运算符](#bit-operators)
 	- [逻辑运算符](#logistic-operators)
 	- [成员运算符](#memeber-operators)
 	- [身份运算符](#id-operators)
-- [Python3 数字(Number)](#number-detail)
-- [Python3 字符串](#string-detail)
+- [数字(Number)](#number-detail)
+- [字符串](#string-detail)
 	- [字符串格式化](#str-format)
 	- [三引号](#triple-quotes)
 	- [字符串内建函数](#str-function-inbuild)
-- [Python3 列表](#list-detail)
+- [列表](#list-detail)
 	- [Python列表函数&方法](#list-function)
-- [Python3 元组](#tuple-detail)
-- [Python3 字典](#dictionary-detail)
+- [元组](#tuple-detail)
+- [字典](#dictionary-detail)
 	- [删除字典元素](#dictionary-delect-element)
 	- [字典键的特性](#dictionary-character)
 	- [内置函数与方法](#dictionary-function-inbuild)
-- [Python3 条件控制](#conditional-control)
-- [Python3 循环语句](#loop)
+	- [遍历技巧](#dictionary-traverse)
+- [条件控制](#conditional-control)
+- [循环语句](#loop)
 	- [while循环](#while)
 	- [for循环](#for)
 	- [循环通用部分](#loop-general)
@@ -641,6 +642,21 @@ del dict         # 删除字典
 |10|radiansdict.values()|以列表返回字典中的所有值	|
 |11|pop(key[,default])|删除字典给定键 key 所对应的值，返回值为被删除的值。key值必须给出。 否则，返回default值。|
 |12|popitem()|随机返回并删除字典中的一对键和值(一般删除末尾对)。|
+
+<a name="dictionary-traverse"><h4>遍历技巧 [<sup>目录</sup>](#content)</h4></a>
+
+在字典中遍历时，关键字和对应的值可以使用 items() 方法同时解读出来： 
+
+```
+>>> knights = {'gallahad': 'the pure', 'robin': 'the brave'}
+>>> for k, v in knights.items():
+...     print(k, v)
+...
+
+# 输出
+## gallahad the pure
+## robin the brave
+```
 
 <a name="conditional-control"><h3>Python3 条件控制 [<sup>目录</sup>](#content)</h3></a>
 
