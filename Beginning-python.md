@@ -75,7 +75,15 @@
 			- [tell()](#file-method-tell)
 			- [seek()](#file-method-seek)
 			- [close()](#file-method-close)
-			- 
+	- [pickle 模块](#pickle-module)
+- [OS 文件/目录方法](#os-file-path-method)
+	- [os.access()](#os-access)
+	- [os.chdir()](#os-chdir)
+	- [os.chmod()](#os-chmod)
+	- [os.chown()](#os-chown)
+- [错误和异常](#error)
+	- [异常处理](#deal-with-error)
+	- [抛出异常](#raise-error)
 
 
 
@@ -1370,3 +1378,157 @@ for line in f:
 True
 ```
 
+<a name="pickle-module"><h4>pickle 模块 </h4></a>
+
+ python的pickle模块实现了基本的数据序列和反序列化。
+
+通过pickle模块的序列化操作我们能够将程序中运行的对象信息保存到文件中去，永久存储。
+
+通过pickle模块的反序列化操作，我们能够从文件中创建上一次程序保存的对象。
+
+基本接口：
+
+```
+pickle.dump(obj, file, [,protocol])
+```
+
+ 有了 pickle 这个对象, 就能对 file 以读取的形式打开:
+ 
+```
+x = pickle.load(file)
+```
+
+<a name="os-file-path-method"><h3>OS 文件/目录方法 [<sup>目录</sup>](#content)</h3></a>
+
+os 模块提供了非常丰富的方法用来处理文件和目录
+
+<a name="os-access"><li>os.access()</li></a>
+
+检验权限模式
+
+> - path -- 要用来检测是否有访问权限的路径。
+> - mode
+>> os.F_OK: 作为access()的mode参数，测试path是否存在。
+>> os.R_OK: 包含在access()的mode参数中 ， 测试path是否可读。
+>> os.W_OK 包含在access()的mode参数中 ， 测试path是否可写。
+>> os.X_OK 包含在access()的mode参数中 ，测试path是否可执行。
+
+<a name="os-chdir"><li>os.chdir()</li></a>
+
+改变当前工作目录到指定的路径
+
+返回值：如果允许访问返回 True , 否则返回False
+
+<a name="os-chmod"><li>os.chmod()</li></a>
+
+更改文件或目录的权限
+
+chmod()方法语法格式如下：
+
+```
+os.chmod(path, mode)
+```
+
+mode的flags取值
+
+>stat.S_IXOTH: 其他用户有执行权0o001
+stat.S_IWOTH: 其他用户有写权限0o002
+stat.S_IROTH: 其他用户有读权限0o004
+stat.S_IRWXO: 其他用户有全部权限(权限掩码)0o007
+stat.S_IXGRP: 组用户有执行权限0o010
+stat.S_IWGRP: 组用户有写权限0o020
+stat.S_IRGRP: 组用户有读权限0o040
+stat.S_IRWXG: 组用户有全部权限(权限掩码)0o070
+stat.S_IXUSR: 拥有者具有执行权限0o100
+stat.S_IWUSR: 拥有者具有写权限0o200
+stat.S_IRUSR: 拥有者具有读权限0o400
+stat.S_IRWXU: 拥有者有全部权限(权限掩码)0o700
+stat.S_ISVTX: 目录里文件目录只有拥有者才可删除更改0o1000
+stat.S_ISGID: 执行此文件其进程有效组为文件所在组0o2000
+stat.S_ISUID: 执行此文件其进程有效用户为文件所有者0o4000
+stat.S_IREAD: windows下设为只读
+>stat.S_IWRITE: windows下取消只读
+
+<a name="os-chown"><li>os.chown()</li></a>
+
+用于更改文件所有者，如果不修改可以设置为 -1, 你需要超级用户权限来执行权限修改操作。
+
+<a name="error"><h3>错误和异常 [<sup>目录</sup>](#content)</h3></a>
+
+<a name="deal-with-errorr"><h4>错误处理 [<sup>目录</sup>](#content)</h4></a>
+
+```
+import sys
+
+try:
+    f = open('myfile.txt')
+    s = f.readline()
+    i = int(s.strip())
+except OSError as err:
+    print("OS error: {0}".format(err))
+except ValueError:
+    print("Could not convert data to an integer.")
+except:
+    print("Unexpected error:", sys.exc_info()[0])
+    raise
+```
+
+try语句按照如下方式工作；
+
+> - 首先，执行try子句（在关键字try和关键字except之间的语句）
+> - 如果没有异常发生，忽略except子句，try子句执行后结束。
+> - 如果在执行try子句的过程中发生了异常，那么try子句余下的部分将被忽略。如果异常的类型和 except 之后的名称相符，那么对应的except子句将被执行。最后执行 try 语句之后的代码。
+> - 如果一个异常没有与任何的except匹配，那么这个异常将会传递给上层的try中。
+
+
+一个 try 语句可能包含多个except子句，分别来处理不同的特定的异常。最多只有一个分支会被执行。
+
+一个except子句可以同时处理多个异常，这些异常将被放在一个括号里成为一个元组，例如: 
+
+```
+except (RuntimeError, TypeError, NameError):
+	pass
+```
+
+最后一个except子句可以忽略异常的名称，它将被当作通配符使用。你可以使用这种方法打印一个错误信息，然后再次把异常抛出。
+
+try except 语句还有一个可选的else子句，如果使用这个子句，那么必须放在所有的except子句之后。这个子句将在try子句没有发生任何异常的时候执行。例如: 
+
+```
+for arg in sys.argv[1:]:
+    try:
+        f = open(arg, 'r')
+    except IOError:
+        print('cannot open', arg)
+    else:
+        print(arg, 'has', len(f.readlines()), 'lines')
+        f.close()
+```
+
+<a name="raise-errorr"><h4>抛出异常 [<sup>目录</sup>](#content)</h4></a>
+
+使用 raise 语句抛出一个指定的异常。例如:
+
+```
+>>> raise NameError('HiThere')
+Traceback (most recent call last):
+  File "<stdin>", line 1, in ?
+NameError: HiThere
+```
+
+raise 唯一的一个参数指定了要被抛出的异常。它必须是一个异常的实例或者是异常的类（也就是 Exception 的子类）。
+
+如果你只想知道这是否抛出了一个异常，并不想去处理它，那么一个简单的 raise 语句就可以再次把它抛出。
+
+```
+>>> try:
+        raise NameError('HiThere')
+    except NameError:
+        print('An exception flew by!')
+        raise
+   
+An exception flew by!
+Traceback (most recent call last):
+  File "<stdin>", line 2, in ?
+NameError: HiThere
+```
