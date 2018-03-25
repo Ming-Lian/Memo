@@ -59,6 +59,26 @@
 	- [深入模块](#understand-module)
 	- [包](#package)
 - [输入和输出](#input-output)
+	- [格式化输出](#format-output)
+		- [str()](#format-output-str)
+		- [repr()](#format-output-repr)
+		- [rjust()](#format-output-rjust)
+		- [format()](#format-output-format)
+	- [读取键盘输入](#get-input)
+	- [文件读写](#file-rw)
+		- [文件对象的方法](#file-method)
+			- [read()](#file-method-read)
+			- [readline()](#file-method-readline)
+			- [readlines()](#file-method-readlines)
+			- [迭代文件对象读取每行](#file-method-iterate-read)
+			- [write()](#file-method-write)
+			- [tell()](#file-method-tell)
+			- [seek()](#file-method-seek)
+			- [close()](#file-method-close)
+			- 
+
+
+
 
 
 <h1 name="title">python入门笔记</h1>
@@ -388,18 +408,18 @@ print ("我叫 %s 今年 %d 岁!" % ('小明', 10))
 |符号|描述|
 |:---|:---|
 |	%c	|	 格式化字符及其ASCII码	|
-|	%s	|	 格式化字符串	|
-|	%d	|	 格式化整数	|
-|	%u	|	 格式化无符号整型	|
-|	%o	|	 格式化无符号八进制数	|
-|	%x	|	 格式化无符号十六进制数	|
-|	%X	|	 格式化无符号十六进制数（大写）	|
-|	%f	|	 格式化浮点数字，可指定小数点后的精度	|
-|	%e	|	 用科学计数法格式化浮点数	|
-|	%E	|	 作用同%e，用科学计数法格式化浮点数	|
-|	%g	|	 %f和%e的简写	|
-|	%G	|	 %f 和 %E 的简写	|
-|	%p	|	 用十六进制数格式化变量的地址	|
+|	      %s 	|	 格式化字符串	|
+|	      %d 	|	 格式化整数	|
+|	      %u	|	 格式化无符号整型	|
+|	      %o	|	 格式化无符号八进制数	|
+|	      %x	|	 格式化无符号十六进制数	|
+|	      %X	|	 格式化无符号十六进制数（大写）	|
+|	      %f	|	 格式化浮点数字，可指定小数点后的精度	|
+|	      %e	|	 用科学计数法格式化浮点数	|
+|	      %E	|	 作用同%e，用科学计数法格式化浮点数	|
+|	      %g	|	 %f和%e的简写	|
+|	      %G	|	 %f 和 %E 的简写	|
+|	      %p	|	 用十六进制数格式化变量的地址	|
 
 格式化操作符辅助指令
 
@@ -663,6 +683,7 @@ del dict         # 删除字典
 ## robin the brave
 ```
 
+
 <a name="conditional-control"><h3>Python3 条件控制 [<sup>目录</sup>](#content)</h3></a>
 
 if语句的一般形式
@@ -745,6 +766,7 @@ else:
 循环语句可以有 else 子句，它在穷尽列表(以for循环)或条件变为 false (以while循环)导致循环终止时被执行,但循环被break终止时不执行。
 
 pass是空语句，是为了保持程序结构的完整性。pass 不做任何事情，一般用做占位语句。
+
 
 <a name="iteration-generator"><h3>迭代器与生成器 [<sup>目录</sup>](#content)</h3></a>
 
@@ -1029,6 +1051,7 @@ What is your favorite color?  It is blue.
 ```
 
 
+
 <a name="module"><h3>模块 [<sup>目录</sup>](#content)</h3></a>
 
 
@@ -1159,10 +1182,13 @@ sound/                          顶层包
 
 目录只有包含一个叫做 \_\_init\_\_.py 的文件才会被认作是一个包，主要是为了避免一些滥俗的名字（比如叫做 string）不小心的影响搜索路径中的有效模块。即 \_\_init\_\_.py 文件是必须的。
 
-<a name="input-output"><h4>输入和输出 [<sup>目录</sup>](#content)</h4></a>
+<a name="input-output"><h3>输入和输出 [<sup>目录</sup>](#content)</h3></a>
 
-- str()： 函数返回一个用户易读的表达形式。 
-- repr()： 产生一个解释器易读的表达形式。
+<a name="format-output"><h4>格式化输出 [<sup>目录</sup>](#content)</h4></a>
+
+<a name="format-output-str"><li>str()： 函数返回一个用户易读的表达形式。</li></a>
+
+<a name="format-output-repr"><li>repr()： 产生一个解释器易读的表达形式</li></a>
 
 repr() 函数可以转义字符串中的特殊字符
 
@@ -1180,13 +1206,13 @@ repr() 的参数可以是 Python 的任何对象
 "(32.5, 40000, ('Google', 'Runoob'))"
 ```
 
-- rjust()：字符串对象的 rjust() 方法, 它可以将字符串靠右, 并在左边填充空格。
+<a name="format-output-rjust"><li>rjust()：字符串对象的 rjust() 方法, 它可以将字符串靠右, 并在左边填充空格。</li></a>
 
 还有类似的方法, 如 ljust() 和 center()。
 
 另一个方法 zfill(), 它会在数字的左边填充 0
 
-- str.format() 
+<a name="format-output-format"><li>str.format()</li></a> 
 
 ```
 >>> print('{}网址： "{}!"'.format('菜鸟教程', 'www.runoob.com'))
@@ -1194,3 +1220,153 @@ repr() 的参数可以是 Python 的任何对象
 ```
 
 括号及其里面的字符 (称作格式化字段) 将会被 format() 中的参数替换。
+
+在括号中的**数字**用于指向传入对象在 format() 中的位置，如下所示：
+
+```
+>>> print('{0} 和 {1}'.format('Google', 'Runoob'))
+Google 和 Runoob
+>>> print('{1} 和 {0}'.format('Google', 'Runoob'))
+Runoob 和 Google
+```
+
+如果在 format() 中使用了**关键字参数**, 那么它们的值会指向使用该名字的参数。
+
+```
+>>> print('{name}网址： {site}'.format(name='菜鸟教程', site='www.runoob.com'))
+菜鸟教程网址： www.runoob.com
+```
+
+位置及关键字参数可以任意的结合
+
+'!a' (使用 ascii()), '!s' (使用 str()) 和 '!r' (使用 repr()) 可以用于在格式化某个值之前对其进行转化:
+
+```
+>>> import math
+>>> print('常量 PI 的值近似为： {}。'.format(math.pi))
+常量 PI 的值近似为： 3.141592653589793。
+>>> print('常量 PI 的值近似为： {!r}。'.format(math.pi))
+常量 PI 的值近似为： 3.141592653589793。
+```
+
+用':' 和格式标识符，对值进行更好的格式化方法：
+
+> **小数点后保留**： `print('常量 PI 的值近似为 {0:.3f}。'.format(math.pi))`
+> **设定输出值对应域长度**：
+> ```
+> >>> table = {'Google': 1, 'Runoob': 2, 'Taobao': 3}
+> >>> for name, number in table.items():
+> ...     print('{0:10} ==> {1:10d}'.format(name, number))
+> ...
+> Runoob     ==>          2
+> Taobao     ==>          3
+> Google     ==>          1
+> ```
+> - **传入一个字典, 然后使用方括号 '[]' 来访问键值** :
+> ```
+> >>> table = {'Google': 1, 'Runoob': 2, 'Taobao': 3}
+> >>> print('Runoob: {0[Runoob]:d}; Google: {0[Google]:d}; Taobao: {0[Taobao]:d}'.format(table))
+> Runoob: 2; Google: 1; Taobao: 3
+> ```
+> 也可以通过在 table 变量前使用 '**' 来实现相同的功能：
+> ```
+> >>> table = {'Google': 1, 'Runoob': 2, 'Taobao': 3}
+> >>> print('Runoob: {Runoob:d}; Google: {Google:d}; Taobao: {Taobao:d}'.format(**table))
+> Runoob: 2; Google: 1; Taobao: 3
+> ```
+
+<a name="get-input"><h4>读取键盘输入 [<sup>目录</sup>](#content)</h4></a>
+
+input() 从标准输入读入一行文本，默认的标准输入是键盘
+
+input 可以接收一个Python表达式作为输入，并将运算结果返回。 
+
+<a name="file-rw"><h4>文件读写 [<sup>目录</sup>](#content)</h4></a>
+
+```
+open(filename, mode)
+```
+
+open() 将会返回一个 file 对象
+
+> filename：要访问的文件名称
+> mode：打开文件的模式：只读，写入，追加等
+
+|	模式	|	描述	|
+|:---:|:---|
+|	r	|	以只读方式打开文件。文件的指针将会放在文件的开头。这是默认模式。	|
+|	rb	|	以二进制格式打开一个文件用于只读。文件指针将会放在文件的开头。这是默认模式。	|
+|	r+	|	打开一个文件用于读写。文件指针将会放在文件的开头。	|
+|	rb+	|	以二进制格式打开一个文件用于读写。文件指针将会放在文件的开头。	|
+|	w	|	打开一个文件只用于写入。如果该文件已存在则将其覆盖。如果该文件不存在，创建新文件。	|
+|	wb	|	以二进制格式打开一个文件只用于写入。如果该文件已存在则将其覆盖。如果该文件不存在，创建新文件。	|
+|	w+	|	打开一个文件用于读写。如果该文件已存在则将其覆盖。如果该文件不存在，创建新文件。	|
+|	wb+	|	以二进制格式打开一个文件用于读写。如果该文件已存在则将其覆盖。如果该文件不存在，创建新文件。	|
+|	a	|	打开一个文件用于追加。如果该文件已存在，文件指针将会放在文件的结尾。也就是说，新的内容将会被写入到已有内容之后。如果该文件不存在，创建新文件进行写入。	|
+|	ab	|	以二进制格式打开一个文件用于追加。如果该文件已存在，文件指针将会放在文件的结尾。也就是说，新的内容将会被写入到已有内容之后。如果该文件不存在，创建新文件进行写入。	|
+|	a+	|	打开一个文件用于读写。如果该文件已存在，文件指针将会放在文件的结尾。文件打开时会是追加模式。如果该文件不存在，创建新文件用于读写。	|
+|	ab+	|	以二进制格式打开一个文件用于追加。如果该文件已存在，文件指针将会放在文件的结尾。如果该文件不存在，创建新文件用于读写。	|
+
+
+<img src=./picture/Beginning-python-file-operate.png width=800 />
+
+<a name="file-method"><h4>文件对象的方法 [<sup>目录</sup>](#content)</h4></a>
+
+<a name="file-method-read"><li>f.read()</li></a>
+
+调用 f.read(size), 这将读取一定数目的数据, 然后作为字符串或字节对象返回。
+
+size 是一个可选的数字类型的参数。 当 size 被忽略了或者为负, 那么该文件的所有内容都将被读取并且返回。
+
+<a name="file-method-readline"><li>f.readline()</li></a>
+
+从文件中读取单独的一行
+
+<a name="file-method-readlines"><li>f.readlines()</li></a>
+
+返回该文件中包含的所有行。
+
+如果设置可选参数 sizehint, 则读取指定长度的字节, 并且将这些字节按行分割。 
+
+<a name="file-method-iterate-read"><li>迭代文件对象读取每行</li></a>
+
+```
+for line in f:
+    print(line, end='')
+```
+
+<a name="file-method-iterate-read"><li>f.write()</li></a>
+
+将 string 写入到文件中, 然后返回写入的字符数
+
+如果要写入一些不是字符串的东西, 那么将需要先进行转换
+
+<a name="file-method-iterate-tell"><li>f.tell()</li></a>
+
+返回文件对象当前所处的位置, 它是从文件开头开始算起的字节数。 
+
+<a name="file-method-iterate-seek"><li>f.seek()</li></a>
+
+如果要改变文件当前的位置, 可以使用 f.seek(offset, from_what) 函数。
+
+> - from_what 
+> 如果是 0 表示开头, 如果是 1 表示当前位置, 2 表示文件的结尾
+>> seek(x,0) ： 从起始位置即文件首行首字符开始移动 x 个字符
+>> seek(x,1) ： 表示从当前位置往后移动x个字符
+>> seek(-x,2)：表示从文件的结尾往前移动x个字符
+> - offset
+> 移动的步伐与方向，"+"向右，"-"向左
+
+<a name="file-method-close"><li>f.close()</li></a>
+
+当你处理完一个文件后, 调用 f.close() 来关闭文件并释放系统的资源
+
+当处理一个文件对象时, 使用 with 关键字是非常好的方式。在结束后, 它会帮你正确的关闭文件
+
+```
+>>> with open('/tmp/foo.txt', 'r') as f:
+...     read_data = f.read()
+>>> f.closed
+True
+```
+
