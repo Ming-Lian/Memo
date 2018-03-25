@@ -1456,7 +1456,7 @@ mode的flags取值
 
 <a name="error"><h3>错误和异常 [<sup>目录</sup>](#content)</h3></a>
 
-<a name="deal-with-errorr"><h4>错误处理 [<sup>目录</sup>](#content)</h4></a>
+<a name="deal-with-error"><h4>错误处理 [<sup>目录</sup>](#content)</h4></a>
 
 ```
 import sys
