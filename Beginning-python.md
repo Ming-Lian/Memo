@@ -1408,10 +1408,10 @@ os 模块提供了非常丰富的方法用来处理文件和目录
 
 > - path -- 要用来检测是否有访问权限的路径。
 > - mode
->> os.F_OK: 作为access()的mode参数，测试path是否存在。
->> os.R_OK: 包含在access()的mode参数中 ， 测试path是否可读。
->> os.W_OK 包含在access()的mode参数中 ， 测试path是否可写。
->> os.X_OK 包含在access()的mode参数中 ，测试path是否可执行。
+>> - os.F_OK: 作为access()的mode参数，测试path是否存在。
+>> - os.R_OK: 包含在access()的mode参数中 ， 测试path是否可读。
+>> - os.W_OK 包含在access()的mode参数中 ， 测试path是否可写。
+>> - os.X_OK 包含在access()的mode参数中 ，测试path是否可执行。
 
 <a name="os-chdir"><li>os.chdir()</li></a>
 
@@ -1431,23 +1431,23 @@ os.chmod(path, mode)
 
 mode的flags取值
 
->stat.S_IXOTH: 其他用户有执行权0o001
-stat.S_IWOTH: 其他用户有写权限0o002
-stat.S_IROTH: 其他用户有读权限0o004
-stat.S_IRWXO: 其他用户有全部权限(权限掩码)0o007
-stat.S_IXGRP: 组用户有执行权限0o010
-stat.S_IWGRP: 组用户有写权限0o020
-stat.S_IRGRP: 组用户有读权限0o040
-stat.S_IRWXG: 组用户有全部权限(权限掩码)0o070
-stat.S_IXUSR: 拥有者具有执行权限0o100
-stat.S_IWUSR: 拥有者具有写权限0o200
-stat.S_IRUSR: 拥有者具有读权限0o400
-stat.S_IRWXU: 拥有者有全部权限(权限掩码)0o700
-stat.S_ISVTX: 目录里文件目录只有拥有者才可删除更改0o1000
-stat.S_ISGID: 执行此文件其进程有效组为文件所在组0o2000
-stat.S_ISUID: 执行此文件其进程有效用户为文件所有者0o4000
-stat.S_IREAD: windows下设为只读
->stat.S_IWRITE: windows下取消只读
+> - stat.S_IXOTH: 其他用户有执行权0o001
+> - stat.S_IWOTH: 其他用户有写权限0o002
+> - stat.S_IROTH: 其他用户有读权限0o004
+> - stat.S_IRWXO: 其他用户有全部权限(权限掩码)0o007
+> - stat.S_IXGRP: 组用户有执行权限0o010
+> - stat.S_IWGRP: 组用户有写权限0o020
+> - stat.S_IRGRP: 组用户有读权限0o040
+> - stat.S_IRWXG: 组用户有全部权限(权限掩码)0o070
+> - stat.S_IXUSR: 拥有者具有执行权限0o100
+> - stat.S_IWUSR: 拥有者具有写权限0o200
+> - stat.S_IRUSR: 拥有者具有读权限0o400
+> - stat.S_IRWXU: 拥有者有全部权限(权限掩码)0o700
+> - stat.S_ISVTX: 目录里文件目录只有拥有者才可删除更改0o1000
+> - stat.S_ISGID: 执行此文件其进程有效组为文件所在组0o2000
+> - stat.S_ISUID: 执行此文件其进程有效用户为文件所有者0o4000
+> - stat.S_IREAD: windows下设为只读
+> - stat.S_IWRITE: windows下取消只读
 
 <a name="os-chown"><li>os.chown()</li></a>
 
