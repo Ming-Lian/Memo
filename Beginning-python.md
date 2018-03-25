@@ -1335,7 +1335,7 @@ for line in f:
     print(line, end='')
 ```
 
-<a name="file-method-iterate-read"><li>f.write()</li></a>
+<a name="file-method-write"><li>f.write()</li></a>
 
 将 string 写入到文件中, 然后返回写入的字符数
 
@@ -1345,7 +1345,7 @@ for line in f:
 
 返回文件对象当前所处的位置, 它是从文件开头开始算起的字节数。 
 
-<a name="file-method-iterate-seek"><li>f.seek()</li></a>
+<a name="file-method-seek"><li>f.seek()</li></a>
 
 如果要改变文件当前的位置, 可以使用 f.seek(offset, from_what) 函数。
 
