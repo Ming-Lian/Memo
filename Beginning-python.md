@@ -1341,7 +1341,7 @@ for line in f:
 
 如果要写入一些不是字符串的东西, 那么将需要先进行转换
 
-<a name="file-method-iterate-tell"><li>f.tell()</li></a>
+<a name="file-method-tell"><li>f.tell()</li></a>
 
 返回文件对象当前所处的位置, 它是从文件开头开始算起的字节数。 
 
