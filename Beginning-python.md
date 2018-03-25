@@ -1506,7 +1506,7 @@ for arg in sys.argv[1:]:
         f.close()
 ```
 
-<a name="raise-errorr"><h4>抛出异常 [<sup>目录</sup>](#content)</h4></a>
+<a name="raise-error"><h4>抛出异常 [<sup>目录</sup>](#content)</h4></a>
 
 使用 raise 语句抛出一个指定的异常。例如:
 
