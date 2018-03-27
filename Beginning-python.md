@@ -85,7 +85,9 @@
 	- [异常处理](#deal-with-error)
 	- [抛出异常](#raise-error)
 	- [用户自定义异常](#customized-error)
-
+- [面向对象](#object-oriented)
+	- [类定义](#object-define)
+	- [类对象操作](#object-operate)
 
 
 
@@ -1598,3 +1600,69 @@ class TransitionError(Error):
 
 大多数的异常的名字都以"Error"结尾，就跟标准的异常命名一样。
 
+<a name="object-oriented"><h3>面向对象 [<sup>目录</sup>](#content)</h3></a>
+
+<a name="object-define"><h4>类定义 [<sup>目录</sup>](#content)</h4></a>
+
+语法格式如下：
+
+```
+class ClassName:
+    <statement-1>
+    .
+    .
+    .
+    <statement-N>
+```
+
+<a name="object-operate"><h4>类对象操作 [<sup>目录</sup>](#content)</h4></a>
+
+类对象支持两种操作：属性引用和实例化。
+> - **属性引用** 属性引用使用和 Python 中所有的属性引用一样的标准语法：obj.name
+> - **实例化**  创建一个类的实例，类的具体对象
+
+```
+class MyClass:
+    """一个简单的类实例"""
+    i = 12345
+    def f(self):
+        return 'hello world'
+ 
+# 实例化类
+x = MyClass()
+ 
+# 访问类的属性和方法
+print("MyClass 类的属性 i 为：", x.i)
+print("MyClass 类的方法 f 输出为：", x.f())
+```
+
+**将对象创建为有初始状态**
+
+类可能会定义一个名为 __init__() 的特殊方法（构造方法），像下面这样：
+
+```
+def __init__(self):
+    self.data = []
+```
+
+类定义了 __init__() 方法的话，类的实例化操作会自动调用 __init__() 方法。
+
+```
+class Complex:
+    def __init__(self, realpart, imagpart):
+        self.r = realpart
+        self.i = imagpart
+x = Complex(3.0, -4.5)
+print(x.r, x.i)   # 输出结果：3.0 -4.5
+```
+
+当然， __init__() 方法可以有参数，参数通过 __init__() 传递到类的实例化操作上。
+
+```
+class Complex:
+    def __init__(self, realpart, imagpart):
+        self.r = realpart
+        self.i = imagpart
+x = Complex(3.0, -4.5)
+print(x.r, x.i)   # 输出结果：3.0 -4.5
+```
