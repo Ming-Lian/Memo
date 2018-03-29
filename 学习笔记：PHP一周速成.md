@@ -12,7 +12,9 @@
 - [PHP 语法](#syntax)
 - [变量](#variable)
 	- [变量作用域](#variable-scope)
-
+- [echo 和 print 语句](#echo-print)
+- [EOF(heredoc)](#heredoc)
+- [数据类型](#data-types)
 
 
 <h1 name="title">学习笔记：PHP一周速成</h1>
@@ -216,3 +218,78 @@ myTest();
 
 # 输出结果： 012
 ```
+
+<a name="echo-print"><h3>echo 和 print 语句 [<sup>目录</sup>](#content)</h3></a>
+
+echo 和 print 区别:
+
+> - echo - 可以输出一个或多个字符串，字符串之间用**逗号**隔开
+> - print - 只允许输出一个字符串，返回值总为 1
+
+<a name="heredoc"><h3>EOF (heredoc) [<sup>目录</sup>](#content)</h3></a>
+
+```
+<?php
+echo <<<EOF
+    <h1>我的第一个标题</h1>
+    <p>我的第一个段落。</p>
+EOF;
+// 结束需要独立一行且前后不能空格
+?>
+```
+
+> 1. 必须后接分号，否则编译通不过。
+> 2. EOF 可以用任意其它字符代替，只需保证结束标识与开始标识一致。
+> 3. **结束标识必须顶格独自占一行(即必须从行首开始，前后不能衔接任何空白和字符)。**
+> 4. 开始标识可以不带引号或带单双引号，不带引号与带双引号效果一致，解释内嵌的变量和转义符号，带单引号则不解释内嵌的变量和转义符号。
+> 5. 当内容需要内嵌引号（单引号或双引号）时，不需要加转义符，本身对单双引号转义，此处相当与q和qq的用法。
+
+<a name="data-types"><h3>数据类型 [<sup>目录</sup>](#content)</h3></a>
+
+<li />字符串
+
+将任何文本放在单引号和双引号中
+
+<li />整型
+
+整型可以用三种格式来指定：十进制， 十六进制（ 以 0x 为前缀）或八进制（前缀为 0）。
+
+var_dump( ) 函数返回变量的数据类型和值
+
+<li />浮点型
+
+浮点数是带小数部分的数字，或是指数形式。
+
+<li />布尔型
+
+布尔型可以是 TRUE 或 FALSE。
+
+<li />数组
+
+数组可以在一个变量中存储多个值。
+
+```
+$cars=array("Volvo","BMW","Toyota");
+```
+
+<li />对象
+
+
+在 PHP 中，对象必须声明。首先，你必须使用class关键字声明类对象。类是可以包含**属性**和**方法**的结构。
+
+``` 
+<?php
+class Car
+{
+  var $color;
+  function Car($color="green") {
+    $this->color = $color;
+  }
+  function what_color() {
+    return $this->color;
+  }
+}
+?> 
+```
+
+以上实例中PHP关键字this就是指向当前对象实例的指针，不指向任何其他对象或类。
