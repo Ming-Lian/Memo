@@ -55,6 +55,17 @@ web服务器默认工作目录：直接在浏览器地址栏输入`ip:port`后�
 
 <p align="center"><img src=./picture/Beginning-php-how-to-access-file.png width=800 />
 
+**注意 ! ! !**
+
+为了更好地归档和管理用户的数据，服务器管理员已经特地在web服务器默认工作目录`/var/www`下，创建了一个专门用于用户学习和练习PHP的文件夹`learningPHP`，请在该文件夹下再创建一个属于用户自己的文件夹，命令参考下面：
+
+```
+# 新建文件夹your_new_dir，具体文件夹名自行指定
+$ mkdir /var/www/learningPHP/your_new_dir
+# 修改文件夹操作权限，关闭同组成员的写权限
+$ chmod g-w /var/www/learningPHP/your_new_dir
+```
+
 <a name="txt-editor-introduct"><h4>linux文本编辑器的简单介绍 [<sup>目录</sup>](#content)</h4></a>
 
 <a name="nano"><h4>nano [<sup>目录</sup>](#content)</h4></a>
