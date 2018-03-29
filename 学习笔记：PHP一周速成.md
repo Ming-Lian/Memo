@@ -31,7 +31,7 @@
 
 若打开以下界面则说明PHP正常运行
 
-<p align="center"><img src=./picture/Beginning-raspi-webserver-php.png width=800 />
+<p align="center"><img src=https://github.com/Ming-Lian/Hello-RaspberryPi/blob/master/picture/Beginning-raspi-webserver-apache.png width=800 />
 
 <a name="web-server-workdir-default"><h4>web服务器默认工作目录 [<sup>目录</sup>](#content)</h4></a>
 
