@@ -88,6 +88,63 @@ $ nano test.txt
 > - 移动输入位置：键盘中的上下左右键
 > - 编辑后保存：`ctrl+x` -> `y` -> 回车
 
+<a name="vim"><h4>Vim [<sup>目录</sup>](#content)</h4></a>
+
+vim是目前Linux操作系统下最流行的几款文本编辑器之一
+
+Vim/vi 是一个功能强大的全屏幕文本编辑器，是 Linux/UNIX 上最常用的文本编辑器，它的作用是建立、编辑、显示文本文件。 Vim/vi 没有菜单，只有命令。
+
+<li />启动Vim
+
+```
+$vim filename
+```
+
+界面
+
+<p align="center"><img src=./picture/Beginning-php-vim-1.png width=700 />
+
+<li />Vim的三种模式及其切换
+
+三种模式：
+
+> - **命令模式**（Command Mode）
+> 
+> Vim 启动后的默认模式，所输入的任何内容都被解释成命令。在此模式中，用户可以执行一般的
+编辑器命令，比如移动光标、删除文本等等。在命令模式中，有很多方法可以进入输入模式，比较普通的方式是按“a”（append，追加）键或者“i”（insert，插入）键。
+>
+> **在该模式下我一般不会做太多操作，除了一些光标移动操作**
+> > - 移动到文件末尾：`shift + g`
+> > - 移动到当前行的行首：`shift + ^`
+> > - 移动到当前行的行尾：`shift + $`
+>
+> ![](./picture/Beginning-php-vim-2.png)
+> 
+> - **输入模式**（Insert Mode）
+> 
+> 在此模式中，才能对文本进行正常的编辑
+>
+> ![](./picture/Beginning-php-vim-3.png)
+> 
+> - **末行模式**（Last Line Mode） 
+> 
+> 在末行模式中可以输入会被解释并执行的命令。例如执行命令（“:”键），搜索（“/”和“?”
+键）或者过滤命令（“!”键）。在命令执行之后， Vim 返回到末行模式之前的模式，通常是普通模式（命令模式）。
+>
+> **在该模式下我一般不会做太多操作，除了保存文件及退出**
+> > - 保存文件：`w`
+> > - 退出：`q`
+> > - 保存并退出：`wq`
+> > - 强制退出，不保存文件：`q!`
+> 
+> ![](./picture/Beginning-php-vim-4.png)
+
+三个模式之间的转换
+
+<p align="center"><img src=./picture/Beginning-php-vim-3model.png width=500 />
+
+注意：**输入模式与末行模式之间无法直接转换，需要命令模式作为中介**
+
 <a name="edit-php-script"><h4>编辑你的第一个php脚本 [<sup>目录</sup>](#content)</h4></a>
 
 打开文本编辑器，这里以nano为例，这里将文件命名为`test.php`（文件名自行定义，但后缀必须是php）：
