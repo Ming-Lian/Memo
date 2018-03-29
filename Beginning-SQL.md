@@ -2,6 +2,7 @@
 
 [SQL入门笔记](#title)
 - [运行sql文件创建表格](#exe-sql)
+- [MySQL用户管理](#user-management)
 - [语法](#syntax)
 - [SELECT 语句](#select)
 - []()
@@ -44,6 +45,31 @@ mysql> source /var/lib/mysql/testdb/websites.sql;
 ```
 mysql> show tables;
 ```
+
+<a name="user-management"><h3>MySQL用户管理 [<sup>目录</sup>](#content)</h3></a>
+
+如果你需要添加 MySQL 用户，你只需要在 mysql 数据库中的 user 表添加新用户即可。
+
+只有MySQL的root用户才有用户管理权限
+
+```
+# 进入 mysql 数据库
+mysql> use mysql;
+
+# 添加新用户
+mysql> INSERT INTO user 
+          (host, user, password, 
+           select_priv, insert_priv, update_priv) 
+           VALUES ('localhost', 'guest', 
+           PASSWORD('guest123'), 'Y', 'Y', 'Y');
+
+# 重新载入授权表
+mysql> FLUSH PRIVILEGES;
+```
+
+在添加用户时，请注意使用MySQL提供的 PASSWORD() 函数来对密码进行加密。
+
+注意： 在添加成功新用户后，新用户还处于未激活状态，所以随后**必须执行 FLUSH PRIVILEGES 语句来重新载入授权表**。如果你不使用该命令，你就无法使用新创建的用户来连接mysql服务器，除非你重启mysql服务器。 
 
 <a name="syntax"><h3>语法 [<sup>目录</sup>](#content)</h3></a>
 
