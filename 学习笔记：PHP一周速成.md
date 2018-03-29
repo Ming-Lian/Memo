@@ -70,7 +70,7 @@ $ chmod g-w /var/www/learningPHP/your_new_dir
 
 <a name="nano"><h4>nano [<sup>目录</sup>](#content)</h4></a>
 
-大家在Linux上用的文本编辑器，一般是**Vim**之类的，不过对应初学者可能门槛较高，学起来比较吃力，所以这里给初学者推荐一款比较容易入门上手的编辑器：nano
+大家在Linux上用的文本编辑器，一般是**Vim**之类的，不过对于初学者可能门槛较高，学起来比较吃力，所以这里给初学者推荐一款比较容易入门上手的编辑器：nano
 
 操作实例（比如有个文件`test.txt`)：
 ```
