@@ -97,7 +97,7 @@ Vim/vi 是一个功能强大的全屏幕文本编辑器，是 Linux/UNIX 上最�
 <li />启动Vim
 
 ```
-$vim filename
+$ vim filename
 ```
 
 界面
