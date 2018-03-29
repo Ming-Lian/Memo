@@ -9,7 +9,9 @@
 		- [nano](#nano)
 		- [vim](#vim)
 	- [编辑你的第一个php脚本](#edit-php-script)
-
+- [PHP 语法](#syntax)
+- [变量](#variable)
+	- [变量作用域](#variable-scope)
 
 
 
@@ -107,3 +109,110 @@ echo "Hello World!";
 <p align="center"><img src=./picture/Beginning-php-first-phpscript.png width=500 />
 
 运行成功，congratulation ！ ！ ！
+
+<a name="syntax"><h3>PHP 语法 [<sup>目录</sup>](#content)</h3></a>
+
+<li>基本的 PHP 语法：</li>
+
+```
+<?php
+// PHP 代码
+?> 
+```
+
+PHP 中的每个代码行都**必须以分号结束**。分号是一种分隔符，用于把指令集区分开来。
+
+通过 PHP，有两种在浏览器输出文本的基础指令：echo 和 print。
+<br>
+<li>注释</li>
+
+```
+<?php
+// 这是 PHP 单行注释
+
+/*
+这是
+PHP 多行
+注释
+*/
+?>
+```
+
+<a name="variable"><h3>变量 [<sup>目录</sup>](#content)</h3></a>
+
+```
+<?php
+$x=5;
+$y=6;
+$z=$x+$y;
+echo $z;
+?>
+```
+
+<a name="variable-scope"><h4>变量作用域 [<sup>目录</sup>](#content)</h4></a>
+
+<li>全局变量</li>
+
+在所有函数外部定义的变量，拥有全局作用域。要在一个函数中访问一个全局变量，需要使用 global 关键字。 
+
+```
+<?php
+$x=5;
+$y=10;
+ 
+function myTest()
+{
+    global $x,$y;
+    $y=$x+$y;
+}
+ 
+myTest();
+echo $y; // 输出 15
+?>
+```
+
+PHP 将所有全局变量存储在一个名为 $GLOBALS[index] 的数组中。 index 保存变量的名称。这个数组可以在函数内部访问，也可以直接用来更新全局变量。
+
+```
+<?php
+$x=5;
+$y=10;
+ 
+function myTest()
+{
+    $GLOBALS['y']=$GLOBALS['x']+$GLOBALS['y'];
+} 
+ 
+myTest();
+echo $y;
+?>
+```
+
+<br>
+<li>局部变量</li>
+
+在 PHP 函数内部声明的变量是局部变量，仅能在函数内部访问
+
+<br>
+<li>Static 作用域</li>
+
+当一个函数完成时，它的所有变量通常都会被删除。然而，有时候您希望某个局部变量不要被删除。
+
+要做到这一点，请在您第一次声明变量时使用 static 关键字：
+
+```
+<?php
+function myTest()
+{
+    static $x=0;
+    echo $x;
+    $x++;
+}
+ 
+myTest();
+myTest();
+myTest();
+?>
+
+# 输出结果： 012
+```
