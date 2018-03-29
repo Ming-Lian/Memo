@@ -8,7 +8,7 @@
 	- [linux文本编辑器的简单介绍](#txt-editor-introduct)
 		- [nano](#nano)
 		- [vim](#vim)
-
+	- [编辑你的第一个php脚本](#edit-php-script)
 
 
 
@@ -84,3 +84,26 @@ $ nano test.txt
 > - 移动输入位置：键盘中的上下左右键
 > - 编辑后保存：`ctrl+x` -> `y` -> 回车
 
+<a name="edit-php-script"><h4>编辑你的第一个php脚本 [<sup>目录</sup>](#content)</h4></a>
+
+打开文本编辑器，这里以nano为例，这里将文件命名为`test.php`（文件名自行定义，但后缀必须是php）：
+
+```
+$ nano /var/www/learningPHP/lianm/test.php
+```
+
+然后在编辑器中输入以下PHP脚本语句
+
+```
+<?php
+echo "Hello World!";
+?> 
+```
+
+然后保存：`ctrl+x` -> `y` -> 回车。
+
+在浏览器中访问你刚才编辑好的php脚本，在浏览器地址栏输入该脚本的URL：`124.16.111.23:9000/learningPHP/lianm/test.php`
+
+<p align="center"><img src=./picture/Beginning-php-first-phpscript.png width=500 />
+
+运行成功，congratulation ！ ！ ！
