@@ -490,6 +490,78 @@ $_SERVER 是一个包含了诸如**头信息(header)、路径(path)、以及脚�
 |	$_SERVER['SCRIPT_NAME']	|	包含当前脚本的路径。这在页面需要指向自己时非常有用。__FILE__ 常量包含当前脚本(例如包含文件)的完整路径和文件名。	|
 |	$_SERVER['SCRIPT_URI']	|	URI 用来指定要访问的页面。例如 "/index.html"。	|
 
+- $_REQUEST
+
+PHP $_REQUEST 用于收集HTML表单提交的数据。
+
+```
+<html>
+<body>
+
+<form method="post" action="<?php echo $_SERVER['PHP_SELF'];?>">
+Name: <input type="text" name="fname">
+<input type="submit">
+</form>
+
+<?php
+$name = $_REQUEST['fname'];
+echo $name;
+?>
+
+</body>
+</html>
+```
+
+当用户通过点击 "Submit" 按钮提交表单数据时, 表单数据将发送至`<form>`标签中 action 属性中指定的脚本文件。	`$_SERVER['PHP_SELF']`说明指定的脚本文件为当前脚本文件。
+ 
+想了解更多关于html中的表单知识，请点 [这里](http://www.w3school.com.cn/html/html_forms.asp)
+ 
+ - $_POST
+
+$_POST 被广泛应用于收集表单数据，在HTML form标签的指定该属性："method="post"。
+
+```
+<html>
+<body>
+
+<form method="post" action="<?php echo $_SERVER['PHP_SELF'];?>">
+Name: <input type="text" name="fname">
+<input type="submit"》
+</form>
+
+<?php
+$name = $_POST['fname'];
+echo $name;
+?>
+
+</body>
+</html>
+```
+
+- $_GET
+
+$_GET 同样被广泛应用于收集表单数据，在HTML form标签的指定该属性："method="get"。
+
+$_GET 也可以收集URL中发送的数据。
+
+> 1\. 在web服务器的对应目录下创建`get_test.php`文件
+> 
+> ```
+> <html>
+> <body>
+> 
+> <?php
+> echo "Study " . $_GET['subject'] . " at " . $_GET['web'];
+> ?>
+> 
+> </body>
+> </html>
+> ```
+> 2\. 用URL向`get_test.php`文件发送的数据。
+> 
+> 在浏览器地址栏输入`ip:port/learningPHP/your_dir/get_test.php?subject=PHP&web=runoob.com`
+> 
+> 得到输出：`Study PHP at runoob.com `
 
 <a name="string"><h4>字符串变量 [<sup>目录</sup>](#content)</h4></a>
 
