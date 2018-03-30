@@ -15,6 +15,14 @@
 - [echo 和 print 语句](#echo-print)
 - [EOF(heredoc)](#heredoc)
 - [数据类型](#data-types)
+- [运算符](#operator)
+- [数据结构](#data-structure)
+	- [常量](#constant)
+	- [字符串变量](#string)
+	- [数组](#array)
+		- [数组排序](#array-sort)
+- [条件判断](#condition-judgment)
+
 
 
 <h1 name="title">学习笔记：PHP一周速成</h1>
@@ -350,3 +358,199 @@ class Car
 ```
 
 以上实例中PHP关键字this就是指向当前对象实例的指针，不指向任何其他对象或类。
+
+<a name="operator"><h3>运算符 [<sup>目录</sup>](#content)</h3></a>
+
+- 逻辑运算符
+
+> - 与：`and` 或 `&&`
+> 
+> - 或：`or` 或 `||`
+> 
+> - 异或：`xor`，有且仅有一个为 true，则返回 true
+
+- 数组运算符
+
+|	运算符	|	名称	|	描述	|
+|:---|:---|:---|
+|	x + y	|	集合	|	x 和 y 的集合	|
+|	x == y	|	相等	|	如果 x 和 y 具有相同的键/值对，则返回 true	|
+|	x === y	|	恒等	|	如果 x 和 y 具有相同的键/值对，且顺序相同类型相同，则返回 true	|
+|	x != y	|	不相等	|	如果 x 不等于 y，则返回 true	|
+|	x <> y	|	不相等	|	如果 x 不等于 y，则返回 true	|
+|	x !== y	|	不恒等	|	如果 x 不等于 y，则返回 true	|
+
+- 三元运算符
+
+```
+(expr1) ? (expr2) : (expr3) 
+```
+
+对 expr1 求值为 TRUE 时的值为 expr2，在 expr1 求值为 FALSE 时的值为 expr3。
+
+自 PHP 5.3 起，可以省略三元运算符中间那部分。表达式 expr1 ?: expr3 在 expr1 求值为 TRUE 时返回 expr1，否则返回 expr3。常用在判断 $_GET 请求中含有 user 值
+
+```
+<?php
+// 如果 $_GET['user'] 不存在返回 'nobody'，否则返回 $_GET['user'] 的值
+$username = $_GET['user'] ?? 'nobody';
+// 类似的三元运算符
+$username = isset($_GET['user']) ? $_GET['user'] : 'nobody';
+?>
+```
+
+- 组合比较符(PHP7+)
+
+组合比较运算符，英文叫作combined comparison operator，符号为<=>，它有一个形象的名字，叫作**太空船操作符**。组合比较运算符可以轻松实现两个变量的比较。
+
+```
+$c = $a <=> $b
+```
+
+> - 如果$a > $b，$c 的值为1
+> - 如果$a == $b，$c 的值为0
+> - 如果$a < $b，$c 的值为-1
+
+<a name="data-structure"><h3>数据结构 [<sup>目录</sup>](#content)</h3></a>
+
+<a name="constant"><h4>常量 [<sup>目录</sup>](#content)</h4></a>
+
+常量是一个简单值的标识符。该值在脚本中不能改变。常量在整个脚本中都可以使用。
+
+```
+define ( string $name , mixed $value [, bool $case_insensitive = false ] )
+```
+
+> - name：必选参数，常量名称，即标志符。
+> - value：必选参数，常量的值。
+> - case_insensitive ：可选参数，如果设置为 TRUE，该常量则大小写不敏感。默认是大小写敏感的。
+
+```
+<?php
+// 区分大小写的常量名
+define("GREETING", "欢迎访问 Runoob.com");
+echo GREETING;    // 输出 "欢迎访问 Runoob.com"
+echo '<br>';
+echo greeting;   // 输出 "greeting"
+?>
+```
+
+<a name="string"><h4>字符串变量 [<sup>目录</sup>](#content)</h4></a>
+
+- 字符串连接：
+
+运算符 (.) 用于把两个字符串值连接起来。
+
+```
+ <?php
+$txt1="Hello world!";
+$txt2="What a nice day!";
+echo $txt1 . " " . $txt2;
+?> 
+```
+
+- strlen( )：返回字符串的长度（字符数）
+
+- strpos( )：用于在字符串内查找一个字符或一段指定的文本
+
+如果在字符串中找到匹配，该函数会返回第一个匹配的字符位置。如果未找到匹配，则返回 FALSE。
+
+完整参考手册请点 [这里](http://www.runoob.com/php/php-ref-string.html)
+
+<a name="array"><h4>数组 [<sup>目录</sup>](#content)</h4></a>
+
+在 PHP 中，有三种类型的数组：
+> - 数值数组 - 带有数字 ID 键的数组
+> - 关联数组 - 带有指定的键的数组，每个键关联一个值
+> - 多维数组 - 包含一个或多个数组的数组
+
+- 数值数组
+
+创建数值数组
+
+```
+$cars=array("Volvo","BMW","Toyota");
+```
+
+count( )：获取数组的长度
+
+- 关联数组
+
+创建关联数组
+
+```
+$age=array("Peter"=>"35","Ben"=>"37","Joe"=>"43");
+```
+
+使用指定的键访问数组中对应的键值
+
+```
+<?php
+$age=array("Peter"=>"35","Ben"=>"37","Joe"=>"43");
+echo "Peter is " . $age['Peter'] . " years old.";
+?>
+```
+
+- 多维数组
+
+多维数组是包含一个或多个数组的数组。
+
+```
+<?php
+// 二维数组:
+$cars = array
+(
+    array("Volvo",100,96),
+    array("BMW",60,59),
+    array("Toyota",110,100)
+);
+?>
+```
+
+访问多维数组的值：`$sites['runoob'][0]`
+
+<a name="array-sort"><h4>数组排序 [<sup>目录</sup>](#content)</h4></a>
+
+> - sort() - 对数组进行升序排列
+> - rsort() - 对数组进行降序排列
+> - asort() - 根据关联数组的值，对数组进行升序排列
+> - ksort() - 根据关联数组的键，对数组进行升序排列
+> - arsort() - 根据关联数组的值，对数组进行降序排列
+> - krsort() - 根据关联数组的键，对数组进行降序排列
+
+<a name="condition-judgment"><h3>条件判断 [<sup>目录</sup>](#content)</h3></a>
+
+- If...Else 语句
+
+```
+if (条件)
+{
+	if 条件成立时执行的代码;
+}
+elseif (条件)
+{
+	elseif 条件成立时执行的代码;
+}
+else
+{
+	条件不成立时执行的代码;
+} 
+```
+
+- Switch 语句
+
+```
+<?php
+switch (n)
+{
+case label1:
+    如果 n=label1，此处代码将执行;
+    break;
+case label2:
+    如果 n=label2，此处代码将执行;
+    break;
+default:
+    如果 n 既不等于 label1 也不等于 label2，此处代码将执行;
+}
+?>
+```
