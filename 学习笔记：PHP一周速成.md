@@ -440,7 +440,7 @@ echo greeting;   // 输出 "greeting"
 
 PHP中预定义了几个超级全局变量（superglobals） ，这意味着它们在一个脚本的全部作用域中都可用
 
-- $GLOBALS
+- **$GLOBALS**
 
 $GLOBALS 是一个包含了全部变量的全局组合数组。变量的名字就是数组的键。
 
@@ -459,7 +459,7 @@ echo $z;
 ?>
 ```
 
-- $_SERVER
+- **$_SERVER**
 
 $_SERVER 是一个包含了诸如**头信息(header)、路径(path)、以及脚本位置(script locations)**等等信息的数组。这个数组中的项目由 Web 服务器创建。不能保证每个服务器都提供全部项目；服务器可能会忽略一些，或者提供一些没有在这里列举出来的项目。
 
@@ -490,7 +490,7 @@ $_SERVER 是一个包含了诸如**头信息(header)、路径(path)、以及脚�
 |	$_SERVER['SCRIPT_NAME']	|	包含当前脚本的路径。这在页面需要指向自己时非常有用。__FILE__ 常量包含当前脚本(例如包含文件)的完整路径和文件名。	|
 |	$_SERVER['SCRIPT_URI']	|	URI 用来指定要访问的页面。例如 "/index.html"。	|
 
-- $_REQUEST
+- **$_REQUEST**
 
 PHP $_REQUEST 用于收集HTML表单提交的数据。
 
@@ -516,7 +516,7 @@ echo $name;
  
 想了解更多关于html中的表单知识，请点 [这里](http://www.w3school.com.cn/html/html_forms.asp)
  
- - $_POST
+ - **$_POST**
 
 $_POST 被广泛应用于收集表单数据，在HTML form标签的指定该属性："method="post"。
 
@@ -538,7 +538,7 @@ echo $name;
 </html>
 ```
 
-- $_GET
+- **$_GET**
 
 $_GET 同样被广泛应用于收集表单数据，在HTML form标签的指定该属性："method="get"。
 
