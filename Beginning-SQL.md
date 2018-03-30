@@ -5,8 +5,11 @@
 - [MySQL用户管理](#user-management)
 - [语法](#syntax)
 - [SELECT 语句](#select)
-- []()
-
+	- [WHERE 子句](#where)
+	- [结果集排序](#sort)
+- [INSERT INTO 语句](#insert)
+- [UPDATE 语句](#update)
+- [DELETE 语句](#delete)
 
 
 
@@ -92,3 +95,82 @@ SELECT column_name,column_name FROM table_name;
 ```
 SELECT * FROM table_name;
 ```
+
+- SELECT DISTINCT：用于返回唯一不同的值。
+
+```
+SELECT DISTINCT column_name,column_name FROM table_name;
+```
+
+<a name="where"><h4>WHERE 子句 [<sup>目录</sup>](#content)</h4></a>
+
+WHERE 子句用于提取那些满足指定标准的记录。
+
+```
+SELECT column_name,column_name
+FROM table_name
+WHERE column_name operator value;
+```
+
+实例：
+
+```
+SELECT * FROM Websites WHERE country='CN';
+```
+
+SQL 使用单引号来环绕文本值，如果是数值字段，请不要使用引号。
+
+<a name="sort"><h4>结果集排序 [<sup>目录</sup>](#content)</h4></a>
+
+```
+SELECT column_name,column_name
+FROM table_name
+ORDER BY column_name,column_name ASC|DESC;
+```
+
+ORDER BY 关键字默认按照升序对记录进行排序。如果需要按照降序对记录进行排序，您可以使用 DESC 关键字。
+
+<a name="insert"><h3>INSERT INTO 语句 [<sup>目录</sup>](#content)</h3></a>
+
+INSERT INTO 语句可以有两种编写形式。
+
+- 第一种形式无需指定要插入数据的列名，只需提供被插入的值即可：
+
+```
+INSERT INTO table_name
+VALUES (value1,value2,value3,...);
+```
+
+- 第二种形式需要指定列名及被插入的值，用于在指定的列插入值：
+
+```
+INSERT INTO table_name (column1,column2,column3,...)
+VALUES (value1,value2,value3,...);
+```
+
+若表中有 id 列，则 id 列是自动更新的，表中的每条记录都有一个唯一的数字。
+
+<a name="update"><h3>UPDATE 语句 [<sup>目录</sup>](#content)</h3></a>
+
+用于 更新/修改 表中的记录。
+
+```
+UPDATE table_name
+SET column1=value1,column2=value2,...
+WHERE some_column=some_value;
+```
+
+**警告！**
+
+执行没有 WHERE 子句的 UPDATE 要慎重，再慎重。
+
+<a name="delete"><h3>DELETE 语句 [<sup>目录</sup>](#content)</h3></a>
+
+```
+DELETE FROM table_name
+WHERE some_column=some_value;
+```
+
+**请注意 SQL DELETE 语句中的 WHERE 子句！**
+
+WHERE 子句规定哪条记录或者哪些记录需要删除。如果您省略了 WHERE 子句，所有的记录都将被删除！
