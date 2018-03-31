@@ -26,7 +26,9 @@
 - [条件判断](#condition-judgment)
 - [循环](#loop)
 - [函数](#function)
-
+- [命名空间(namespace)](#namespace)
+	- [子命名空间](#sub-namespace)
+	- [命名空间使用](#use-namespace)
 
 
 <h1 name="title">学习笔记：PHP一周速成</h1>
@@ -765,3 +767,110 @@ function functionName()
 - **返回值**
 
 如需让函数返回一个值，请使用 return 语句。
+
+<a name="namespace"><h3>命名空间(namespace) [<sup>目录</sup>](#content)</h3></a>
+
+ PHP 命名空间可以解决以下两类问题：
+
+- 用户编写的代码与PHP内部的类/函数/常量或第三方类/函数/常量之间的名字冲突。
+- 为很长的标识符名称(通常是为了缓解第一类问题而定义的)创建一个别名（或简短）的名称，提高源代码的可读性。
+
+命名空间通过关键字namespace 来声明，**命名空间必须是程序脚本的第一条语句**
+
+```
+<?php  
+// 定义代码在 'MyProject' 命名空间中  
+namespace MyProject;  
+ 
+// ... 代码 ...  
+```
+
+可以在同一个文件中定义不同的命名空间代码
+
+```
+<?php
+namespace MyProject {
+    const CONNECT_OK = 1;
+    class Connection { /* ... */ }
+    function connect() { /* ... */  }
+}
+
+namespace AnotherProject {
+    const CONNECT_OK = 1;
+    class Connection { /* ... */ }
+    function connect() { /* ... */  }
+}
+?>
+```
+
+将**全局的非命名空间**中的代码与**命名空间**中的代码组合在一起，只能使用大括号形式的语法。全局代码必须用一个不带名称的 namespace 语句加上大括号括起来
+
+```
+<?php
+namespace MyProject {
+
+const CONNECT_OK = 1;
+class Connection { /* ... */ }
+function connect() { /* ... */  }
+}
+
+namespace { // 全局代码
+session_start();
+$a = MyProject\connect();
+echo MyProject\Connection::start();
+}
+?>
+```
+
+在声明命名空间之前唯一合法的代码是用于定义源文件编码方式的 declare 语句。所有非 PHP 代码包括空白符都不能出现在命名空间的声明之前。
+
+```
+<?php
+declare(encoding='UTF-8'); //定义多个命名空间和不包含在命名空间中的代码
+namespace MyProject {
+
+const CONNECT_OK = 1;
+class Connection { /* ... */ }
+function connect() { /* ... */  }
+}
+
+namespace { // 全局代码
+session_start();
+$a = MyProject\connect();
+echo MyProject\Connection::start();
+}
+?>
+```
+
+<a name="sub-namespace"><h4>子命名空间 [<sup>目录</sup>](#content)</h4></a>
+
+与目录和文件的关系很象，PHP 命名空间也允许指定层次化的命名空间的名称。因此，命名空间的名字可以使用分层次的方式定义： 
+
+```
+<?php
+namespace MyProject\Sub\Level;  //声明分层次的单个命名空间
+
+const CONNECT_OK = 1;
+class Connection { /* ... */ }
+function Connect() { /* ... */  }
+
+?>
+```
+
+上面的例子创建了常量 MyProject\Sub\Level\CONNECT_OK，类 MyProject\Sub\Level\Connection 和函数 MyProject\Sub\Level\Connect。 
+
+<a name="use-namespace"><h4>命名空间使用 [<sup>目录</sup>](#content)</h4></a>
+
+PHP 命名空间中的类名可以通过三种方式引用
+
+- 非限定名称，或不包含前缀的类名称
+
+例如 $a=new foo(); 或 foo::staticmethod();。如果当前命名空间是 currentnamespace，foo 将被解析为 currentnamespace\foo。如果使用 foo 的代码是全局的，不包含在任何命名空间中的代码，则 foo 会被解析为foo。
+
+- 限定名称,或包含前缀的名称
+
+例如 $a = new subnamespace\foo(); 或 subnamespace\foo::staticmethod();。如果当前的命名空间是 currentnamespace，则 foo 会被解析为 currentnamespace\subnamespace\foo。如果使用 foo 的代码是全局的，不包含在任何命名空间中的代码，foo 会被解析为subnamespace\foo。
+
+- 完全限定名称，或包含了全局前缀操作符的名称
+
+例如， $a = new \currentnamespace\foo(); 或 \currentnamespace\foo::staticmethod();。在这种情况下，foo 总是被解析为代码中的文字名(literal name)currentnamespace\foo。
