@@ -29,6 +29,7 @@
 - [命名空间(namespace)](#namespace)
 	- [子命名空间](#sub-namespace)
 	- [命名空间使用](#use-namespace)
+- [面向对象](#Object-oriented)
 
 
 <h1 name="title">学习笔记：PHP一周速成</h1>
