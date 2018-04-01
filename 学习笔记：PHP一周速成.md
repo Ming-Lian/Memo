@@ -47,6 +47,8 @@
 			- [下拉菜单多选](#multi-selection)
 		- [单选按钮表单](#radio)
 		- [checkbox 复选框](#checkbox)
+	- [表单验证](#form-validation)
+		- [表单验证实例](#form-validation-example)
 
 
 <h1 name="title">学习笔记：PHP一周速成</h1>
@@ -1175,3 +1177,41 @@ if(is_array($q)) {
 ```
 
 ![](./picture/Beginning-php-checkbox.png)
+
+<a name="form-validation"><h3>表单验证 [<sup>目录</sup>](#content)</h3></a>
+
+在处理PHP表单时我们需要考虑安全性，为了防止黑客及垃圾信息我们需要对表单进行数据安全验证。
+
+<a name="form-validation-example"><h4>表单验证实例 [<sup>目录</sup>](#content)</h4></a>
+
+<p align="center"><img src=./picture/Beginning-php-form-validation-example.png width=600 /></p>
+
+|	字段	|	验证规则	|
+|:---|:---|
+|	名字	|	必须。 +只能包含字母和空格	|
+|	E-mail	|	必须。 + 必须是一个有效的电子邮件地址（包含'@'和'.'）	|
+|	网址	|	可选。如果存在，它必须包含一个有效的URL	|
+|	备注	|	可选。多行输入字段（文本域）	|
+|	性别	|	必须。 必须选择一个	|
+
+- 文本字段
+
+```
+名字: <input type="text" name="name" value="<?php echo $name;?>">
+<span class="error">* <?php echo $nameErr;?></span>
+<br><br>
+E-mail: <input type="text" name="email" value="<?php echo $email;?>">
+<span class="error">* <?php echo $emailErr;?></span>
+<br><br>
+网址: <input type="text" name="website" value="<?php echo $website;?>">
+<span class="error"><?php echo $websiteErr;?></span>
+```
+
+- 单选按钮
+
+```
+性别:
+<input type="radio" name="gender" <?php if (isset($gender) && $gender=="female") echo "checked";?>  value="female">女
+<input type="radio" name="gender" <?php if (isset($gender) && $gender=="male") echo "checked";?>  value="male">男
+<span class="error">* <?php echo $genderErr;?></span>
+```
