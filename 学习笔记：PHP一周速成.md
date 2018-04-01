@@ -9,40 +9,41 @@
 		- [nano](#nano)
 		- [vim](#vim)
 	- [编辑你的第一个php脚本](#edit-php-script)
-- [PHP 语法](#syntax)
-- [变量](#variable)
-	- [变量作用域](#variable-scope)
-- [echo 和 print 语句](#echo-print)
-- [EOF(heredoc)](#heredoc)
-- [数据类型](#data-types)
-- [运算符](#operator)
-- [数据结构](#data-structure)
-	- [常量](#constant)
-	- [超级全局变量](#super-global-variable)
-	- [魔术变量](#magic-variable)
-	- [字符串变量](#string)
-	- [数组](#array)
-		- [数组排序](#array-sort)
-- [条件判断](#condition-judgment)
-- [循环](#loop)
-- [函数](#function)
-- [命名空间(namespace)](#namespace)
-	- [子命名空间](#sub-namespace)
-	- [命名空间使用](#use-namespace)
-- [面向对象](#Object-oriented)
-	- [类定义](#class-define)
-	- [创建对象](#setup-object)
-	- [调用成员方法](#use-object)
-	- [构造函数](#initial-func)
-	- [析构函数](#destory-func)
-	- [继承](#inherit)
-	- [方法重写](#redefine-func)
-	- [访问控制](#access-limit)
+- [PHP入门](#beginning-php)
+	- [PHP 语法](#syntax)
+	- [变量](#variable)
+		- [变量作用域](#variable-scope)
+	- [echo 和 print 语句](#echo-print)
+	- [EOF(heredoc)](#heredoc)
+	- [数据类型](#data-types)
+	- [运算符](#operator)
+	- [数据结构](#data-structure)
+		- [常量](#constant)
+		- [超级全局变量](#super-global-variable)
+		- [魔术变量](#magic-variable)
+		- [字符串变量](#string)
+		- [数组](#array)
+			- [数组排序](#array-sort)
+	- [条件判断](#condition-judgment)
+	- [循环](#loop)
+	- [函数](#function)
+	- [命名空间(namespace)](#namespace)
+		- [子命名空间](#sub-namespace)
+		- [命名空间使用](#use-namespace)
+	- [面向对象](#Object-oriented)
+		- [类定义](#class-define)
+		- [创建对象](#setup-object)
+		- [调用成员方法](#use-object)
+		- [构造函数](#initial-func)
+		- [析构函数](#destory-func)
+		- [继承](#inherit)
+		- [方法重写](#redefine-func)
+		- [访问控制](#access-limit)
 
 
 <h1 name="title">学习笔记：PHP一周速成</h1>
 
-<a name="firstly"><h3>写在前面 [<sup>目录</sup>](#content)</h3></a>
+<a name="firstly"><h2>写在前面 [<sup>目录</sup>](#content)</h2></a>
 
 <a name="test-web-server"><h4>测试Web服务器是否work [<sup>目录</sup>](#content)</h4></a>
 
@@ -219,6 +220,7 @@ PHP 多行
 */
 ?>
 ```
+<a name="beginning-php"><h2>PHP入门 [<sup>目录</sup>](#content)</h2></a>
 
 <a name="variable"><h3>变量 [<sup>目录</sup>](#content)</h3></a>
 
