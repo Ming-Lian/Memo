@@ -39,6 +39,13 @@
 		- [继承](#inherit)
 		- [方法重写](#redefine-func)
 		- [访问控制](#access-limit)
+- [PHP进阶](#advanced-php)
+	- [表单和用户输入](#form-and-input)
+		- [表单处理](#form-process)
+		- [获取下拉菜单的数据](#get-date-from-dropdown)
+			- [下拉菜单单选](#one-selection)
+			- [下拉菜单多选](#multi-selection)
+
 
 
 <h1 name="title">学习笔记：PHP一周速成</h1>
@@ -1002,3 +1009,104 @@ class Child extends Parent {
 > - public（公有）：公有的类成员可以在任何地方被访问。
 > - protected（受保护）：受保护的类成员则可以被其自身以及其子类和父类访问。
 > - private（私有）：私有的类成员则只能被其定义所在的类访问。
+
+<a name="advanced-php"><h2>PHP进阶 [<sup>目录</sup>](#content)</h2></a>
+
+<a name="form-and-input"><h3>表单和用户输入 [<sup>目录</sup>](#content)</h3></a>
+
+<a name="form-process"><h4>表单处理 [<sup>目录</sup>](#content)</h4></a>
+
+当处理 HTML 表单时，PHP 能把来自 HTML 页面中的表单元素自动变成可供 PHP 脚本使用。
+
+```
+# form.html 文件代码
+
+<html>
+<head>
+<meta charset="utf-8">
+<title>菜鸟教程(runoob.com)</title>
+</head>
+<body>
+ 
+<form action="welcome.php" method="post">
+名字: <input type="text" name="fname">
+年龄: <input type="text" name="age">
+<input type="submit" value="提交">
+</form>
+ 
+</body>
+</html>
+
+# welcome.php 文件代码
+
+欢迎<?php echo $_POST["fname"]; ?>!<br>
+你的年龄是 <?php echo $_POST["age"]; ?>  岁。
+```
+
+<a name="get-date-from-dropdown"><h4>获取下拉菜单的数据 [<sup>目录</sup>](#content)</h4></a>
+
+<a name="one-selection"><h4>下拉菜单单选 [<sup>目录</sup>](#content)</h4></a>
+
+用select标签设置下拉菜单三个选项，表单使用 GET 方式获取数据，action 属性值为空表示提交到当前脚本，我们可以通过 select 的 name 属性获取下拉菜单的值：
+
+```
+<?php
+$q = isset($_GET['q'])? htmlspecialchars($_GET['q']) : '';
+if($q) {
+        if($q =='RUNOOB') {
+                echo '菜鸟教程<br>http://www.runoob.com';
+        } else if($q =='GOOGLE') {
+                echo 'Google 搜索<br>http://www.google.com';
+        } else if($q =='TAOBAO') {
+                echo '淘宝<br>http://www.taobao.com';
+        }
+} else {
+?>
+<form action="" method="get"> 
+    <select name="q">
+    <option value="">选择一个站点:</option>
+    <option value="RUNOOB">Runoob</option>
+    <option value="GOOGLE">Google</option>
+    <option value="TAOBAO">Taobao</option>
+    </select>
+    <input type="submit" value="提交">
+    </form>
+<?php
+}
+?>
+
+```
+
+<a name="multi-selection"><h4>下拉菜单多选 [<sup>目录</sup>](#content)</h4></a>
+
+如果下拉菜单是多选的（ multiple="multiple"），我们可以通过将设置 select name="q[]" 以数组的方式获取
+
+```
+<?php
+$q = isset($_POST['q'])? $_POST['q'] : '';
+if(is_array($q)) {
+    $sites = array(
+            'RUNOOB' => '菜鸟教程: http://www.runoob.com',
+            'GOOGLE' => 'Google 搜索: http://www.google.com',
+            'TAOBAO' => '淘宝: http://www.taobao.com',
+    );
+    foreach($q as $val) {
+        // PHP_EOL 为常量，用于换行
+        echo $sites[$val] . PHP_EOL;
+    }
+      
+} else {
+?>
+<form action="" method="post"> 
+    <select multiple="multiple" name="q[]">
+    <option value="">选择一个站点:</option>
+    <option value="RUNOOB">Runoob</option>
+    <option value="GOOGLE">Google</option>
+    <option value="TAOBAO">Taobao</option>
+    </select>
+    <input type="submit" value="提交">
+    </form>
+<?php
+}
+?>
+```
