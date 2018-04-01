@@ -45,7 +45,8 @@
 		- [获取下拉菜单的数据](#get-date-from-dropdown)
 			- [下拉菜单单选](#one-selection)
 			- [下拉菜单多选](#multi-selection)
-
+		- [单选按钮表单](#radio)
+		- [checkbox 复选框](#checkbox)
 
 
 <h1 name="title">学习笔记：PHP一周速成</h1>
@@ -1074,8 +1075,9 @@ if($q) {
 <?php
 }
 ?>
-
 ```
+
+![](./picture/Beginning-php-dropdown-one-selection.png)
 
 <a name="multi-selection"><h4>下拉菜单多选 [<sup>目录</sup>](#content)</h4></a>
 
@@ -1110,3 +1112,66 @@ if(is_array($q)) {
 }
 ?>
 ```
+
+![](./picture/Beginning-php-dropdown-multi-selection.png)
+
+<a name="radio"><h4>单选按钮表单 [<sup>目录</sup>](#content)</h4></a>
+
+单选按钮表单中 name 属性的值是一致的，value 值是不同的
+
+```
+<?php
+$q = isset($_GET['q'])? htmlspecialchars($_GET['q']) : '';
+if($q) {
+        if($q =='RUNOOB') {
+                echo '菜鸟教程<br>http://www.runoob.com';
+        } else if($q =='GOOGLE') {
+                echo 'Google 搜索<br>http://www.google.com';
+        } else if($q =='TAOBAO') {
+                echo '淘宝<br>http://www.taobao.com';
+        }
+} else {
+?><form action="" method="get"> 
+    <input type="radio" name="q" value="RUNOOB" />Runoob
+    <input type="radio" name="q" value="GOOGLE" />Google
+    <input type="radio" name="q" value="TAOBAO" />Taobao
+    <input type="submit" value="提交">
+</form>
+<?php
+}
+?>
+```
+
+![](./picture/Beginning-php-radio.png)
+
+<a name="checkbox"><h4>checkbox 复选框 [<sup>目录</sup>](#content)</h4></a>
+
+checkbox 复选框可以选择多个值，有点类似于下拉菜单多选的情况
+
+```
+<?php
+$q = isset($_POST['q'])? $_POST['q'] : '';
+if(is_array($q)) {
+    $sites = array(
+            'RUNOOB' => '菜鸟教程: http://www.runoob.com',
+            'GOOGLE' => 'Google 搜索: http://www.google.com',
+            'TAOBAO' => '淘宝: http://www.taobao.com',
+    );
+    foreach($q as $val) {
+        // PHP_EOL 为常量，用于换行
+        echo $sites[$val] . PHP_EOL;
+    }
+      
+} else {
+?><form action="" method="post"> 
+    <input type="checkbox" name="q[]" value="RUNOOB"> Runoob<br> 
+    <input type="checkbox" name="q[]" value="GOOGLE"> Google<br> 
+    <input type="checkbox" name="q[]" value="TAOBAO"> Taobao<br>
+    <input type="submit" value="提交">
+</form>
+<?php
+}
+?>
+```
+
+![](./picture/Beginning-php-checkbox.png)
