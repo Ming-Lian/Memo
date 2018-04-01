@@ -30,6 +30,14 @@
 	- [子命名空间](#sub-namespace)
 	- [命名空间使用](#use-namespace)
 - [面向对象](#Object-oriented)
+	- [类定义](#class-define)
+	- [创建对象](#setup-object)
+	- [调用成员方法](#use-object)
+	- [构造函数](#initial-func)
+	- [析构函数](#destory-func)
+	- [继承](#inherit)
+	- [方法重写](#redefine-func)
+	- [访问控制](#access-limit)
 
 
 <h1 name="title">学习笔记：PHP一周速成</h1>
@@ -875,3 +883,120 @@ PHP 命名空间中的类名可以通过三种方式引用
 - 完全限定名称，或包含了全局前缀操作符的名称
 
 例如， $a = new \currentnamespace\foo(); 或 \currentnamespace\foo::staticmethod();。在这种情况下，foo 总是被解析为代码中的文字名(literal name)currentnamespace\foo。
+
+<a name="Object-oriented"><h3>面向对象 [<sup>目录</sup>](#content)</h3></a>
+
+<a name="class-define"><h4>类定义 [<sup>目录</sup>](#content)</h4></a>
+
+```
+<?php
+class phpClass {
+  var $var1;
+  var $var2 = "constant string";
+  
+  function myfunc ($arg1, $arg2) {
+     [..]
+  }
+  [..]
+}
+?>
+```
+
+实例：
+
+```
+<?php
+class Site {
+  /* 成员变量 */
+  var $url;
+  var $title;
+  
+  /* 成员函数 */
+  function setUrl($par){
+     $this->url = $par;
+  }
+  
+  function getUrl(){
+     echo $this->url . PHP_EOL;
+  }
+  
+  function setTitle($par){
+     $this->title = $par;
+  }
+  
+  function getTitle(){
+     echo $this->title . PHP_EOL;
+  }
+}
+?>
+```
+
+<a name="setup-object"><h4>创建对象 [<sup>目录</sup>](#content)</h4></a>
+
+```
+$runoob = new Site;
+$taobao = new Site;
+$google = new Site;
+```
+
+<a name="use-object"><h4>调用成员方法 [<sup>目录</sup>](#content)</h4></a>
+
+
+```
+$runoob->setTitle( "菜鸟教程" );
+```
+
+<a name="initial-func"><h4>构造函数 [<sup>目录</sup>](#content)</h4></a>
+
+类似于python [将对象创建为有初始状态](https://github.com/Ming-Lian/Memo/blob/master/Beginning-python.md#object-operate) 的方法
+
+构造函数是一种特殊的方法。主要用来在创建对象时初始化对象， 即为对象成员变量赋初始值
+
+在一个类中定义一个方法作为构造函数
+
+```
+void __construct ([ mixed $args [, $... ]] )
+```
+
+<a name="destory-func"><h4>析构函数 [<sup>目录</sup>](#content)</h4></a>
+
+当对象结束其生命周期时（例如对象所在的函数已调用完毕），系统自动执行析构函数。
+
+```
+<?php
+class MyDestructableClass {
+   function __construct() {
+       print "构造函数\n";
+       $this->name = "MyDestructableClass";
+   }
+
+   function __destruct() {
+       print "销毁 " . $this->name . "\n";
+   }
+}
+
+$obj = new MyDestructableClass();
+?>
+```
+
+<a name="inherit"><h4>继承 [<sup>目录</sup>](#content)</h4></a>
+
+参考 [python中的继承](https://github.com/Ming-Lian/Memo/blob/master/Beginning-python.md#object-inherit)
+
+使用关键字 extends 来继承一个类，PHP 不支持多继承
+
+```
+class Child extends Parent {
+   // 代码部分
+}
+```
+
+<a name="redefine-func"><h4>方法重写 [<sup>目录</sup>](#content)</h4></a>
+
+如果从父类继承的方法不能满足子类的需求，可以对其进行改写，这个过程叫方法的覆盖（override），也称为方法的重写。
+
+<a name="access-limit"><h4>访问控制 [<sup>目录</sup>](#content)</h4></a>
+
+> - public（公有）：公有的类成员可以在任何地方被访问。
+> - protected（受保护）：受保护的类成员则可以被其自身以及其子类和父类访问。
+> - private（私有）：私有的类成员则只能被其定义所在的类访问。
