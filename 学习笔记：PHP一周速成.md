@@ -61,6 +61,8 @@
 
 <h1 name="title">学习笔记：PHP一周速成</h1>
 
+<p align="center"><img src=./picture/Beginning-php-logo.png width=400 /></p>
+
 <a name="firstly"><h2>写在前面 [<sup>目录</sup>](#content)</h2></a>
 
 <a name="test-web-server"><h4>测试Web服务器是否work [<sup>目录</sup>](#content)</h4></a>
