@@ -49,6 +49,10 @@
 		- [checkbox 复选框](#checkbox)
 	- [表单验证](#form-validation)
 		- [表单验证实例](#form-validation-example)
+		- [预防XSS攻击：避免 $_SERVER["PHP_SELF"] 被利用](#defend-xss-attack)
+		- [显示错误信息](#print-error)
+		- [正则匹配：验证邮件和URL](#validate-email-url)
+	- [收集表单数据：$_GET & $_POST](#get-and-post)
 
 
 <h1 name="title">学习笔记：PHP一周速成</h1>
@@ -1215,3 +1219,102 @@ E-mail: <input type="text" name="email" value="<?php echo $email;?>">
 <input type="radio" name="gender" <?php if (isset($gender) && $gender=="male") echo "checked";?>  value="male">男
 <span class="error">* <?php echo $genderErr;?></span>
 ```
+
+<a name="defend-xss-attack"><h4>预防XSS攻击：避免 $_SERVER["PHP_SELF"] 被利用 [<sup>目录</sup>](#content)</h4></a>
+
+$_SERVER["PHP_SELF"] 变量有可能会被黑客使用！
+
+若表单部分代码这么写：
+
+```
+# test_form.php为当前php脚本名，也可以写成 action="<?php echo $_SERVER["PHP_SELF"]
+
+<form method="post" action="test_form.php">
+```
+而用户会在浏览器地址栏中输入以下地址:
+
+```
+http://www.runoob.com/test_form.php/%22%3E%3Cscript%3Ealert('hacked')%3C/script%3E
+```
+
+以上的 URL 中，将被解析为如下代码并执行：
+
+```
+<form method="post" action="test_form.php/"><script>alert('hacked')</script>
+```
+代码中添加了 script 标签，并添加了alert命令。 当页面载入时会执行该Javascript代码（用户会看到弹出框）
+
+**如何避免 $_SERVER["PHP_SELF"] 被利用?**
+
+> $_SERVER["PHP_SELF"] 可以通过 htmlspecialchars() 函数来避免被利用。
+
+<a name="print-error"><h4>显示错误信息 [<sup>目录</sup>](#content)</h4></a>
+
+为每个字段中添加了一些脚本， 各个脚本会在信息输入错误时显示错误信息。(如果用户未填写信息就提交表单则会输出错误信息):
+
+```
+<form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>"> 
+名字: <input type="text" name="name">
+<span class="error">* <?php echo $nameErr;?></span>
+   .
+   .
+   .
+```
+
+<a name="validate-email-url"><h4>正则匹配：验证邮件和URL [<sup>目录</sup>](#content)</h4></a>
+
+preg_match — 进行正则表达式匹配
+
+语法：
+
+```
+int preg_match ( string $pattern , string $subject [, array $matches [, int $flags ]] ) 
+```
+
+```
+# 1. 验证名称，检测 name 字段是否包含字母和空格
+
+$name = test_input($_POST["name"]);
+if (!preg_match("/^[a-zA-Z ]*$/",$name)) {
+  $nameErr = "只允许字母和空格"; 
+}
+
+
+# 2. 验证邮件，检测 e-mail 地址是否合法
+
+$email = test_input($_POST["email"]);
+if (!preg_match("/([\w\-]+\@[\w\-]+\.[\w\-]+)/",$email)) {
+  $emailErr = "非法邮箱格式"; 
+}
+
+
+# 3. 验证 URL
+
+$website = test_input($_POST["website"]);
+if (!preg_match("/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i",$website)) {
+  $websiteErr = "非法的 URL 的地址"; 
+}
+
+```
+
+<a name="get-and-post"><h3>收集表单数据：$_GET & $_POST [<sup>目录</sup>](#content)</h3></a>
+
+- **$_GET 变量**
+
+从带有 GET 方法的表单发送的信息，对任何人都是可见的（会显示在浏览器的地址栏），并且对发送信息的量也有限制。
+
+> - 所以在发送密码或其他敏感信息时，不应该使用这个方法
+> 
+> 正因为变量显示在 URL 中，因此可以在收藏夹中收藏该页面。在某些情况下，这是很有用的。
+> 
+> - HTTP GET 方法不适合大型的变量值。它的值是不能超过 2000 个字符的
+
+- **$_POST 变量**
+
+从带有 POST 方法的表单发送的信息，对任何人都是不可见的（不会显示在浏览器的地址栏），并且对发送信息的量也没有限制。
+
+- **$_REQUEST 变量**
+
+预定义的 $_REQUEST 变量包含了 $_GET、$_POST 和 $_COOKIE 的内容。
+
+$_REQUEST 变量可用来收集通过 GET 和 POST 方法发送的表单数据。
