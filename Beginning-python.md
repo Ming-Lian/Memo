@@ -97,6 +97,8 @@
 
 <h1 name="title">python入门笔记</h1>
 
+<p align="center"><img src=./picture/Beginning-python-logo.png width=800 /></p>
+
 <a name="basic-grammer"><h3>python基础语法 [<sup>目录</sup>](#content)</h3></a>
 
 <a name="basic-reserved-word"><h4>python保留字 [<sup>目录</sup>](#content)</h4></a>
