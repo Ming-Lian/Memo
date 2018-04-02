@@ -53,6 +53,10 @@
 		- [显示错误信息](#print-error)
 		- [正则匹配：验证邮件和URL](#validate-email-url)
 	- [收集表单数据：$_GET & $_POST](#get-and-post)
+- [PHP高级教程](#master-php)
+	- [date() 函数：格式化日期](#date)
+	- [包含文件](#include-file)
+	- [文件处理](#file-process)
 
 
 <h1 name="title">学习笔记：PHP一周速成</h1>
@@ -1318,3 +1322,77 @@ if (!preg_match("/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-
 预定义的 $_REQUEST 变量包含了 $_GET、$_POST 和 $_COOKIE 的内容。
 
 $_REQUEST 变量可用来收集通过 GET 和 POST 方法发送的表单数据。
+
+<a name="master-php"><h2>PHP高级教程 [<sup>目录</sup>](#content)</h2></a>
+
+<a name="date"><h3>date() 函数：格式化日期 [<sup>目录</sup>](#content)</h3></a>
+
+date() 函数可把时间戳格式化为可读性更好的日期和时间
+
+```
+string date ( string $format [, int $timestamp ] )
+```
+
+可用的字符：
+> - d - 代表月中的天 (01 - 31) 
+> - m - 代表月 (01 - 12)
+> - Y - 代表年 (四位数)
+
+可以在字母之间插入其他字符，比如 "/"、"." 或者 "-"，这样就可以增加附加格式了：
+
+<a name="include-file"><h3>包含文件 [<sup>目录</sup>](#content)</h3></a>
+
+在 PHP 中，您可以在服务器执行 PHP 文件之前在该文件中插入一个文件的内容。
+
+include 和 require 语句用于在执行流中插入写在其他文件中的有用的代码。
+
+include 和 require 除了处理错误的方式不同之外，在其他方面都是相同的：
+
+> - require 生成一个致命错误（E_COMPILE_ERROR），在**错误发生后脚本会停止执行**。
+> - include 生成一个警告（E_WARNING），在**错误发生后脚本会继续执行**。
+
+```
+<?php include 'filename'; ?>
+
+或者
+
+<?php require 'filename'; ?>
+```
+
+<a name="file-process"><h3>文件处理 [<sup>目录</sup>](#content)</h3></a>
+
+- **打开文件**
+
+```
+<?php
+$file=fopen("welcome.txt","r") or exit("Unable to open file!");
+?>
+```
+
+- **关闭文件**
+
+```
+fclose($file);
+```
+
+- **检测文件末尾（EOF）**
+
+```
+if (feof($file)) echo "文件结尾"; 
+```
+
+- **逐行/逐字符 读取文件**
+
+```
+# 逐行
+while(!feof($file))
+{
+	echo fgets($file). "<br>";
+}
+
+# 逐字符
+while (!feof($file))
+{
+    echo fgetc($file);
+}
+```
