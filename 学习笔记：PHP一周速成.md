@@ -1456,7 +1456,7 @@ if (!$conn) {
 }
 echo "连接成功";
 ?>
-``
+```
 
 <a name="connect-mysql-pdo"><h4>PDO [<sup>目录</sup>](#content)</h4></a>
 
