@@ -57,7 +57,14 @@
 	- [date() 函数：格式化日期](#date)
 	- [包含文件](#include-file)
 	- [文件处理](#file-process)
-
+- [PHP数据库操作](#php-database)
+	- [连接 MySQL](#connect-mysql)
+		- [MySQLi](#connect-mysql-mysqli)
+		- [PDO](#connect-mysql-pdo)
+		- [关闭连接](#connect-mysql-close)
+	- [MySQL 创建数据库](#create-database)
+		- [MySQLi](#create-database-mysqli)
+		- [PDO](#create-database-pdo)
 
 <h1 name="title">学习笔记：PHP一周速成</h1>
 
@@ -1397,4 +1404,132 @@ while (!feof($file))
 {
     echo fgetc($file);
 }
+```
+
+<a name="php-database"><h2>PHP数据库操作 [<sup>目录</sup>](#content)</h2></a>
+
+<a name="connect-mysql"><h3>连接 MySQL [<sup>目录</sup>](#content)</h3></a>
+
+使用以下方式连接 MySQL :
+
+> MySQLi extension ("i" 意为 improved)：只针对 MySQL 数据库
+> PDO (PHP Data Objects)：应用在 12 种不同数据库中
+
+在我们访问 MySQL 数据库前，我们需要先连接到数据库服务器：
+
+<a name="connect-mysql-mysqli"><h4>MySQLi [<sup>目录</sup>](#content)</h4></a>
+
+1\. **MySQLi - 面向对象**
+
+```
+<?php
+$servername = "localhost";
+$username = "username";
+$password = "password";
+ 
+// 创建连接
+$conn = new mysqli($servername, $username, $password);
+ 
+// 检测连接
+if ($conn->connect_error) {
+    die("连接失败: " . $conn->connect_error);
+} 
+echo "连接成功";
+?>
+
+```
+
+2\. **MySQLi - 面向过程**
+
+```
+<?php
+$servername = "localhost";
+$username = "username";
+$password = "password";
+ 
+// 创建连接
+$conn = mysqli_connect($servername, $username, $password);
+ 
+// 检测连接
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
+}
+echo "连接成功";
+?>
+``
+
+<a name="connect-mysql-pdo"><h4>PDO [<sup>目录</sup>](#content)</h4></a>
+
+```
+<?php
+$servername = "localhost";
+$username = "username";
+$password = "password";
+ 
+try {
+    $conn = new PDO("mysql:host=$servername;dbname=myDB", $username, $password);
+    echo "连接成功"; 
+}
+catch(PDOException $e)
+{
+    echo $e->getMessage();
+}
+?>
+```
+
+PDO 在连接过程需要设置数据库名。如果没有指定，则会抛出异常。
+
+使用 PDO 的最大好处是在数据库查询过程出现问题时可以使用异常类来 处理问题。如果 try{ } 代码块出现异常，脚本会停止执行并会跳到第一个 catch(){ } 代码块执行代码。 
+
+<a name="connect-mysql-close"><h4>关闭连接 [<sup>目录</sup>](#content)</h4></a>
+
+```
+# MySQLi
+## 面对对象
+$conn->close(); 
+## 面对过程
+mysqli_close($conn); 
+
+# PDO
+$conn = null; 
+```
+
+
+<a name="create-database"><h3>MySQL 创建数据库 [<sup>目录</sup>](#content)</h3></a>
+
+<a name="create-database-mysqli"><h4>MySQLi [<sup>目录</sup>](#content)</h4></a>
+
+```
+# 面对对象
+$sql = "CREATE DATABASE myDB";
+if ($conn->query($sql) === TRUE) {
+    echo "数据库创建成功";
+} else {
+    echo "Error creating database: " . $conn->error;
+}
+
+# 面对过程
+$sql = "CREATE DATABASE myDB";
+if (mysqli_query($conn, $sql)) {
+    echo "数据库创建成功";
+} else {
+    echo "Error creating database: " . mysqli_error($conn);
+}
+```
+
+<a name="create-database-pdo"><h4>PDO [<sup>目录</sup>](#content)</h4></a>
+
+```
+try {
+    $conn = new PDO("mysql:host=$servername;dbname=myDB", $username, $password);
+
+    // 设置 PDO 错误模式为异常
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $sql = "CREATE DATABASE myDBPDO";
+
+    // 使用 exec() ，因为没有结果返回
+    $conn->exec($sql);
+
+    echo "数据库创建成功<br>";
+} 
 ```
