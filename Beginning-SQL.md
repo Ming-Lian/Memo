@@ -4,6 +4,7 @@
 - [运行sql文件创建表格](#exe-sql)
 - [MySQL用户管理](#user-management)
 - [语法](#syntax)
+- [创建 MySQL 表](#create-table)
 - [SELECT 语句](#select)
 	- [WHERE 子句](#where)
 	- [结果集排序](#sort)
@@ -79,6 +80,28 @@ mysql> FLUSH PRIVILEGES;
 **SQL 对大小写不敏感：SELECT 与 select 是相同的**。
 
 某些数据库系统要求**在每条 SQL 语句的末端使用分号**。
+
+<a name="create-table"><h3>创建 MySQL 表 [<sup>目录</sup>](#content)</h3></a>
+
+```
+CREATE TABLE MyGuests (
+id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+firstname VARCHAR(30) NOT NULL,
+lastname VARCHAR(30) NOT NULL,
+email VARCHAR(50),
+reg_date TIMESTAMP
+) 
+```
+
+数据类型指定列可以存储什么类型的数据
+
+在设置了数据类型后，你可以为每个列指定其他选项的属性：
+
+> - NOT NULL - 每一行都必须含有值（不能为空），null 值是不允许的。
+> - DEFAULT value - 设置默认值
+> - UNSIGNED - 使用无符号数值类型，0 及正数
+> - AUTO INCREMENT - 设置 MySQL 字段的值在新增记录时每次自动增长 1
+> - PRIMARY KEY - 设置数据表中每条记录的唯一标识。 通常列的 PRIMARY KEY 设置为 ID 数值，与 AUTO_INCREMENT 一起使用。
 
 <a name="select"><h3>SELECT 语句 [<sup>目录</sup>](#content)</h3></a>
 
