@@ -1412,8 +1412,8 @@ while (!feof($file))
 
 使用以下方式连接 MySQL :
 
-> MySQLi extension ("i" 意为 improved)：只针对 MySQL 数据库
-> PDO (PHP Data Objects)：应用在 12 种不同数据库中
+> - MySQLi extension ("i" 意为 improved)：只针对 MySQL 数据库
+> - PDO (PHP Data Objects)：应用在 12 种不同数据库中
 
 在我们访问 MySQL 数据库前，我们需要先连接到数据库服务器：
 
