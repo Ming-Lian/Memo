@@ -62,9 +62,9 @@
 		- [MySQLi](#connect-mysql-mysqli)
 		- [PDO](#connect-mysql-pdo)
 		- [关闭连接](#connect-mysql-close)
-	- [MySQL 创建数据库](#create-database)
-		- [MySQLi](#create-database-mysqli)
-		- [PDO](#create-database-pdo)
+	- [PHP-MySQL 操作数据库](#operate-database)
+		- [MySQLi](#operate-database-mysqli)
+		- [PDO](#operate-database-pdo)
 
 <h1 name="title">学习笔记：PHP一周速成</h1>
 
@@ -1495,9 +1495,9 @@ $conn = null;
 ```
 
 
-<a name="create-database"><h3>MySQL 创建数据库 [<sup>目录</sup>](#content)</h3></a>
+<a name="operate-database"><h3>PHP-MySQL 操作数据库 [<sup>目录</sup>](#content)</h3></a>
 
-<a name="create-database-mysqli"><h4>MySQLi [<sup>目录</sup>](#content)</h4></a>
+<a name="operate-database-mysqli"><h4>MySQLi [<sup>目录</sup>](#content)</h4></a>
 
 ```
 # 面对对象
@@ -1509,7 +1509,7 @@ if ($conn->query($sql) === TRUE) {
 }
 
 # 面对过程
-$sql = "CREATE DATABASE myDB";
+$sql = "CREATE DATABASE myDB"; # 设置操作数据库操作命令
 if (mysqli_query($conn, $sql)) {
     echo "数据库创建成功";
 } else {
@@ -1517,7 +1517,7 @@ if (mysqli_query($conn, $sql)) {
 }
 ```
 
-<a name="create-database-pdo"><h4>PDO [<sup>目录</sup>](#content)</h4></a>
+<a name="operate-database-pdo"><h4>PDO [<sup>目录</sup>](#content)</h4></a>
 
 ```
 try {
@@ -1525,7 +1525,8 @@ try {
 
     // 设置 PDO 错误模式为异常
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $sql = "CREATE DATABASE myDBPDO";
+    
+    $sql = "CREATE DATABASE myDBPDO"; # 设置操作数据库操作命令
 
     // 使用 exec() ，因为没有结果返回
     $conn->exec($sql);
@@ -1533,3 +1534,6 @@ try {
     echo "数据库创建成功<br>";
 } 
 ```
+
+更多的MySQL操作命令请移步至 [SQL入门笔记](./Beginning-SQL.md)
+
