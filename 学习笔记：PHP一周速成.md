@@ -79,8 +79,8 @@
 				- [MySQLi](#use-prepare-sentence-mysqli)
 				- [PDO](#use-prepare-sentence-pdo)
 			- [从 MySQL 数据库读取数据](#access-data)
-			- [MySQLi](#access-data-mysqli)
-			- [PDO](#access-data-pdo)
+				- [MySQLi](#access-data-mysqli)
+				- [PDO](#access-data-pdo)
 
 <h1 name="title">学习笔记：PHP一周速成</h1>
 
@@ -1852,4 +1852,56 @@ catch(PDOException $e)
 }
 $conn = null;
 ?>
+```
+
+<a name="access-data"><h3>从 MySQL 数据库读取数据 [<sup>目录</sup>](#content)</h3></a>
+
+<a name="access-data-mysqli"><h4>MySQLi [<sup>目录</sup>](#content)</h4></a>
+
+```
+$sql = "SELECT id, firstname, lastname FROM MyGuests";
+$result = $conn->query($sql);
+ 
+if ($result->num_rows > 0) {
+    // 输出数据
+    while($row = $result->fetch_assoc()) {
+        echo "id: " . $row["id"]. " - Name: " . $row["firstname"]. " " . $row["lastname"]. "<br>";
+    }
+} else {
+    echo "0 结果";
+}
+$conn->close();
+```
+
+<a name="access-data-pdo"><h4>PDO(+ 预处理) [<sup>目录</sup>](#content)</h4></a>
+
+```
+$stmt = $conn->prepare("SELECT id, firstname, lastname FROM MyGuests"); 
+$stmt->execute();
+ 
+// 设置结果集为关联数组
+$result = $stmt->setFetchMode(PDO::FETCH_ASSOC); 
+foreach(new TableRows(new RecursiveArrayIterator($stmt->fetchAll())) as $k=>$v) { 
+	echo $v;
+}
+    
+
+// TableRows类，用于关联数组的表格形式输出
+class TableRows extends RecursiveIteratorIterator {
+    function __construct($it) { 
+        parent::__construct($it, self::LEAVES_ONLY); 
+    }
+ 
+    function current() {
+        return "<td style='width:150px;border:1px solid black;'>" . parent::current(). "</td>";
+    }
+ 
+    function beginChildren() { 
+        echo "<tr>"; 
+    } 
+ 
+    function endChildren() { 
+        echo "</tr>" . "\n";
+    } 
+} 
 ```
