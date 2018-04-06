@@ -62,6 +62,8 @@
 		- [文件上传脚本](#upload-file-phpscript)
 		- [文件上传限制](#upload-file-limit)
 		- [保存被上传的文件](#upload-file-save)
+	- [Cookie](#cookie)
+	- [Session](#session)
 - [PHP数据库操作](#php-database)
 	- [连接 MySQL](#connect-mysql)
 		- [MySQLi](#connect-mysql-mysqli)
@@ -76,6 +78,9 @@
 			- [使用预处理语句](#use-prepare-sentence)
 				- [MySQLi](#use-prepare-sentence-mysqli)
 				- [PDO](#use-prepare-sentence-pdo)
+			- [从 MySQL 数据库读取数据](#access-data)
+			- [MySQLi](#access-data-mysqli)
+			- [PDO](#access-data-pdo)
 
 <h1 name="title">学习笔记：PHP一周速成</h1>
 
@@ -1515,6 +1520,52 @@ if (file_exists("upload/" . $_FILES["file"]["name"]))
 	echo "文件存储在: " . "upload/" . $_FILES["file"]["name"];
 }
 ```
+
+<a name="cookie"><h3>Cookie [<sup>目录</sup>](#content)</h3></a>
+
+- 创建 Cookie
+
+```
+setcookie(name, value, expire, path, domain);
+```
+
+注意：setcookie() 函数必须位于 `<html>` 标签之前
+
+- 取回 Cookie 的值
+
+PHP 的 $_COOKIE 变量用于取回 cookie 的值
+
+<a name="session"><h3>Session [<sup>目录</sup>](#content)</h3></a>
+
+session 变量用于存储关于用户会话（session）的信息，或者更改用户会话（session）的设置。Session 变量存储单一用户的信息，并且对于应用程序中的所有页面都是可用的。
+
+session的意义：
+> 您在计算机上操作某个应用程序时，您打开它，做些更改，然后关闭它。这很像一次对话（Session）。计算机知道您是谁。它清楚您在何时打开和关闭应用程序。然而，在因特网上问题出现了：由于 HTTP 地址无法保持状态，Web 服务器并不知道您是谁以及您做了什么。
+>
+> PHP session 解决了这个问题，它通过在服务器上存储用户信息以便随后使用（比如用户名称、购买商品等）。然而，会话信息是临时的，在用户离开网站后将被删除。如果您需要永久存储信息，可以把数据存储在数据库中。
+>
+> Session 的工作机制是：为每个访客创建一个唯一的 id (UID)，并基于这个 UID 来存储变量。UID 存储在 cookie 中，或者通过 URL 进行传导。
+
+- 开始 PHP Session
+
+```
+<?php session_start(); ?>
+```
+
+session_start() 函数必须位于 <html> 标签之前
+
+上面的代码会向服务器注册用户的会话，以便您可以开始保存用户信息，同时会为用户会话分配一个 UID。
+
+- 存储和取回 session 变量
+
+存储和取回 session 变量的正确方法是使用 PHP $_SESSION 变量
+
+- 销毁 Session
+
+如果您希望删除某些 session 数据，可以使用 unset() 或 session_destroy() 函数。
+
+> - unset() 函数用于释放指定的 session 变量
+> - session_destroy() 函数彻底销毁 session
 
 <a name="php-database"><h2>PHP数据库操作 [<sup>目录</sup>](#content)</h2></a>
 
