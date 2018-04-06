@@ -63,8 +63,10 @@
 		- [PDO](#connect-mysql-pdo)
 		- [关闭连接](#connect-mysql-close)
 	- [PHP-MySQL 操作数据库](#operate-database)
-		- [MySQLi](#operate-database-mysqli)
-		- [PDO](#operate-database-pdo)
+		- [执行单条SQL语句](#one-query)
+			- [MySQLi](#operate-database-mysqli)
+			- [PDO](#operate-database-pdo)
+		- [执行多条SQL语句](#multi-query)
 
 <h1 name="title">学习笔记：PHP一周速成</h1>
 
@@ -1497,6 +1499,8 @@ $conn = null;
 
 <a name="operate-database"><h3>PHP-MySQL 操作数据库 [<sup>目录</sup>](#content)</h3></a>
 
+<a name="one-query"><h4>执行单条SQL语句 [<sup>目录</sup>](#content)</h4></a>
+
 <a name="operate-database-mysqli"><h4>MySQLi [<sup>目录</sup>](#content)</h4></a>
 
 ```
@@ -1537,3 +1541,29 @@ try {
 
 更多的MySQL操作命令请移步至 [SQL入门笔记](./Beginning-SQL.md)
 
+<a name="multi-query"><h4>执行多条SQL语句 [<sup>目录</sup>](#content)</h4></a>
+
+- MySQLi
+
+mysqli_multi_query() 函数可用来执行多条SQL语句。
+
+```
+# 面对对象
+$conn->multi_query($sql)
+# 面对过程
+mysqli_multi_query($conn, $sql)
+```
+
+- PDO
+
+```
+// 开始事务
+$conn->beginTransaction();
+// SQL 语句
+$conn->exec("INSERT INTO MyGuests (firstname, lastname, email) VALUES ('John', 'Doe', 'john@example.com')");
+$conn->exec("INSERT INTO MyGuests (firstname, lastname, email) VALUES ('Mary', 'Moe', 'mary@example.com')");
+$conn->exec("INSERT INTO MyGuests (firstname, lastname, email) VALUES ('Julie', 'Dooley', 'julie@example.com')");
+ 
+// 提交事务
+$conn->commit();
+```
