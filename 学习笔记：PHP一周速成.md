@@ -57,6 +57,11 @@
 	- [date() 函数：格式化日期](#date)
 	- [包含文件](#include-file)
 	- [文件处理](#file-process)
+	- [文件上传](#upload-file)
+		- [文件上传表单](#upload-file-form)
+		- [文件上传脚本](#upload-file-phpscript)
+		- [文件上传限制](#upload-file-limit)
+		- [保存被上传的文件](#upload-file-save)
 - [PHP数据库操作](#php-database)
 	- [连接 MySQL](#connect-mysql)
 		- [MySQLi](#connect-mysql-mysqli)
@@ -1409,6 +1414,105 @@ while(!feof($file))
 while (!feof($file))
 {
     echo fgetc($file);
+}
+```
+
+<a name="upload-file"><h3>文件上传 [<sup>目录</sup>](#content)</h3></a>
+
+<a name="upload-file-form"><h4>文件上传表单 [<sup>目录</sup>](#content)</h4></a>
+
+```
+<form action="upload_file.php" method="post" enctype="multipart/form-data">
+    <label for="file">文件名：</label>
+    <input type="file" name="file" id="file"><br>
+    <input type="submit" name="submit" value="提交">
+</form>
+```
+
+> - `<form>` 标签的 enctype 属性规定了在提交表单时要使用哪种内容类型。在表单需要二进制数据时，比如文件内容，请使用 "multipart/form-data"。
+> - `<input>` 标签的 type="file" 属性规定了应该把输入作为文件来处理。举例来说，当在浏览器中预览时，会看到输入框旁边有一个浏览按钮。
+
+<a name="upload-file-phpscript"><h4>文件上传脚本 [<sup>目录</sup>](#content)</h4></a>
+
+通过使用 PHP 的全局数组 $_FILES，你可以从客户计算机向远程服务器上传文件
+
+```
+<?php
+if ($_FILES["file"]["error"] > 0)
+{
+    echo "错误：" . $_FILES["file"]["error"] . "<br>";
+}
+else
+{
+    echo "上传文件名: " . $_FILES["file"]["name"] . "<br>";
+    echo "文件类型: " . $_FILES["file"]["type"] . "<br>";
+    echo "文件大小: " . ($_FILES["file"]["size"] / 1024) . " kB<br>";
+    echo "文件临时存储的位置: " . $_FILES["file"]["tmp_name"];
+}
+?>
+```
+
+> - `$_FILES["file"]["name"]` - 上传文件的名称
+> - `$_FILES["file"]["type"]` - 上传文件的类型
+> - `$_FILES["file"]["size"]` - 上传文件的大小，以字节计
+> - `$_FILES["file"]["tmp_name"]` - 存储在服务器的文件的临时副本的名称
+> - `$_FILES["file"]["error"]` - 由文件上传导致的错误代码
+
+这是一种非常简单文件上传方式。基于安全方面的考虑，您应当增加有关允许哪些用户上传文件的限制。
+
+<a name="upload-file-limit"><h4>文件上传限制 [<sup>目录</sup>](#content)</h4></a>
+
+例如，用户只能上传 .gif、.jpeg、.jpg、.png 文件，文件大小必须小于 200 kB
+
+```
+<?php
+// 允许上传的图片后缀
+$allowedExts = array("gif", "jpeg", "jpg", "png");
+$temp = explode(".", $_FILES["file"]["name"]); //以点为分隔符把字符串打散成数组
+$extension = end($temp);        // 获取文件后缀名
+if ((($_FILES["file"]["type"] == "image/gif")
+|| ($_FILES["file"]["type"] == "image/jpeg")
+|| ($_FILES["file"]["type"] == "image/jpg")
+|| ($_FILES["file"]["type"] == "image/pjpeg")
+|| ($_FILES["file"]["type"] == "image/x-png")
+|| ($_FILES["file"]["type"] == "image/png"))
+&& ($_FILES["file"]["size"] < 204800)    // 小于 200 kb
+&& in_array($extension, $allowedExts))
+{
+    if ($_FILES["file"]["error"] > 0)
+    {
+        echo "错误：: " . $_FILES["file"]["error"] . "<br>";
+    }
+    else
+    {
+        echo "上传文件名: " . $_FILES["file"]["name"] . "<br>";
+        echo "文件类型: " . $_FILES["file"]["type"] . "<br>";
+        echo "文件大小: " . ($_FILES["file"]["size"] / 1024) . " kB<br>";
+        echo "文件临时存储的位置: " . $_FILES["file"]["tmp_name"];
+    }
+}
+else
+{
+    echo "非法的文件格式";
+}
+?>
+```
+
+<a name="upload-file-save"><h4>保存被上传的文件 [<sup>目录</sup>](#content)</h4></a>
+
+在执行文件上传之后，只是在服务器的 PHP 临时文件夹中创建了一个被上传文件的临时副本
+
+这个临时的副本文件会在脚本结束时消失。要保存被上传的文件，我们需要把它拷贝到另外的位置：
+
+```
+if (file_exists("upload/" . $_FILES["file"]["name"]))
+{
+	echo $_FILES["file"]["name"] . " 文件已经存在。 ";
+}else
+{
+	// 如果 upload 目录不存在该文件则将文件上传到 upload 目录下
+	move_uploaded_file($_FILES["file"]["tmp_name"], "upload/" . $_FILES["file"]["name"]);
+	echo "文件存储在: " . "upload/" . $_FILES["file"]["name"];
 }
 ```
 
