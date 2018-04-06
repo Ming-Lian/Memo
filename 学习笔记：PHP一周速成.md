@@ -67,6 +67,10 @@
 			- [MySQLi](#operate-database-mysqli)
 			- [PDO](#operate-database-pdo)
 		- [执行多条SQL语句](#multi-query)
+			- [普通方法](#common-method)
+			- [使用预处理语句](#use-prepare-sentence)
+				- [MySQLi](#use-prepare-sentence-mysqli)
+				- [PDO](#use-prepare-sentence-pdo)
 
 <h1 name="title">学习笔记：PHP一周速成</h1>
 
@@ -1543,6 +1547,8 @@ try {
 
 <a name="multi-query"><h4>执行多条SQL语句 [<sup>目录</sup>](#content)</h4></a>
 
+<a name="common-method"><h4>普通方法 [<sup>目录</sup>](#content)</h4></a>
+
 - MySQLi
 
 mysqli_multi_query() 函数可用来执行多条SQL语句。
@@ -1566,4 +1572,129 @@ $conn->exec("INSERT INTO MyGuests (firstname, lastname, email) VALUES ('Julie', 
  
 // 提交事务
 $conn->commit();
+```
+
+<a name="use-prepare-sentence"><h4>使用预处理语句 [<sup>目录</sup>](#content)</h4></a>
+
+预处理语句对于防止 MySQL 注入是非常有用的。
+
+预处理语句用于执行多个相同的 SQL 语句，并且执行效率更高。
+
+预处理语句的工作原理如下：
+
+> - 预处理：创建 SQL 语句模板并发送到数据库。预留的值使用参数 "?" 标记 
+> 
+> ```
+> INSERT INTO MyGuests (firstname, lastname, email) VALUES(?, ?, ?)
+> ```
+> 
+> - 数据库解析，编译，对SQL语句模板执行查询优化，并存储结果不输出。
+> 
+> - 执行：最后，将应用绑定的值传递给参数（"?" 标记），数据库执行语句。应用可以多次执行语句，如果参数的值不一样。
+
+相比于直接执行SQL语句，预处理语句有两个主要优点：
+
+> - 预处理语句大大减少了分析时间，只做了一次查询（虽然语句多次执行）。
+>
+> - 绑定参数减少了服务器带宽，你只需要发送查询的参数，而不是整个语句。
+>
+> - 预处理语句针对SQL注入是非常有用的，因为参数值发送后使用不同的协议，保证了数据的合法性。
+
+<a name="use-prepare-sentence-mysqli"><h5>MySQLi [<sup>目录</sup>](#content)</h5></a>
+
+```
+$sql = "INSERT INTO MyGuests(firstname, lastname, email)  VALUES(?, ?, ?)";
+ 
+// 为 mysqli_stmt_prepare() 初始化 statement 对象
+$stmt = mysqli_stmt_init($conn);
+ 
+//预处理语句
+if (mysqli_stmt_prepare($stmt, $sql)) {
+	// 绑定参数
+	mysqli_stmt_bind_param($stmt, 'sss', $firstname, $lastname, $email);
+ 
+	// 设置参数并执行
+	$firstname = 'John';
+	$lastname = 'Doe';
+	$email = 'john@example.com';
+	mysqli_stmt_execute($stmt);
+ 
+	$firstname = 'Mary';
+	$lastname = 'Moe';
+	$email = 'mary@example.com';
+	mysqli_stmt_execute($stmt);
+ 
+	$firstname = 'Julie';
+	$lastname = 'Dooley';
+	$email = 'julie@example.com';
+	mysqli_stmt_execute($stmt);
+	
+	$stmt->close();
+	$conn->close();
+}
+```
+
+预处理及绑定的另一种写法：
+
+```
+$stmt = $conn->prepare("INSERT INTO MyGuests (firstname, lastname, email) VALUES (?, ?, ?)");
+$stmt->bind_param("sss", $firstname, $lastname, $email);
+```
+
+注意参数的绑定
+
+```
+mysqli_stmt_bind_param($stmt, 'sss', $firstname, $lastname, $email);
+```
+
+该函数绑定参数查询并将参数传递给数据库。第二个参数是 "sss" 展示了参数的类型:
+
+> - i - 整数
+> - d - 双精度浮点数
+> - s - 字符串
+> - b - 布尔值 
+
+每个参数必须指定类型，来保证数据的安全性。通过类型的判断可以减少SQL注入漏洞带来的风险。
+
+<a name="use-prepare-sentence-pdo"><h5>PDO [<sup>目录</sup>](#content)</h5></a>
+
+```
+try {
+    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+    // 设置 PDO 错误模式为异常
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+ 
+    // 预处理 SQL 并绑定参数
+    $stmt = $conn->prepare("INSERT INTO MyGuests (firstname, lastname, email) 
+    VALUES (:firstname, :lastname, :email)");
+    $stmt->bindParam(':firstname', $firstname);
+    $stmt->bindParam(':lastname', $lastname);
+    $stmt->bindParam(':email', $email);
+ 
+    // 插入行
+    $firstname = "John";
+    $lastname = "Doe";
+    $email = "john@example.com";
+    $stmt->execute();
+ 
+    // 插入其他行
+    $firstname = "Mary";
+    $lastname = "Moe";
+    $email = "mary@example.com";
+    $stmt->execute();
+ 
+    // 插入其他行
+    $firstname = "Julie";
+    $lastname = "Dooley";
+    $email = "julie@example.com";
+    $stmt->execute();
+ 
+    echo "新记录插入成功";
+}
+catch(PDOException $e)
+{
+    echo "Error: " . $e->getMessage();
+}
+$conn = null;
+?>
 ```
