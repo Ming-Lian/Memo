@@ -11,7 +11,7 @@
 - [INSERT INTO 语句](#insert)
 - [UPDATE 语句](#update)
 - [DELETE 语句](#delete)
-
+- [在 Linux 命令行中使用和执行 PHP 代码](#run-php-code-in-linux)
 
 
 <h1 name="title">SQL入门笔记</h1>
@@ -197,3 +197,34 @@ WHERE some_column=some_value;
 **请注意 SQL DELETE 语句中的 WHERE 子句！**
 
 WHERE 子句规定哪条记录或者哪些记录需要删除。如果您省略了 WHERE 子句，所有的记录都将被删除！
+
+<a name="run-php-code-in-linux"><h3>在 Linux 命令行中使用和执行 PHP 代码 [<sup>目录</sup>](#content)</h3></a>
+
+PHP主要用于服务器端（而Javascript则用于客户端）以通过HTTP生成动态网页，然而返回给用户客户端浏览器，当你知道可以在Linux终端中不需要网页浏览器来执行PHP时，你或许会大为惊讶。
+
+php的Linux命令行用法可以输入`php -h`查看
+
+- 执行php脚本
+
+```
+$ php -f script.php
+```
+
+> `-f` 选项解析并执行命令后跟随的文件
+
+- 执行php代码
+
+```
+$ php -r 'phpinfo();'
+```
+> -r Run PHP `<code>` without using script tags `<?..?>`
+
+- 以交互模式运行PHP并做一些数学运算
+
+```
+$ php -a
+Interactive mode enabled
+
+php> echo 2+3;
+5
+```
