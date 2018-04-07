@@ -228,3 +228,7 @@ Interactive mode enabled
 php> echo 2+3;
 5
 ```
+
+参考资料：
+
+(1) [在 Linux 命令行中使用和执行 PHP 代码](https://www.cnblogs.com/luoyunshu/p/4819923.html)
