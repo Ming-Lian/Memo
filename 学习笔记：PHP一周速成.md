@@ -9,6 +9,7 @@
 		- [nano](#nano)
 		- [vim](#vim)
 	- [编辑你的第一个php脚本](#edit-php-script)
+	- [在 Linux 命令行中使用和执行 PHP 代码](#run-php-code-in-linux)
 - [PHP入门](#beginning-php)
 	- [PHP 语法](#syntax)
 	- [变量](#variable)
@@ -235,6 +236,37 @@ echo "Hello World!";
 <p align="center"><img src=./picture/Beginning-php-first-phpscript.png width=500 />
 
 运行成功，congratulation ！ ！ ！
+
+<a name="run-php-code-in-linux"><h3>在 Linux 命令行中使用和执行 PHP 代码 [<sup>目录</sup>](#content)</h3></a>
+
+PHP主要用于服务器端（而Javascript则用于客户端）以通过HTTP生成动态网页，然而返回给用户客户端浏览器，当你知道可以在Linux终端中不需要网页浏览器来执行PHP时，你或许会大为惊讶。
+
+php的Linux命令行用法可以输入`php -h`查看
+
+- 执行php脚本
+
+```
+$ php -f script.php
+```
+
+> `-f` 选项解析并执行命令后跟随的文件
+
+- 执行php代码
+
+```
+$ php -r 'phpinfo();'
+```
+> -r Run PHP `<code>` without using script tags `<?..?>`
+
+- 以交互模式运行PHP并做一些数学运算
+
+```
+$ php -a
+Interactive mode enabled
+
+php> echo 2+3;
+5
+```
 
 <a name="syntax"><h3>PHP 语法 [<sup>目录</sup>](#content)</h3></a>
 
@@ -1905,3 +1937,8 @@ class TableRows extends RecursiveIteratorIterator {
     } 
 } 
 ```
+
+
+参考资料：
+
+(1) [在 Linux 命令行中使用和执行 PHP 代码](https://www.cnblogs.com/luoyunshu/p/4819923.html)
