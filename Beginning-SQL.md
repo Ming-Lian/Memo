@@ -49,11 +49,6 @@ mysql> source /var/lib/mysql/testdb/websites.sql;
 mysql> show tables;
 ```
 
-查看表格的列信息
-
-```
-mysql> DESC tbname;
-```
 
 <a name="user-management"><h3>MySQL用户管理 [<sup>目录</sup>](#content)</h3></a>
 
@@ -107,6 +102,12 @@ reg_date TIMESTAMP
 > - UNSIGNED - 使用无符号数值类型，0 及正数
 > - AUTO INCREMENT - 设置 MySQL 字段的值在新增记录时每次自动增长 1
 > - PRIMARY KEY - 设置数据表中每条记录的唯一标识。 通常列的 PRIMARY KEY 设置为 ID 数值，与 AUTO_INCREMENT 一起使用。
+
+查看表格的列信息
+
+```
+mysql> DESC tbname;
+```
 
 <a name="select"><h3>SELECT 语句 [<sup>目录</sup>](#content)</h3></a>
 
