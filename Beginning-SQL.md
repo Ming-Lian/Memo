@@ -49,6 +49,12 @@ mysql> source /var/lib/mysql/testdb/websites.sql;
 mysql> show tables;
 ```
 
+查看表格的列信息
+
+```
+mysql> DESC tbname;
+```
+
 <a name="user-management"><h3>MySQL用户管理 [<sup>目录</sup>](#content)</h3></a>
 
 如果你需要添加 MySQL 用户，你只需要在 mysql 数据库中的 user 表添加新用户即可。
