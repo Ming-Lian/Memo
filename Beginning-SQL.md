@@ -5,7 +5,7 @@
 - [MySQL之权限管理](#authorization-management)
 	- [新增用户](#user-add)
 	- [修改用户信息](#user-mod)
-	- [删除用户](#user-delect)
+	- [删除用户](#user-delete)
 	- [权限分配](#permission-assign)
 	- [查看权限](#list-permission)
 - [语法](#syntax)
