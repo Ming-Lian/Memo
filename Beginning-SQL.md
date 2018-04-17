@@ -2,7 +2,12 @@
 
 [SQL入门笔记](#title)
 - [运行sql文件创建表格](#exe-sql)
-- [MySQL用户管理](#user-management)
+- [MySQL之权限管理](#authorization-management)
+	- [新增用户](#user-add)
+	- [修改用户信息](#user-mod)
+	- [删除用户](#user-delect)
+	- [权限分配](#permission-assign)
+	- [查看权限](#list-permission)
 - [语法](#syntax)
 - [创建 MySQL 表](#create-table)
 - [SELECT 语句](#select)
@@ -49,8 +54,9 @@ mysql> source /var/lib/mysql/testdb/websites.sql;
 mysql> show tables;
 ```
 
+<a name="authorization-management"><h3>MySQL之权限管理 [<sup>目录</sup>](#content)</h3></a>
 
-<a name="user-management"><h3>MySQL用户管理 [<sup>目录</sup>](#content)</h3></a>
+<a name="user-add"><h4>新增用户 [<sup>目录</sup>](#content)</h4></a>
 
 如果你需要添加 MySQL 用户，你只需要在 mysql 数据库中的 user 表添加新用户即可。
 
@@ -75,39 +81,67 @@ mysql> FLUSH PRIVILEGES;
 
 注意： 在添加成功新用户后，新用户还处于未激活状态，所以随后**必须执行 FLUSH PRIVILEGES 语句来重新载入授权表**。如果你不使用该命令，你就无法使用新创建的用户来连接mysql服务器，除非你重启mysql服务器。 
 
-<a name="syntax"><h3>语法 [<sup>目录</sup>](#content)</h3></a>
+<a name="user-mod"><h4>修改用户信息 [<sup>目录</sup>](#content)</h4></a>
 
-**SQL 对大小写不敏感：SELECT 与 select 是相同的**。
-
-某些数据库系统要求**在每条 SQL 语句的末端使用分号**。
-
-<a name="create-table"><h3>创建 MySQL 表 [<sup>目录</sup>](#content)</h3></a>
+用到 [UPDATE语句](#update)
 
 ```
-CREATE TABLE MyGuests (
-id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-firstname VARCHAR(30) NOT NULL,
-lastname VARCHAR(30) NOT NULL,
-email VARCHAR(50),
-reg_date TIMESTAMP
-) 
+ mysql> UPDATE `user` SET Password=PASSWORD("123456") WHERE Host='10.155.123.55' AND User='kaka';  
 ```
 
-数据类型指定列可以存储什么类型的数据
+<a name="user-delete"><h4>删除用户 [<sup>目录</sup>](#content)</h4></a>
 
-在设置了数据类型后，你可以为每个列指定其他选项的属性：
-
-> - NOT NULL - 每一行都必须含有值（不能为空），null 值是不允许的。
-> - DEFAULT value - 设置默认值
-> - UNSIGNED - 使用无符号数值类型，0 及正数
-> - AUTO INCREMENT - 设置 MySQL 字段的值在新增记录时每次自动增长 1
-> - PRIMARY KEY - 设置数据表中每条记录的唯一标识。 通常列的 PRIMARY KEY 设置为 ID 数值，与 AUTO_INCREMENT 一起使用。
-
-查看表格的列信息
+用到 [DELETE语句](#delete)
 
 ```
-mysql> DESC tbname;
+mysql> DELETE FROM `user` WHERE Host='10.155.123.55' AND User='kaka';
 ```
+
+<a name="permission-assign"><h4>权限分配 [<sup>目录</sup>](#content)</h4></a>
+
+使用 GRANT语句
+
+```
+GRANT 权限 ON 数据库.* TO 用户名@'登录主机' IDENTIFIED BY '密码' 
+```
+
+```
+权限：  
+   ALL,ALTER,CREATE,DROP,SELECT,UPDATE,DELETE  
+   新增用户：权限为USAGE,即为："无权限",想要创建一个没有权限的用户时,可以指定USAGE  
+数据库：  
+     *.*              表示所有库的所有表  
+     mylove.*         表示mylove库的所有表  
+     mylove.loves     表示mylove库的loves表   
+用户名：  
+     MySQL的账户名  
+登陆主机：  
+     允许登陆到MySQL Server的客户端ip  
+     '%'表示所有ip  
+     'localhost' 表示本机  
+     '10.155.123.55' 特定IP  
+密码：  
+      MySQL的账户名对应的登陆密码  
+```
+
+例如，给用户kaka分配test数据库下user表的查询select权限：
+
+```
+mysql> GRANT SELECT ON test.user TO kaka@'10.155.123.55' IDENTIFIED BY '123456';
+```
+
+<a name="list-permission"><h4>查看权限 [<sup>目录</sup>](#content)</h4></a>
+
+```
+mysql> show Grants for 'kaka'@'10.155.123.55';  
++-----------------------------------------------------------------------------------------------------------------+  
+| Grants for kaka@10.155.123.55                                                                                   |  
++-----------------------------------------------------------------------------------------------------------------+  
+| GRANT USAGE ON *.* TO 'kaka'@'10.155.123.55' IDENTIFIED BY PASSWORD '*6BB4837EB74329105EE4568DDA7DC67ED2CA2AD9' |  
+| GRANT SELECT ON `test`.`user` TO 'kaka'@'10.155.123.55'                                                         |  
++-----------------------------------------------------------------------------------------------------------------+  
+```
+
 
 <a name="select"><h3>SELECT 语句 [<sup>目录</sup>](#content)</h3></a>
 
