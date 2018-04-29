@@ -13,6 +13,11 @@
 - [**李飞飞CV**](https://github.com/Ming-Lian/Machine-Learning-Course-in-UCAS/blob/master/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%9A%E6%96%AF%E5%9D%A6%E7%A6%8F%E5%A4%A7%E5%AD%A6%E6%9C%BA%E5%99%A8%E8%A7%86%E8%A7%89%E5%85%AC%E5%BC%80%E8%AF%BE.md)
 - [**国科大机器学习**](https://github.com/Ming-Lian/Machine-Learning-Course-in-UCAS/blob/master/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%9A%E5%9B%BD%E7%A7%91%E5%A4%A7%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AF%BE%E7%A8%8B.md)
 
+## 生信部分
+
+- [**同源基因NGS课程**](https://github.com/Ming-Lian/NGS-analysis/blob/master/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%9A%E5%90%8C%E6%BA%90%E5%9F%BA%E5%9B%A0NGS%E8%AF%BE%E7%A8%8B.md)
+- 生信技能树公众号《直播我的基因组》系列文章
+
 ## 3D打印
 
 - slic3r
