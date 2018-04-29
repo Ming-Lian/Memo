@@ -3,20 +3,20 @@
 ## 编程部分
 
 - boostrap
-- git
+- <font color="red">git</font>
 - pygame
 - vim
 
 
 ## 机器学习课程
 
-- 李飞飞CV
-- 国科大机器学习
+- <font color="red">李飞飞CV</font>
+- <font color="red">国科大机器学习</font>
 
 ## 3D打印
 
 - slic3r
-- 3ds max
+- <font color="red">3ds max</font>
 
 ## 经济学
 
@@ -25,5 +25,4 @@
 ## 哲学
 
 - 《苏菲的世界》
-
 
