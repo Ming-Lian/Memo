@@ -14,6 +14,10 @@
 	- [正规写法](#backgroud-formal)
 	- [简写属性](#backgroud-simplify)
 - [文本格式](#text-format)
+- [字体](#font)
+- [链接](#link)
+- [列表](#list)
+- [表格](#table)
 
 
 
@@ -288,6 +292,139 @@ a {text-decoration:none;}
 
 ```
 p {text-indent:50px;}
+```
+
+<a name="font"><h2>字体  [<sup>目录</sup>](#content)</h2></a>
+
+字体属性定义字体，加粗，大小，文字样式
+
+<img src=./picture/Beginning-css-font.png width=800 />
+
+- 字体系列
+
+	font-family 属性应该设置几个字体名称作为一种"后备"机制，如果浏览器不支持第一种字体，他将尝试下一种字体
+	
+	如果字体系列的名称超过一个字，它必须用引号，如Font Family："宋体"
+	
+	```
+	p{font-family:"Times New Roman", Times, serif;} 
+	```
+	
+- 字体样式
+
+	主要是用于指定斜体文字的字体样式属性
+	
+	> - 正常 - 正常显示文本 `p.normal {font-style:normal;}`
+	> - 斜体 - 以斜体字显示的文字 `p.italic {font-style:italic;}`
+
+- 字体大小
+
+	font-size 属性设置文本的大小
+
+	绝对大小：
+	> - 设置一个指定大小的文本
+	> - 不允许用户在所有浏览器中改变文本大小
+	> - 确定了输出的物理尺寸时绝对大小很有用
+
+	相对大小：
+
+	> - 相对于周围的元素来设置大小
+	> - 允许用户在浏览器中改变文字大小
+
+	```
+	h1 {font-size:40px;}
+	```
+
+<a name="link"><h2>链接  [<sup>目录</sup>](#content)</h2></a>
+
+四个链接状态：
+
+> - a:link - 正常，未访问过的链接
+> - a:visited - 用户已访问过的链接
+> - a:hover - 当用户鼠标放在链接上时
+> - a:active - 链接被点击的那一刻
+
+当设置为若干链路状态的样式，也有一些顺序规则：
+
+> - a:hover 必须跟在 a:link 和 a:visited后面
+> - a:active 必须跟在 a:hover后面
+
+<a name="list"><h2>列表  [<sup>目录</sup>](#content)</h2></a>
+
+CSS列表属性作用如下：
+
+> - 设置不同的列表项标记为有序列表
+> 
+>     列表项标记用特殊图形（如小黑点、小方框等）
+> 
+> - 设置不同的列表项标记为无序列表
+> 
+>     列表项的标记有数字或字母
+> 
+> - 设置列表项标记为图像
+
+```
+ul.a {list-style-type: circle;}
+ul.b {list-style-type: square;}
+ 
+ol.c {list-style-type: upper-roman;}
+ol.d {list-style-type: lower-alpha;}
+```
+
+指定列表项标记的图像
+
+```
+ul
+{
+    list-style-image: url('sqpurple.gif');
+}
+```
+
+<a name="table"><h2>表格  [<sup>目录</sup>](#content)</h2></a>
+
+- 表格边框
+
+<table>
+<tr>
+	<td><img src=./picture/Beginning-css-table-border-1-code.png width=400 /></td>
+	<td><img src=./picture/Beginning-css-table-border-1.png width=400 /></td>
+</tr>
+</table>
+
+在上面的例子中的表格有双边框。这是因为表和th/ td元素有独立的边界
+
+为了显示一个表的单个边框，使用 border-collapse 属性
+
+<table>
+<tr>
+	<td><img src=./picture/Beginning-css-table-border-2-code.png width=400 /></td>
+	<td><img src=./picture/Beginning-css-table-border-2.png width=400 /></td>
+</tr>
+</table>
+
+- 表格宽度和高度
+
+Width和height属性定义表格的宽度和高度
+
+- 表格文字对齐
+
+text-align属性设置水平对齐方式，像左，右，或中心：
+
+```
+td
+{
+text-align:right;
+}
+```
+
+vertical-align属性设置垂直对齐，比如顶部，底部或中间：
+
+```
+td
+{
+height:50px;
+vertical-align:bottom;
+}
 ```
 
 
