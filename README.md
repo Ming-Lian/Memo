@@ -19,7 +19,7 @@
 <a name="-next"><h3>编程部分 [<sup>目录</sup>](#content)</h3></a>
 
 - boostrap
-- **git**
+- [**git**](https://github.com/Ming-Lian/Memo/blob/master/Git%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0.md)
 - pygame
 - vim
 - TeX文本编辑器
