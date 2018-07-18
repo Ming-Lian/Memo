@@ -206,7 +206,7 @@ $ chown -R git:git runoob.git
 
 4、克隆仓库
 
-````
+```
 $ git clone git@192.168.1.20:/home/gitrepo/runoob.git
 Cloning into 'runoob'...
 warning: You appear to have cloned an empty repository.
