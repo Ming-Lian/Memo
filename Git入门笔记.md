@@ -15,9 +15,9 @@
 
 <h1 name="title">Git入门笔记</h1>
 
-<a name="get-start"><h2>1. 起步 [<sup>目录</sup>](#title)</h2></a>
+<a name="get-start"><h2>1. 起步 [<sup>目录</sup>](#content)</h2></a>
 
-<a name="about-version-control"><h3>1.1. 关于版本控制 [<sup>目录</sup>](#title)</h3></a>
+<a name="about-version-control"><h3>1.1. 关于版本控制 [<sup>目录</sup>](#content)</h3></a>
 
 - **本地版本控制系统**
 
@@ -37,7 +37,7 @@
 
 这么一来，任何一处协同工作用的服务器发生故障，事后都可以用任何一个镜像出来的本地仓库恢复。 因为每一次的克隆操作，实际上都是一次对代码仓库的完整备份
 
-<a name="principle"><h3>1.2. 基本工作原理 [<sup>目录</sup>](#title)</h3></a>
+<a name="principle"><h3>1.2. 基本工作原理 [<sup>目录</sup>](#content)</h3></a>
 
 **直接记录快照，而非差异比较**
 
@@ -53,9 +53,9 @@ Git 不按照以上方式对待或保存数据。 反之，Git 更像是把数�
 
 <p align="center"><img src="https://git-scm.com/book/en/v2/images/snapshots.png" width=800 /></p>
 
-<a name="remote-repository-github"><h2>3. GitHub远程仓库 [<sup>目录</sup>](#title)</h2></a>
+<a name="remote-repository-github"><h2>3. GitHub远程仓库 [<sup>目录</sup>](#content)</h2></a>
 
-<a name="connect-to-github"><h3>3.1. 连接GitHub远程仓库 [<sup>目录</sup>](#title)</h3></a>
+<a name="connect-to-github"><h3>3.1. 连接GitHub远程仓库 [<sup>目录</sup>](#content)</h3></a>
 
 由于你的本地Git仓库和GitHub仓库之间的传输是通过SSH加密的，所以我们需要配置验证信息，即提供本地仓库与GitHub仓库之间能够相互识别校验的SSH key
 
@@ -100,7 +100,7 @@ Hi username! You've successfully authenticated, but GitHub does not provide shel
 
 从GitHub的 `Account` => `Settings` => `SSH and GPG keys` 也可以看到，原先灰色的钥匙图标被点亮激活了，变成了绿色的
 
-<a name="interact-with-github"><h3>3.2. 与GitHub的交互 [<sup>目录</sup>](#title)</h3></a>
+<a name="interact-with-github"><h3>3.2. 与GitHub的交互 [<sup>目录</sup>](#content)</h3></a>
 
 <a name="link-and-unlink-for-remote-local-repo"><h4>3.2.1. 远程库-本地库绑定与解绑 [<sup>目录</sup>](#title)</h4></a>
 
@@ -133,7 +133,7 @@ origin
 $ git remote rm [别名]
 ```
 
-<a name="fetch-remote-repo"><h4>3.2.2. 提取远程仓库 [<sup>目录</sup>](#title)</h4></a>
+<a name="fetch-remote-repo"><h4>3.2.2. 提取远程仓库 [<sup>目录</sup>](#content)</h4></a>
 
 假设你配置好了一个远程仓库，并且你想要提取更新的数据，你可以首先执行 `git fetch [alias]` 告诉 Git 去获取它有你没有的数据，然后你可以执行 `git merge [alias]/[branch]` 以将服务器上的任何更新（假设有人这时候推送到服务器了）合并到你的当前分支。 
 
@@ -149,7 +149,7 @@ $ git fetch origin
 $ git merge origin/master
 ```
 
-<a name="push-remote-repo"><h4>3.2.3. 推送到远程仓库 [<sup>目录</sup>](#title)</h4></a>
+<a name="push-remote-repo"><h4>3.2.3. 推送到远程仓库 [<sup>目录</sup>](#content)</h4></a>
 
 推送你的新分支与数据到某个远端仓库命令:
 
@@ -159,7 +159,7 @@ $ git push [alias] [branch]
 
 以上命令将你的 [branch] 分支推送成为 [alias] 远程仓库上的 [branch] 分支
 
-<a name="setup-git-server"><h2>4. 搭建 Git 服务器 [<sup>目录</sup>](#title)</h2></a>
+<a name="setup-git-server"><h2>4. 搭建 Git 服务器 [<sup>目录</sup>](#content)</h2></a>
 
 之前，我们远程仓库使用了 Github，Github 公开的项目是免费的，但是如果你不想让其他人看到你的项目就需要收费。这时我们就需要自己搭建一台 Git 服务器作为私有仓库使用。
 
