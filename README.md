@@ -11,6 +11,7 @@
 - [已完成计划](#finished)
 	- [编程部分](#programing-finished)
 	- [机器学习课程](#marchine-learning-course-finished)
+	- [生信部分](#bioinformatics-finished)
 
 <h1 name="title">学习计划<h1>
 
@@ -63,4 +64,8 @@
 
 - [**吴恩达DeepLearning.ai——course1**](https://github.com/Ming-Lian/Machine-Learning-Course-in-UCAS/blob/master/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%9A%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0.md)
 - [**吴恩达DeepLearning.ai——course2**](https://github.com/Ming-Lian/Machine-Learning-Course-in-UCAS/blob/master/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%9A%E6%94%B9%E5%96%84%E6%B7%B1%E5%B1%82%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C.md)
+
+<a name="bioinformatics-finished"><h3>生信部分 [<sup>目录</sup>](#content)</h3></a>
+
+- [shotgun metagenome基础知识](https://github.com/Ming-Lian/NGS-analysis/blob/master/Analysis-of-Metagenome.md)
 
