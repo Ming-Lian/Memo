@@ -16,10 +16,10 @@
 
 <a name="next"><h2>近期学习计划 [<sup>目录</sup>](#content)</h2></a>
 
-<a name="-next"><h3>编程部分 [<sup>目录</sup>](#content)</h3></a>
+<a name="programing-next"><h3>编程部分 [<sup>目录</sup>](#content)</h3></a>
 
-- boostrap
-- [**git**](https://github.com/Ming-Lian/Memo/blob/master/Git%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0.md)
+- [boostrap](https://github.com/Ming-Lian/Setup-Database/blob/master/Bootstrap%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0.md)
+- [jQuery](https://github.com/Ming-Lian/Setup-Database/blob/master/jQuery%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0.md)
 - pygame
 - vim
 - TeX文本编辑器
@@ -57,6 +57,7 @@
 
 - [**python**](https://github.com/Ming-Lian/Memo/blob/master/Beginning-python.md)
 - [**PHP**](https://github.com/Ming-Lian/Memo/blob/master/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%9APHP%E4%B8%80%E5%91%A8%E9%80%9F%E6%88%90.md)
+- [**git**](https://github.com/Ming-Lian/Memo/blob/master/Git%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0.md)
 
 <a name="marchine-learning-course-finished"><h3>机器学习课程 [<sup>目录</sup>](#content)</h3></a>
 
