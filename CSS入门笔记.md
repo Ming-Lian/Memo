@@ -18,7 +18,13 @@
 - [链接](#link)
 - [列表](#list)
 - [表格](#table)
-
+- [盒子模型(Box Model)](#box-model)
+- [边框](#border)
+- [分组 和 嵌套 选择器](#group-and-nest)
+- [Display(显示) 与 Visibility（可见性）](#display-visibility)
+- [Position(定位)](#position)
+- [导航栏](#navigation)
+	- [垂直导航栏](#vertical-navigation)
 
 
 
@@ -426,6 +432,235 @@ height:50px;
 vertical-align:bottom;
 }
 ```
+<a name="box-model"><h2>盒子模型(Box Model)  [<sup>目录</sup>](#content)</h2></a>
+
+<p align="center"><img src=./picture/Beginning-css-box-model.gif width=800 /></p>
+
+不同部分的说明：
+
+- Margin(外边距) - 清除边框外的区域，外边距是透明的。
+- Border(边框) - 围绕在内边距和内容外的边框。
+- Padding(内边距) - 清除内容周围的区域，内边距是透明的。
+- Content(内容) - 盒子的内容，显示文本和图像。
+
+```
+div {
+    width: 300px;
+    border: 25px solid green;
+    padding: 25px;
+    margin: 25px;
+}
+```
+
+<a name="border"><h2>边框  [<sup>目录</sup>](#content)</h2></a>
+
+- border-style属性用来定义边框的样式
+ 
+<p align="center"><img src=./picture/Beginning-css-border-style.png width=800 /></p>
+
+- order-width 属性为边框指定宽度
+
+- border-color属性用于设置边框的颜色
+
+	**注意**： border-color单独使用是不起作用的，必须得先使用border-style来设置边框样式
+
+- 单独设置各边
+
+	```
+	p
+	{
+    	border-top-style:dotted;
+    	border-right-style:solid;
+    	border-bottom-style:dotted;
+    	border-left-style:solid;
+	}
+	```
+	
+	或者可以简写成：
+	
+	```
+	border-style:dotted solid double dashed; 
+	```
+	
+	- 上边框是 dotted
+    - 右边框是 solid
+    - 底边框是 double
+    - 左边框是 dashed
+
+	这个属性可以赋1-4个值：
+	
+	> - 1个值时，其他值与其一致；
+	> - 2个值时，第一个和第二个边框，即上和右被赋值，未被赋值的另外两个值，被默认为与对应一侧的值一致；
+	> - 3个值时，第一、二、三个边框，即上、右、底被赋值，未被赋值的左，被默认为与对应一侧的值（即右）一致；
+	
+	
+<a name="group-and-nest"><h2>分组 和 嵌套 选择器  [<sup>目录</sup>](#content)</h2></a>
+
+- 分组
+
+```
+h1
+{
+color:green;
+}
+h2
+{
+color:green;
+}
+p
+{
+color:green;
+}
+```
+
+对以上代码使用分组选择器：
+
+```
+h1,h2,p
+{
+color:green;
+}
+```
+
+- 嵌套
+
+```
+p
+{
+color:blue;
+text-align:center;
+}
+.marked
+{
+background-color:red;
+}
+.marked p
+{
+color:white;
+}
+```
+
+> - 为所有p元素指定一个样式
+> - 为所有class="marked"的元素指定一个样式
+> - 为所有class="marked"元素内的p元素指定一个样式
+
+<a name="display-visibility"><h2>Display(显示) 与 Visibility（可见性）  [<sup>目录</sup>](#content)</h2></a>
+
+display属性设置一个元素应如何显示，visibility属性指定一个元素应可见还是隐藏
+
+- 隐藏元素
+
+隐藏一个元素可以通过把display属性设置为"none"，或把visibility属性设置为"hidden"。但是请注意，这两种方法会产生不同的结果。
+
+> visibility:hidden可以隐藏某个元素，但隐藏的元素仍需占用与未隐藏之前一样的空间
+>
+> display:none可以隐藏某个元素，且隐藏的元素不会占用任何空间
+
+- 块和内联元素
+
+块元素是一个元素，占用了全部宽度，在前后都是换行符。
+
+块元素的例子：
+
+> - `<h1>`
+> - `<p>`
+> - `<div>`
+
+内联元素只需要必要的宽度，不强制换行。
+
+内联元素的例子：
+
+> - `<span>`
+> - `<a>`
+
+可以更改内联元素和块元素
+
+> - 把列表项显示为内联元素：`li {display:inline;}`
+> - 把span元素作为块元素：`span {display:block;}`
+
+<a name="position"><h2>Position(定位)  [<sup>目录</sup>](#content)</h2></a>
+
+- **static 定位**
+
+	没有定位，元素出现在正常的流中
+
+- **fixed 定位**
+
+	元素的位置相对于浏览器窗口是固定位置。
+
+	即使窗口是滚动的它也不会移动
+	
+	Fixed定位使元素的位置与文档流无关，因此不占据空间。
+	
+- **relative 定位**
+
+	相对定位元素的定位是相对其正常位置。
+	
+	```
+	h2.pos_left
+	{
+    	position:relative;
+    	left:-20px;
+	}
+	h2.pos_right
+	{
+    	position:relative;
+    	left:20px;
+	}
+	```
+	
+	可以移动的相对定位元素的内容和相互重叠的元素，它原本所占的空间不会改变。
+
+	<img src=./picture/Beginning-css-position-relative.png width=600 />
+
+- **absolute 定位**
+
+	绝对定位的元素的位置相对于最近的已定位父元素，如果元素没有已定位的父元素，那么它的位置相对于<html>:
+	
+	absolute 定位使元素的位置与文档流无关，因此不占据空间。
+
+	absolute 定位的元素和其他元素重叠。
+
+<a name="navigation"><h2>导航栏  [<sup>目录</sup>](#content)</h2></a>
+
+**导航栏=链接列表**
+
+导航条基本上是一个链接列表，所以使用 `<ul>` 和 `<li>`元素非常有意义
+
+<a name="vertical-navigation"><h3>垂直导航栏  [<sup>目录</sup>](#content)</h3></a>
+
+```
+ul {
+    list-style-type: none; /* 移除列表前小标志。一个导航栏并不需要列表标记 */
+    margin: 0; /* 移除浏览器的默认设置将边距和填充设置为0 */
+    padding: 0;
+    width: 200px;
+    background-color: #f1f1f1;
+}
+ 
+li a {
+    display: block; /* 显示块元素的链接，让整体变为可点击链接区域（不只是文本）*/
+    color: #000;
+    padding: 8px 16px;
+    text-decoration: none; /* 去除链接的下划线 */
+}
+ 
+/* 鼠标移动到选项上修改背景颜色 */
+li a:hover {
+    background-color: #555;
+    color: white;
+}
+```
+
+激活/当前导航条实例
+
+```
+.active {
+    background-color: #4CAF50;
+    color: white;
+}
+```
+
 
 
 
