@@ -19,7 +19,7 @@
 
 <a name="programing-next"><h3>编程部分 [<sup>目录</sup>](#content)</h3></a>
 
-- [boostrap](https://github.com/Ming-Lian/Setup-Database/blob/master/Bootstrap%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0.md)
+- [Bootstrap](https://github.com/Ming-Lian/Setup-Database/blob/master/Bootstrap%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0.md)
 - [jQuery](https://github.com/Ming-Lian/Setup-Database/blob/master/jQuery%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0.md)
 - pygame
 - vim
