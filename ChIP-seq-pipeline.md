@@ -58,7 +58,7 @@ $ bowtie2-build ~/Ref/mm10/mm10.fa ~/Ref/mm10/mm10 1>Ref/mm10/mm10.bwt_index.log
 
 下载数据先要根据数据的`GEO id`到NCBI上获取该数据所对应的`SRP id`(sra project id)，然后根据`SRP id`到FTP上下载，例如如果已知数据的`GEO id`为<font color="red">GSE42466</font>,从NCBI的GEO数据库上找到它的`SRP id`为<font color="red">SRP017311</font>，则FTP地址为
 
-ftp://ftp-trace.ncbi.nlm.nih.gov/sra/sra-instant/reads/ByStudy/sra/SRP/**SRP017**/**SRP017311**/**SRR620$i**/**SRR620\$i.sra**
+ftp://ftp-trace.ncbi.nlm.nih.gov/sra/sra-instant/reads/ByStudy/sra/SRP/ **SRP017** / **SRP017311** / **SRR620$i** / **SRR620\$i.sra**
 
 可以写一个循环来下载该数据集：
 ```
