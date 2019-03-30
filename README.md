@@ -1,3 +1,5 @@
+$\sin$
+
 <a name="content">目录</a>
 
 [学习计划](#title)
