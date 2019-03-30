@@ -1,4 +1,3 @@
-$\sin$
 
 <a name="content">目录</a>
 
