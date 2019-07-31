@@ -4,6 +4,7 @@
 [学习计划](#title)
 - [近期学习计划](#next)
 	- [编程部分](#programing-next)
+	- [数学基础知识](#math-next)
 	- [机器学习课程](#marchine-learning-course-next)
 	- [生信部分](#bioinformatics-next)
 	- [3D打印](#3d-print-next)
@@ -25,13 +26,15 @@
 - pygame
 - vim
 
-
-
 <a name="marchine-learning-course-next"><h3>机器学习课程 [<sup>目录</sup>](#content)</h3></a>
 
 - [**李飞飞CV**](https://github.com/Ming-Lian/Machine-Learning-Course-in-UCAS/blob/master/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%9A%E6%96%AF%E5%9D%A6%E7%A6%8F%E5%A4%A7%E5%AD%A6%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E5%85%AC%E5%BC%80%E8%AF%BE.md)
 - [**国科大机器学习**](https://github.com/Ming-Lian/Machine-Learning-Course-in-UCAS/blob/master/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%9A%E5%9B%BD%E7%A7%91%E5%A4%A7%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AF%BE%E7%A8%8B.md)
 - [**吴恩达机器学习**](https://github.com/Ming-Lian/Machine-Learning-Course-in-UCAS/blob/master/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%9A%E6%96%AF%E5%9D%A6%E7%A6%8F%E5%A4%A7%E5%AD%A6%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%85%AC%E5%BC%80%E8%AF%BE.md)
+- [周志华《机器学习（西瓜书）》](https://github.com/Ming-Lian/Machine-Learning-Course-in-UCAS/blob/master/西瓜书笔记.md)
+- [李航《统计机器学习》]()
+- [吴恩达《机器学习工程师·卷积神经网络》]()
+
 
 <a name="bioinformatics-next"><h3>生信部分 [<sup>目录</sup>](#content)</h3></a>
 
@@ -39,6 +42,13 @@
 - 生信技能树公众号《直播我的基因组》系列文章
 - [文献调研:RNA editing](https://github.com/Ming-Lian/NGS-analysis/blob/master/%E6%96%87%E7%8C%AE%E8%B0%83%E7%A0%94%EF%BC%9ARNA%20editing.md)
 
+<a name="math-next"><h3>数学部分 [<sup>目录</sup>](#content)</h3></a>
+
+- [线性代数](https://github.com/Ming-Lian/MathIsFunGame/blob/master/Linear-Algebra-Note.md)
+- [概率论与数理统计](https://github.com/Ming-Lian/MathIsFunGame/blob/master/概率论学习笔.md)
+- [微积分]()
+	- [单变量微积分]()
+	- [多变量微积分]()
 
 <a name="3d-print-next"><h3>3D打印 [<sup>目录</sup>](#content)</h3></a>
 
@@ -61,7 +71,9 @@
 - [**PHP**](https://github.com/Ming-Lian/Memo/blob/master/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%9APHP%E4%B8%80%E5%91%A8%E9%80%9F%E6%88%90.md)
 - [**git**](https://github.com/Ming-Lian/Memo/blob/master/Git%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0.md)
 - [AJAX](https://github.com/Ming-Lian/Setup-Database/blob/master/AJAX%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.md)
-- LaTeX文本标记语言
+- [LaTeX-Math](https://github.com/Ming-Lian/Bioinformatics-skills/blob/master/Markdown%2BLaTexMath.md)
+- Numpy与Pandas库的使用
+- [Biopython]()
 
 <a name="marchine-learning-course-finished"><h3>机器学习课程 [<sup>目录</sup>](#content)</h3></a>
 
@@ -72,4 +84,4 @@
 
 - [shotgun metagenome基础知识](https://github.com/Ming-Lian/NGS-analysis/blob/master/Analysis-of-Metagenome.md)
 - [三代单分子测序基础知识](https://github.com/Ming-Lian/NGS-analysis/blob/master/Beginning-Single-Molecule-Sequencing.md)
-- GATK4最佳实践
+- [GATK4最佳实践](https://github.com/Ming-Lian/NGS-analysis/blob/master/call-snp.md)
