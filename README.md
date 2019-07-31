@@ -24,7 +24,7 @@
 - [jQuery](https://github.com/Ming-Lian/Setup-Database/blob/master/jQuery%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0.md)
 - pygame
 - vim
-- TeX文本编辑器
+
 
 
 <a name="marchine-learning-course-next"><h3>机器学习课程 [<sup>目录</sup>](#content)</h3></a>
@@ -38,8 +38,7 @@
 - [**同源基因NGS课程**](https://github.com/Ming-Lian/NGS-analysis/blob/master/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%9A%E5%90%8C%E6%BA%90%E5%9F%BA%E5%9B%A0NGS%E8%AF%BE%E7%A8%8B.md)
 - 生信技能树公众号《直播我的基因组》系列文章
 - [文献调研:RNA editing](https://github.com/Ming-Lian/NGS-analysis/blob/master/%E6%96%87%E7%8C%AE%E8%B0%83%E7%A0%94%EF%BC%9ARNA%20editing.md)
-- [三代单分子测序基础知识](https://github.com/Ming-Lian/NGS-analysis/blob/master/Beginning-Single-Molecule-Sequencing.md)
-- GATK4最佳实践
+
 
 <a name="3d-print-next"><h3>3D打印 [<sup>目录</sup>](#content)</h3></a>
 
@@ -62,6 +61,7 @@
 - [**PHP**](https://github.com/Ming-Lian/Memo/blob/master/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%9APHP%E4%B8%80%E5%91%A8%E9%80%9F%E6%88%90.md)
 - [**git**](https://github.com/Ming-Lian/Memo/blob/master/Git%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0.md)
 - [AJAX](https://github.com/Ming-Lian/Setup-Database/blob/master/AJAX%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.md)
+- LaTeX文本标记语言
 
 <a name="marchine-learning-course-finished"><h3>机器学习课程 [<sup>目录</sup>](#content)</h3></a>
 
@@ -71,4 +71,5 @@
 <a name="bioinformatics-finished"><h3>生信部分 [<sup>目录</sup>](#content)</h3></a>
 
 - [shotgun metagenome基础知识](https://github.com/Ming-Lian/NGS-analysis/blob/master/Analysis-of-Metagenome.md)
-
+- [三代单分子测序基础知识](https://github.com/Ming-Lian/NGS-analysis/blob/master/Beginning-Single-Molecule-Sequencing.md)
+- GATK4最佳实践
