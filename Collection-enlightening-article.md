@@ -10,5 +10,5 @@
 
 <a name='math'><h2>数学 [<sup>目录</sup>](#content)</h2></a>
 
-[你也能懂的微积分](https://mp.weixin.qq.com/s/yNwt7e8BYBnbQx_nozk-Yg)
+你也能懂的微积分 [html](https://mp.weixin.qq.com/s/yNwt7e8BYBnbQx_nozk-Yg) [pdf](https://github.com/Ming-Lian/Memo/blob/master/Collection/你也能懂的微积分.pdf)
 
